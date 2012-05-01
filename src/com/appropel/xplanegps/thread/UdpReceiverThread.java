@@ -8,6 +8,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Thread which receives UDP packets from X-Plane and translates them into Locations.
@@ -52,20 +54,46 @@ public final class UdpReceiverThread implements Runnable
             for (;;)
             {
                 socket.receive(packet);
+                // Verify that this is a valid packet from X-Plane by examining the first 5 bytes.
+                if (data[0] != 0x44 || data[1] != 0x41 || data[2] != 0x54 || data[3] != 0x41 || data[4] != 0x40)
+                {
+                    continue;
+                }
+
+                // Extract data packets from buffer.
                 ByteBuffer buffer = ByteBuffer.wrap(data);
                 buffer.order(ByteOrder.LITTLE_ENDIAN);
-                float speed = buffer.getFloat(21) * KNOTS_TO_M_S;
-                float bearing = buffer.getFloat(53);
-                float latitude = buffer.getFloat(81);
-                float longitude = buffer.getFloat(85);
-                float altitude = buffer.getFloat(89);
 
+                int index = 5;
+                List<DataPacket> dataPackets = new ArrayList<DataPacket>();
+                while (index + DataPacket.LENGTH <= packet.getLength())
+                {
+                    DataPacket dataPacket = new DataPacket(buffer, index);
+                    dataPackets.add(dataPacket);
+                    index += DataPacket.LENGTH;
+                }
+
+                // Transfer data values into a Location object.
                 Location location = new Location(mockLocationProvider);
-                location.setLatitude(latitude);
-                location.setLongitude(longitude);
-                location.setAltitude(altitude);
-                location.setBearing(bearing);
-                location.setSpeed(speed);
+                for (DataPacket dataPacket : dataPackets)
+                {
+                    switch (dataPacket.getIndex())
+                    {
+                        case 3:     // speeds
+                            location.setSpeed(dataPacket.getValues()[3] * KNOTS_TO_M_S);
+                            break;
+                        case 17:    // pitch, roll, headings
+                            location.setBearing(dataPacket.getValues()[2]);
+                            break;
+                        case 20:    // lat, lon, altitude
+                            location.setLatitude(dataPacket.getValues()[0]);
+                            location.setLongitude(dataPacket.getValues()[1]);
+                            location.setAltitude(dataPacket.getValues()[2]);
+                            break;
+                        default:
+                            break;
+                    }
+                }
 
                 // set the time in the location. If the time on this location
                 // matches the time on the one in the previous set call, it will be
