@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">X-Plane to GPS</string>
+    <string name="ip_instructions">Under Settings->Net Connections->Data, configure X-Plane to broadcast to %s:49000.</string>
 </resources>

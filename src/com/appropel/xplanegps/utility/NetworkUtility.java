@@ -33,16 +33,13 @@ public final class NetworkUtility
             while (interfaceEnumeration.hasMoreElements())
             {
                 NetworkInterface networkInterface = interfaceEnumeration.nextElement();
-                if ("eth0".equals(networkInterface.getName()))    // TODO: Is this fragile?
+                Enumeration<InetAddress> addressEnumeration = networkInterface.getInetAddresses();
+                while (addressEnumeration.hasMoreElements())
                 {
-                    Enumeration<InetAddress> addressEnumeration = networkInterface.getInetAddresses();
-                    while (addressEnumeration.hasMoreElements())
+                    InetAddress address = addressEnumeration.nextElement();
+                    if (address instanceof Inet4Address)    // TODO: How to deal with IPv6?
                     {
-                        InetAddress address = addressEnumeration.nextElement();
-                        if (address instanceof Inet4Address)    // TODO: How to deal with IPv6?
-                        {
-                            return address.getHostAddress();
-                        }
+                        return address.getHostAddress();
                     }
                 }
             }
@@ -51,6 +48,6 @@ public final class NetworkUtility
         {
             Log.e(TAG, "Exception determining local IP address", e);
         }
-        return "127.0.0.1";     // TODO: What to return here?
+        return "UNKNOWN";     // TODO: What to return here?
     }
 }

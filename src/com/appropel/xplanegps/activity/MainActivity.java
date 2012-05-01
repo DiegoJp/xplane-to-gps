@@ -1,21 +1,24 @@
 package com.appropel.xplanegps.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+import com.appropel.xplanegps.utility.NetworkUtility;
 import com.example.R;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import roboguice.activity.RoboActivity;
+import roboguice.inject.InjectView;
 
 /**
  * Main activity of the application.
  */
-public final class MainActivity extends Activity
+public final class MainActivity extends RoboActivity
 {
     /** Log tag. */
     private static final String TAG = MainActivity.class.getName();
@@ -23,6 +26,9 @@ public final class MainActivity extends Activity
     private static final float KNOTS_TO_M_S = 0.514444444f;
     /** Data buffer for packet reception. */
     private byte[] data = new byte[1024];
+    /** View holding server code text. */
+    @InjectView(R.id.ip_text_view)
+    private TextView ipInstructionsView;
 
     /** {@inheritDoc} */
     @Override
@@ -30,6 +36,9 @@ public final class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        ipInstructionsView.setText(
+                String.format(getString(R.string.ip_instructions), NetworkUtility.getLocalIpAddress()));
 
         try
         {
