@@ -12,15 +12,21 @@ import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class MainActivity extends Activity
+/**
+ * Main activity of the application.
+ */
+public final class MainActivity extends Activity
 {
+    /** Log tag. */
     private static final String TAG = MainActivity.class.getName();
-    private byte[] data = new byte[1024];
+    /** Conversion factor from knots to m/s. */
     private static final float KNOTS_TO_M_S = 0.514444444f;
+    /** Data buffer for packet reception. */
+    private byte[] data = new byte[1024];
 
-    /** Called when the activity is first created. */
+    /** {@inheritDoc} */
     @Override
-    public void onCreate(Bundle savedInstanceState)
+    public void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);

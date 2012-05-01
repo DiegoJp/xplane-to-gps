@@ -6,10 +6,20 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
-public class NetworkUtility
+/**
+ * Useful utilities.
+ */
+public final class NetworkUtility
 {
     /** Log tag. */
     private static final String TAG = NetworkUtility.class.getName();
+
+    /**
+     * No public constructor.
+     */
+    private NetworkUtility()
+    {
+    }
 
     /**
      * Returns the IP address of this device, if able to determine.
