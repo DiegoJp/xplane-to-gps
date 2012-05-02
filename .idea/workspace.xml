@@ -13,11 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/DataPacket.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/checkstyle.xml" afterPath="$PROJECT_DIR$/checkstyle2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
     </list>
     <ignored path="X-Plane GPS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,19 +72,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="11" selection-start="52" selection-end="53" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="31" column="0" selection-start="973" selection-end="973" vertical-scroll-proportion="0.32608697">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="0" selection-start="1877" selection-end="1877" vertical-scroll-proportion="0.5995792">
+            <state line="57" column="0" selection-start="1877" selection-end="1877" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2316#2328#0" expanded="true" />
@@ -192,9 +191,9 @@
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/DataPacket.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -672,7 +671,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Factored code out into UdpReceiverThread." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created DataPacket and restructured code for modularity." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -691,6 +690,7 @@
     <MESSAGE value="Added Checkstyle to the project." />
     <MESSAGE value="Added RoboGuice and wired up IP instructions." />
     <MESSAGE value="Factored code out into UdpReceiverThread." />
+    <MESSAGE value="Created DataPacket and restructured code for modularity." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -745,13 +745,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="11" selection-start="52" selection-end="53" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/checkstyle2.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="174" column="30" selection-start="6993" selection-end="6993" vertical-scroll-proportion="0.0">
@@ -768,10 +761,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1877" selection-end="1877" vertical-scroll-proportion="0.5995792">
+        <state line="57" column="0" selection-start="1877" selection-end="1877" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2316#2328#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="973" selection-end="973" vertical-scroll-proportion="0.32608697">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

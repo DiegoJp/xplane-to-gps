@@ -17,6 +17,9 @@ public final class MainActivity extends RoboActivity
     @InjectView(R.id.ip_text_view)
     private TextView ipInstructionsView;
 
+    /** Reference to background thread which processes packets. */
+    private UdpReceiverThread udpReceiverThread;
+
     /** {@inheritDoc} */
     @Override
     public void onCreate(final Bundle savedInstanceState)
@@ -26,7 +29,16 @@ public final class MainActivity extends RoboActivity
 
         ipInstructionsView.setText(
                 String.format(getString(R.string.ip_instructions), NetworkUtility.getLocalIpAddress()));
+    }
 
-        new Thread(new UdpReceiverThread(this)).start();
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        if (udpReceiverThread == null)
+        {
+            udpReceiverThread = new UdpReceiverThread(this);
+            new Thread(udpReceiverThread).start();
+        }
     }
 }
