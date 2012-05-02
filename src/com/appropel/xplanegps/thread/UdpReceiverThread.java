@@ -126,4 +126,14 @@ public final class UdpReceiverThread implements Runnable
     {
         pcs.addPropertyChangeListener(propertyName, pcl);
     }
+
+    /**
+     * Removes a property change listener.
+     * @param propertyName property name.
+     * @param pcl listener.
+     */
+    public void removePropertyChangeListener(final String propertyName, final PropertyChangeListener pcl)
+    {
+        pcs.removePropertyChangeListener(propertyName, pcl);
+    }
 }

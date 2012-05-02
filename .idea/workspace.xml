@@ -14,9 +14,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/example/R.java" afterPath="$PROJECT_DIR$/gen/com/example/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
     </list>
     <ignored path="X-Plane GPS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,13 +77,11 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="0" selection-start="1869" selection-end="1869" vertical-scroll-proportion="0.61079943">
+            <state line="95" column="37" selection-start="3005" selection-end="3005" vertical-scroll-proportion="0.8099261">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1979#2323#0" expanded="true" />
-                <element signature="e#2304#2305#0" expanded="true" />
-                <element signature="e#2537#3129#0" expanded="true" />
-                <element signature="e#3118#3119#0" expanded="true" />
+                <element signature="e#2341#2933#0" expanded="true" />
+                <element signature="e#2922#2923#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,7 +90,7 @@
       <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="0" selection-start="1870" selection-end="1870" vertical-scroll-proportion="0.0">
+            <state line="128" column="0" selection-start="4814" selection-end="4814" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2621#2633#0" expanded="true" />
@@ -113,8 +111,10 @@
       <file leaf-file-name="MainApplication.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="20" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="24" column="31" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -165,14 +165,14 @@
         <option value="$PROJECT_DIR$/src/com/example/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/MainActivity.java" />
         <option value="$PROJECT_DIR$/checkstyle.xml" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/DataPacket.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -603,7 +603,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25437897" sideWeight="0.67033726" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32966277" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -650,7 +650,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update data values on main screen." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added section headers." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -672,6 +672,7 @@
     <MESSAGE value="Created DataPacket and restructured code for modularity." />
     <MESSAGE value="Moved thread kickoff into onStart()." />
     <MESSAGE value="Update data values on main screen." />
+    <MESSAGE value="Added section headers." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -684,13 +685,6 @@
     <entry file="file://$PROJECT_DIR$/proguard-project.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="20" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -742,9 +736,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/Tools/android-sdk-mac_x86/platforms/android-8/android.jar!/java/beans/PropertyChangeSupport.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="57" selection-start="1762" selection-end="1790" vertical-scroll-proportion="0.45602605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="31" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="1870" selection-end="1870" vertical-scroll-proportion="0.0">
+        <state line="128" column="0" selection-start="4814" selection-end="4814" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2621#2633#0" expanded="true" />
@@ -754,13 +764,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="1869" selection-end="1869" vertical-scroll-proportion="0.61079943">
+        <state line="95" column="37" selection-start="3005" selection-end="3005" vertical-scroll-proportion="0.8099261">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1979#2323#0" expanded="true" />
-            <element signature="e#2304#2305#0" expanded="true" />
-            <element signature="e#2537#3129#0" expanded="true" />
-            <element signature="e#3118#3119#0" expanded="true" />
+            <element signature="e#2341#2933#0" expanded="true" />
+            <element signature="e#2922#2923#0" expanded="true" />
           </folding>
         </state>
       </provider>

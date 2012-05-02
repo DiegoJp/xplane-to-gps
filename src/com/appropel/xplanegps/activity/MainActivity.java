@@ -3,9 +3,11 @@ package com.appropel.xplanegps.activity;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.TextView;
+import com.appropel.xplanegps.guice.MainApplication;
 import com.appropel.xplanegps.thread.UdpReceiverThread;
 import com.appropel.xplanegps.utility.NetworkUtility;
 import com.example.R;
+import com.google.inject.Inject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import roboguice.activity.RoboActivity;
@@ -14,8 +16,12 @@ import roboguice.inject.InjectView;
 /**
  * Main activity of the application.
  */
-public final class MainActivity extends RoboActivity
+public final class MainActivity extends RoboActivity implements PropertyChangeListener
 {
+    /** Main application. */
+    @Inject
+    private MainApplication mainApplication;
+
     /** View holding server code text. */
     @InjectView(R.id.ip_text_view)
     private TextView ipInstructionsView;
@@ -40,9 +46,6 @@ public final class MainActivity extends RoboActivity
     @InjectView(R.id.groundspeed_view)
     private TextView groundspeedView;
 
-    /** Reference to background thread which processes packets. */
-    private UdpReceiverThread udpReceiverThread;
-
     /** {@inheritDoc} */
     @Override
     public void onCreate(final Bundle savedInstanceState)
@@ -58,20 +61,16 @@ public final class MainActivity extends RoboActivity
     protected void onStart()
     {
         super.onStart();
-        if (udpReceiverThread == null)
-        {
-            udpReceiverThread = new UdpReceiverThread(this);
-            new Thread(udpReceiverThread).start();
-            udpReceiverThread.addPropertyChangeListener(
-                UdpReceiverThread.LOCATION_PROPERTY, new PropertyChangeListener()
-                {
-                    public void propertyChange(final PropertyChangeEvent propertyChangeEvent)
-                    {
-                        final Location location = (Location) propertyChangeEvent.getNewValue();
-                        updateData(location);
-                    }
-                });
-        }
+        mainApplication.getUdpReceiverThread().addPropertyChangeListener(
+            UdpReceiverThread.LOCATION_PROPERTY, this);
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        mainApplication.getUdpReceiverThread().removePropertyChangeListener(
+            UdpReceiverThread.LOCATION_PROPERTY, this);
     }
 
     /**
@@ -91,5 +90,12 @@ public final class MainActivity extends RoboActivity
                 groundspeedView.setText(String.format("%.0f", location.getSpeed() / UdpReceiverThread.KNOTS_TO_M_S));
             }
         });
+    }
+
+    /** {@inheritDoc} */
+    public void propertyChange(final PropertyChangeEvent propertyChangeEvent)
+    {
+        final Location location = (Location) propertyChangeEvent.getNewValue();
+        updateData(location);
     }
 }
