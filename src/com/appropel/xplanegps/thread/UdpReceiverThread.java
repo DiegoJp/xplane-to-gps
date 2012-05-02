@@ -4,6 +4,8 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.util.Log;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
@@ -20,13 +22,19 @@ public final class UdpReceiverThread implements Runnable
     private static final String TAG = UdpReceiverThread.class.getName();
 
     /** Conversion factor from knots to m/s. */
-    private static final float KNOTS_TO_M_S = 0.514444444f;
+    public static final float KNOTS_TO_M_S = 0.514444444f;
+
+    /** Name of location property for events. */
+    public static final String LOCATION_PROPERTY = "location";
 
     /** Data buffer for packet reception. */
     private byte[] data = new byte[1024];
 
     /** Context for locating application resources. */
     private Context context;
+
+    /** Property change support. */
+    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /**
      * Constructs a new <code>UdpReceiverThread</code>.
@@ -99,13 +107,23 @@ public final class UdpReceiverThread implements Runnable
                 // matches the time on the one in the previous set call, it will be
                 // ignored
                 location.setTime(System.currentTimeMillis());
-
                 locationManager.setTestProviderLocation(mockLocationProvider, location);
+                pcs.firePropertyChange(LOCATION_PROPERTY, null, location);
             }
         }
         catch (Exception ex)
         {
             Log.e(TAG, "Exception", ex);
         }
+    }
+
+    /**
+     * Adds a property change listener.
+     * @param propertyName property name.
+     * @param pcl listener.
+     */
+    public void addPropertyChangeListener(final String propertyName, final PropertyChangeListener pcl)
+    {
+        pcs.addPropertyChangeListener(propertyName, pcl);
     }
 }
