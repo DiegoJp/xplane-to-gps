@@ -5,6 +5,15 @@
     android:layout_height="fill_parent"
     >
     <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/instructions"
+            android:textSize="20dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            />
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ip_text_view"
@@ -36,6 +45,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/mock_location"
+            />
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/data"
+            android:textSize="20dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             />
     <TableLayout
             android:layout_width="fill_parent"
