@@ -13,39 +13,46 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:background="#b02000"
+            android:textSize="@dimen/font_size"
             />
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ip_text_view"
             android:text="@string/ip_instructions"
+            android:textSize="@dimen/font_size"
             />
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/data_instructions"
+            android:textSize="@dimen/font_size"
             />
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/speeds"
             android:paddingLeft="20dp"
+            android:textSize="@dimen/font_size"
             />
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/headings"
             android:paddingLeft="20dp"
+            android:textSize="@dimen/font_size"
             />
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/latlon"
             android:paddingLeft="20dp"
+            android:textSize="@dimen/font_size"
             />
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/mock_location"
+            android:textSize="@dimen/font_size"
             />
 </LinearLayout>

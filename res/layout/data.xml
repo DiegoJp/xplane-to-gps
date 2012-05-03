@@ -12,6 +12,7 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:background="#00a000"
+            android:textSize="@dimen/font_size"
             />
     <TableLayout
             android:layout_width="fill_parent"
@@ -23,12 +24,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/latitude"
                     android:gravity="left"
+                    android:textSize="@dimen/font_size"
                     />
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/latitude_view"
                     android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_size"
                     />
         </TableRow>
         <TableRow>
@@ -37,12 +40,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/longitude"
                     android:gravity="left"
+                    android:textSize="@dimen/font_size"
                     />
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/longitude_view"
                     android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_size"
                     />
         </TableRow>
         <TableRow>
@@ -51,12 +56,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/altitude"
                     android:gravity="left"
+                    android:textSize="@dimen/font_size"
                     />
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/altitude_view"
                     android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_size"
                     />
         </TableRow>
         <TableRow>
@@ -65,12 +72,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/heading"
                     android:gravity="left"
+                    android:textSize="@dimen/font_size"
                     />
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/heading_view"
                     android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_size"
                     />
         </TableRow>
         <TableRow>
@@ -79,12 +88,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/groundspeed"
                     android:gravity="left"
+                    android:textSize="@dimen/font_size"
                     />
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/groundspeed_view"
                     android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_size"
                     />
         </TableRow>
     </TableLayout>
