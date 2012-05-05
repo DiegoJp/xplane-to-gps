@@ -17,7 +17,6 @@ public final class MainApplication extends RoboApplication
     public MainApplication()
     {
         udpReceiverThread = new UdpReceiverThread(this);
-        new Thread(udpReceiverThread).start();
     }
 
     /**
@@ -27,5 +26,13 @@ public final class MainApplication extends RoboApplication
     public UdpReceiverThread getUdpReceiverThread()
     {
         return udpReceiverThread;
+    }
+
+    /**
+     * Starts the UDP receiver thread.
+     */
+    public void startUdpReceiverThread()
+    {
+        new Thread(udpReceiverThread).start();
     }
 }

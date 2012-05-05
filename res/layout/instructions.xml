@@ -8,6 +8,12 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:text="@string/mock_location"
+            android:textSize="@dimen/font_size"
+            />
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/ip_text_view"
             android:text="@string/ip_instructions"
             android:textSize="@dimen/font_size"
@@ -37,12 +43,6 @@
             android:layout_height="wrap_content"
             android:text="@string/latlon"
             android:paddingLeft="20dp"
-            android:textSize="@dimen/font_size"
-            />
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mock_location"
             android:textSize="@dimen/font_size"
             />
 </LinearLayout>
