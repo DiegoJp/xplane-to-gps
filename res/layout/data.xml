@@ -4,16 +4,6 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
         >
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/data"
-            android:gravity="center_horizontal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:background="#00a000"
-            android:textSize="@dimen/font_size"
-            />
     <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

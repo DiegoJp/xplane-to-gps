@@ -3,7 +3,7 @@
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
       <GlobalState>
-        <option name="device" value="10.1in WXGA (Tablet)" />
+        <option name="device" value="2.7in QVGA" />
         <option name="dockMode" value="" />
         <option name="nightMode" value="notnight" />
         <option name="targetHashString" value="android-8" />
@@ -11,7 +11,7 @@
       </GlobalState>
     </option>
     <device-configurations>
-      <entry key="file://$PROJECT_DIR$/res/layout/data.xml" value="Portrait" />
+      <entry key="file://$PROJECT_DIR$/res/layout/instructions.xml" value="Landscape" />
     </device-configurations>
   </component>
   <component name="AndroidLogFilters">
@@ -19,14 +19,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout-land/main.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout-port/main.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/data.xml" afterPath="$PROJECT_DIR$/res/layout/data.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/instructions.xml" afterPath="$PROJECT_DIR$/res/layout/instructions.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/dimensions.xml" afterPath="$PROJECT_DIR$/res/values/dimensions.xml" />
     </list>
     <ignored path="X-Plane GPS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,88 +80,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dimensions.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/dimensions.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="31" selection-start="82" selection-end="82" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="850" selection-end="850" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="881" selection-end="881" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.19985975">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="87" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InstructionActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoboTabActivity.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Tools/RoboGuice/roboguice-1.1.2.jar!/roboguice/activity/RoboTabActivity.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="1720" selection-end="1720" vertical-scroll-proportion="-24.6">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="data.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/data.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="0" selection-start="4103" selection-end="4103" vertical-scroll-proportion="0.0">
+            <state line="6" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="instructions.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="instructions.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/res/layout/instructions.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="0" selection-start="2160" selection-end="2160" vertical-scroll-proportion="0.0">
+            <state line="7" column="0" selection-start="308" selection-end="308" vertical-scroll-proportion="0.11087645">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dimensions.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/dimensions.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="30" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -195,14 +131,14 @@
         <option value="$PROJECT_DIR$/res/layout-landscape/main.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout-portrait/main.xml" />
-        <option value="$PROJECT_DIR$/res/layout/data.xml" />
-        <option value="$PROJECT_DIR$/res/layout/instructions.xml" />
-        <option value="$PROJECT_DIR$/res/values/dimensions.xml" />
         <option value="$PROJECT_DIR$/res/layout-land/main.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/res/layout/data.xml" />
+        <option value="$PROJECT_DIR$/res/layout/instructions.xml" />
+        <option value="$PROJECT_DIR$/res/values/dimensions.xml" />
       </list>
     </option>
   </component>
@@ -706,7 +642,7 @@
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35509554" sideWeight="0.67033726" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35509554" sideWeight="0.67033726" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -719,7 +655,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23407644" sideWeight="0.67033726" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32966277" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -766,7 +702,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Further work on layout." />
+    <option name="LAST_COMMIT_MESSAGE" value="Split layout into tabs." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -793,6 +729,7 @@
     <MESSAGE value="Suppressed some warnings." />
     <MESSAGE value="Broke layout into landscape and portrait files." />
     <MESSAGE value="Further work on layout." />
+    <MESSAGE value="Split layout into tabs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -827,21 +764,6 @@
         <state line="9" column="140" selection-start="786" selection-end="786" vertical-scroll-proportion="0.09467041" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/dimensions.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="31" selection-start="82" selection-end="82" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/data.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="4103" selection-end="4103" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/instructions.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="2160" selection-end="2160" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Tools/RoboGuice/roboguice-1.1.2.jar!/roboguice/activity/RoboActivity.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.042826552">
@@ -851,7 +773,7 @@
     </entry>
     <entry file="jar://$USER_HOME$/Tools/RoboGuice/roboguice-1.1.2.jar!/roboguice/activity/RoboTabActivity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1720" selection-end="1720" vertical-scroll-proportion="-24.6">
+        <state line="42" column="0" selection-start="1720" selection-end="1720" vertical-scroll-proportion="0.43897218">
           <folding />
         </state>
       </provider>
@@ -872,7 +794,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="87" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
+        <state line="17" column="87" selection-start="615" selection-end="615" vertical-scroll-proportion="0.17882188">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -881,7 +803,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0">
+        <state line="29" column="0" selection-start="831" selection-end="831" vertical-scroll-proportion="0.3050491">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -900,6 +822,27 @@
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.19985975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/data.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/dimensions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="30" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/instructions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="308" selection-end="308" vertical-scroll-proportion="0.11087645">
           <folding />
         </state>
       </provider>

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="font_size">12sp</dimen>
+    <dimen name="font_size">16sp</dimen>
 </resources>
