@@ -15,5 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name="com.appropel.xplanegps.activity.DataActivity"/>
+        <activity android:name="com.appropel.xplanegps.activity.InstructionActivity"/>
     </application>
 </manifest> 
