@@ -2,8 +2,8 @@ package com.appropel.xplanegps.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.utility.NetworkUtility;
-import com.example.R;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 

@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.TabHost;
+import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.guice.MainApplication;
-import com.example.R;
 import com.google.inject.Inject;
 import roboguice.activity.RoboTabActivity;
 
