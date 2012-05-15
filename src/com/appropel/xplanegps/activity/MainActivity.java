@@ -58,7 +58,7 @@ public final class MainActivity extends RoboTabActivity
                 alert.show();
             }
         }
-        catch (Settings.SettingNotFoundException e)
+        catch (Exception e)
         {
             Log.e(TAG, "Error checking device settings", e);
         }
