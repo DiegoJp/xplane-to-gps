@@ -1,6 +1,8 @@
 package com.appropel.xplanegps.guice;
 
-import com.appropel.xplanegps.thread.UdpReceiverThread;
+import android.location.Location;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import roboguice.application.RoboApplication;
 
 /**
@@ -8,31 +10,38 @@ import roboguice.application.RoboApplication;
  */
 public final class MainApplication extends RoboApplication
 {
-    /** Reference to background thread which processes packets. */
-    private UdpReceiverThread udpReceiverThread;
+    /** Name of location property for events. */
+    public static final String LOCATION_PROPERTY = "location";
+
+    /** Property change support. */
+    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /**
-     * Constructs a new <code>MainApplication</code>.
+     * Sets the current location.
+     * @param location location.
      */
-    public MainApplication()
+    public void setLocation(final Location location)
     {
-        udpReceiverThread = new UdpReceiverThread(this);
+        pcs.firePropertyChange(LOCATION_PROPERTY, null, location);
     }
 
     /**
-     * Returns the single instance of the UDP receiver thread.
-     * @return thread instance.
+     * Adds a property change listener.
+     * @param propertyName property name.
+     * @param pcl listener.
      */
-    public UdpReceiverThread getUdpReceiverThread()
+    public void addPropertyChangeListener(final String propertyName, final PropertyChangeListener pcl)
     {
-        return udpReceiverThread;
+        pcs.addPropertyChangeListener(propertyName, pcl);
     }
 
     /**
-     * Starts the UDP receiver thread.
+     * Removes a property change listener.
+     * @param propertyName property name.
+     * @param pcl listener.
      */
-    public void startUdpReceiverThread()
+    public void removePropertyChangeListener(final String propertyName, final PropertyChangeListener pcl)
     {
-        new Thread(udpReceiverThread).start();
+        pcs.removePropertyChangeListener(propertyName, pcl);
     }
 }

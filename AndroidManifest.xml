@@ -18,5 +18,6 @@
         </activity>
         <activity android:name="com.appropel.xplanegps.activity.DataActivity"/>
         <activity android:name="com.appropel.xplanegps.activity.InstructionActivity"/>
+        <service android:name="com.appropel.xplanegps.service.DataService"/>
     </application>
 </manifest> 

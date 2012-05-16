@@ -17,4 +17,6 @@
     <string name="altitude">Altitude</string>
     <string name="heading">Heading</string>
     <string name="groundspeed">Groundspeed</string>
+    <string name="active">Active</string>
+    <string name="paused">Paused</string>
 </resources>

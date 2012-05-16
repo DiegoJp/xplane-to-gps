@@ -4,14 +4,15 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.util.Log;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+import com.appropel.xplanegps.guice.MainApplication;
+import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Thread which receives UDP packets from X-Plane and translates them into Locations.
@@ -24,33 +25,32 @@ public final class UdpReceiverThread implements Runnable
     /** Conversion factor from knots to m/s. */
     public static final float KNOTS_TO_M_S = 0.514444444f;
 
-    /** Name of location property for events. */
-    public static final String LOCATION_PROPERTY = "location";
-
     /** Data buffer for packet reception. */
     private byte[] data = new byte[1024];
 
     /** Context for locating application resources. */
-    private Context context;
+    private MainApplication mainApplication;
 
-    /** Property change support. */
-    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    /** Flag to indicate if this thread is running. */
+    private AtomicBoolean running = new AtomicBoolean(true);
 
     /**
      * Constructs a new <code>UdpReceiverThread</code>.
-     * @param context application text.
+     * @param mainApplication application.
      */
-    public UdpReceiverThread(final Context context)
+    public UdpReceiverThread(final MainApplication mainApplication)
     {
-        this.context = context;
+        this.mainApplication = mainApplication;
     }
 
     /** {@inheritDoc} */
     public void run()
     {
+        Log.i(TAG, "Starting UdpReceiverThread.");
         try
         {
-            LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            LocationManager locationManager =
+                    (LocationManager) mainApplication.getSystemService(Context.LOCATION_SERVICE);
 
             String mockLocationProvider = LocationManager.GPS_PROVIDER;
             locationManager.addTestProvider(mockLocationProvider, false, false,
@@ -58,10 +58,19 @@ public final class UdpReceiverThread implements Runnable
             locationManager.setTestProviderEnabled(mockLocationProvider, true);
 
             DatagramSocket socket = new DatagramSocket(49000);
+            socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
             DatagramPacket packet = new DatagramPacket(data, data.length);
-            for (;;)
+            for (; running.get();)
             {
-                socket.receive(packet);
+                try
+                {
+                    socket.receive(packet);
+                }
+                catch (final InterruptedIOException iioex)
+                {
+                    continue;   // No packet was received so continue loop
+                }
+
                 // Verify that this is a valid packet from X-Plane by examining the first 5 bytes.
                 if (data[0] != 0x44 || data[1] != 0x41 || data[2] != 0x54 || data[3] != 0x41 || data[4] != 0x40)
                 {
@@ -108,32 +117,21 @@ public final class UdpReceiverThread implements Runnable
                 // ignored
                 location.setTime(System.currentTimeMillis());
                 locationManager.setTestProviderLocation(mockLocationProvider, location);
-                pcs.firePropertyChange(LOCATION_PROPERTY, null, location);
+                mainApplication.setLocation(location);
             }
         }
         catch (Exception ex)
         {
             Log.e(TAG, "Exception", ex);
         }
+        Log.i(TAG, "Stopping UdpReceiverThread.");
     }
 
     /**
-     * Adds a property change listener.
-     * @param propertyName property name.
-     * @param pcl listener.
+     * Shuts down this thread.
      */
-    public void addPropertyChangeListener(final String propertyName, final PropertyChangeListener pcl)
+    public void stop()
     {
-        pcs.addPropertyChangeListener(propertyName, pcl);
-    }
-
-    /**
-     * Removes a property change listener.
-     * @param propertyName property name.
-     * @param pcl listener.
-     */
-    public void removePropertyChangeListener(final String propertyName, final PropertyChangeListener pcl)
-    {
-        pcs.removePropertyChangeListener(propertyName, pcl);
+        running.set(false);
     }
 }

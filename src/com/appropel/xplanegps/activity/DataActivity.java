@@ -1,10 +1,14 @@
 package com.appropel.xplanegps.activity;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.guice.MainApplication;
+import com.appropel.xplanegps.service.DataService;
 import com.appropel.xplanegps.thread.UdpReceiverThread;
 import com.google.inject.Inject;
 import java.beans.PropertyChangeEvent;
@@ -15,7 +19,7 @@ import roboguice.inject.InjectView;
 /**
  * Activity which displays the data stream coming from X-Plane.
  */
-public final class DataActivity extends RoboActivity  implements PropertyChangeListener
+public final class DataActivity extends RoboActivity implements PropertyChangeListener
 {
     /** Main application. */
     @Inject
@@ -41,28 +45,46 @@ public final class DataActivity extends RoboActivity  implements PropertyChangeL
     @InjectView(R.id.groundspeed_view)
     private TextView groundspeedView;
 
+    /** Button to activate service. */
+    @InjectView(R.id.active_button)
+    private ToggleButton activeButton;
+
     /** {@inheritDoc} */
     @Override
     public void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data);
+
+        final Intent dataServiceIntent = new Intent(this, DataService.class);
+        activeButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(final View view)
+            {
+                if (activeButton.isChecked())
+                {
+                    DataActivity.this.startService(dataServiceIntent);
+                }
+                else
+                {
+                    DataActivity.this.stopService(dataServiceIntent);
+                }
+            }
+        });
     }
 
     @Override
     protected void onStart()
     {
         super.onStart();
-        mainApplication.getUdpReceiverThread().addPropertyChangeListener(
-                UdpReceiverThread.LOCATION_PROPERTY, this);
+        mainApplication.addPropertyChangeListener(MainApplication.LOCATION_PROPERTY, this);
     }
 
     @Override
     protected void onStop()
     {
         super.onStop();
-        mainApplication.getUdpReceiverThread().removePropertyChangeListener(
-                UdpReceiverThread.LOCATION_PROPERTY, this);
+        mainApplication.removePropertyChangeListener(MainApplication.LOCATION_PROPERTY, this);
     }
 
     /**
@@ -88,6 +110,9 @@ public final class DataActivity extends RoboActivity  implements PropertyChangeL
     public void propertyChange(final PropertyChangeEvent propertyChangeEvent)
     {
         final Location location = (Location) propertyChangeEvent.getNewValue();
-        updateData(location);
+        if (location != null)
+        {
+            updateData(location);
+        }
     }
 }

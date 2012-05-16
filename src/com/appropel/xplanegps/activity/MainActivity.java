@@ -36,11 +36,7 @@ public final class MainActivity extends RoboTabActivity
         try
         {
             int enabled = Settings.Secure.getInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION);
-            if (enabled == 1)
-            {
-                mainApplication.startUdpReceiverThread();
-            }
-            else
+            if (enabled != 1)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.mock_location_warning)
