@@ -25,6 +25,9 @@ public final class UdpReceiverThread implements Runnable
     /** Conversion factor from knots to m/s. */
     public static final float KNOTS_TO_M_S = 0.514444444f;
 
+    /** Conversion factor from feet to meters. */
+    public static final float FEET_TO_METERS = 0.3048f;
+
     /** Data buffer for packet reception. */
     private byte[] data = new byte[1024];
 
@@ -105,7 +108,7 @@ public final class UdpReceiverThread implements Runnable
                         case 20:    // lat, lon, altitude
                             location.setLatitude(dataPacket.getValues()[0]);
                             location.setLongitude(dataPacket.getValues()[1]);
-                            location.setAltitude(dataPacket.getValues()[2]);
+                            location.setAltitude(dataPacket.getValues()[2] * FEET_TO_METERS);
                             break;
                         default:
                             break;

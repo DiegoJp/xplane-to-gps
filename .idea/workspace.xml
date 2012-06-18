@@ -21,6 +21,9 @@
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/X-Plane GPS.iml" afterPath="$PROJECT_DIR$/X-Plane GPS.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
     </list>
     <ignored path="X-Plane GPS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,7 +84,43 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="33" selection-start="220" selection-end="220" vertical-scroll-proportion="0.06335797">
+            <state line="5" column="67" selection-start="292" selection-end="292" vertical-scroll-proportion="0.05259467">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="110" column="91" selection-start="4363" selection-end="4363" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="101" column="118" selection-start="3171" selection-end="3171" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainApplication.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="125" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="proguard-project.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proguard-project.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="0" selection-start="996" selection-end="1029" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -118,11 +157,11 @@
         <option value="$PROJECT_DIR$/res/layout/data.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/instructions.xml" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
       </list>
     </option>
@@ -504,6 +543,7 @@
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="ExportedModule" value="X-Plane GPS" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Download" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Tablet_1024x600_3.2" />
     <property name="FullScreen" value="false" />
@@ -512,6 +552,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/com/appropel/xplanegps" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="AndroidIncludeSystemProguardFile" value="false" />
     <property name="AndroidProguardConfigPath" value="$PROJECT_DIR$/proguard-project.txt" />
     <property name="options.lastSelected" value="org.infernus.idea.checkstyle.CheckStylePlugin" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -696,8 +737,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35509554" sideWeight="0.67033726" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -709,9 +749,10 @@
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36200964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33638534" sideWeight="0.67033726" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.309467" sideWeight="0.6434962" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35509554" sideWeight="0.67033726" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -757,7 +798,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added active button to instructions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated version to 1.1." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -792,6 +833,7 @@
     <MESSAGE value="Fixes to ProGuard so app works." />
     <MESSAGE value="Fixed potential crash on startup." />
     <MESSAGE value="Added active button to instructions." />
+    <MESSAGE value="Updated version to 1.1." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -801,11 +843,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Tools/android-sdk-mac_x86/platforms/android-8/android.jar!/android/app/AlertDialog.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="0" selection-start="8151" selection-end="8151" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="19" selection-start="238" selection-end="238" vertical-scroll-proportion="0.07363254" />
@@ -826,77 +863,74 @@
         <state line="21" column="37" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proguard-project.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="89" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Tools/android-sdk-mac_x86/platforms/android-8/android.jar!/android/content/Intent.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="13" selection-start="9846" selection-end="9846" vertical-scroll-proportion="-0.11677282">
-          <folding />
-        </state>
+        <state line="99" column="13" selection-start="9846" selection-end="9846" vertical-scroll-proportion="-0.11677282" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="0" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="772" selection-end="859" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="65" selection-start="829" selection-end="829" vertical-scroll-proportion="0.0" />
+        <state line="70" column="0" selection-start="2460" selection-end="2460" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/data.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="46" selection-start="4068" selection-end="4068" vertical-scroll-proportion="0.0">
+        <state line="96" column="46" selection-start="4068" selection-end="4068" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/instructions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="40" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.79197466" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="176" selection-start="810" selection-end="810" vertical-scroll-proportion="0.1124197" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proguard-project.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="996" selection-end="1029" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="65" selection-start="829" selection-end="829" vertical-scroll-proportion="0.26297334">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="35" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
+        <state line="33" column="125" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/DataPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="19" selection-start="136" selection-end="136" vertical-scroll-proportion="0.07363254">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="0" selection-start="4946" selection-end="4946" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/instructions.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="40" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.79197466">
+        <state line="110" column="91" selection-start="4363" selection-end="4363" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="176" selection-start="810" selection-end="810" vertical-scroll-proportion="0.1124197">
+        <state line="101" column="118" selection-start="3171" selection-end="3171" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="33" selection-start="220" selection-end="220" vertical-scroll-proportion="0.06335797">
+        <state line="5" column="67" selection-start="292" selection-end="292" vertical-scroll-proportion="0.05259467">
           <folding />
         </state>
       </provider>

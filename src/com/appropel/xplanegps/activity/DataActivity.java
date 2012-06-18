@@ -99,7 +99,7 @@ public final class DataActivity extends RoboActivity implements PropertyChangeLi
             {
                 latitudeView.setText(Location.convert(location.getLatitude(), Location.FORMAT_SECONDS));
                 longitudeView.setText(Location.convert(location.getLongitude(), Location.FORMAT_SECONDS));
-                altitudeView.setText(String.format("%.0f", location.getAltitude()));
+                altitudeView.setText(String.format("%.0f", location.getAltitude() / UdpReceiverThread.FEET_TO_METERS));
                 headingView.setText(String.format("%03.0f", location.getBearing()));
                 groundspeedView.setText(String.format("%.0f", location.getSpeed() / UdpReceiverThread.KNOTS_TO_M_S));
             }
