@@ -14,6 +14,9 @@ public final class NetworkUtility
     /** Log tag. */
     private static final String TAG = NetworkUtility.class.getName();
 
+    /** Loopback address. */
+    private static final String LOOPBACK_SUBNET = "127";
+
     /**
      * No public constructor.
      */
@@ -37,7 +40,8 @@ public final class NetworkUtility
                 while (addressEnumeration.hasMoreElements())
                 {
                     InetAddress address = addressEnumeration.nextElement();
-                    if (address instanceof Inet4Address)    // TODO: How to deal with IPv6?
+                    if (address instanceof Inet4Address && !address.getHostAddress().startsWith(LOOPBACK_SUBNET))
+                        // TODO: How to deal with IPv6?
                     {
                         return address.getHostAddress();
                     }
