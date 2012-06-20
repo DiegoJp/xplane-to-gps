@@ -7,7 +7,7 @@
     <string name="data_instructions">3. Under X-Plane Settings -> Data Input &amp; Output, activate the following items for \"Internet via UDP\" by checking the leftmost box:</string>
     <string name="active_instructions">4. Set the Paused/Active button to Active. This starts a background Service to keep data flowing while you switch to another application.</string>
     <string name="speeds">3 speeds</string>
-    <string name="headings">17 pitch, roll, headings</string>
+    <string name="headings">17 pitch, roll, headings (18 for X-Plane 9)</string>
     <string name="latlon">20 lat, lon, altitude</string>
     <string name="mock_location_warning">This device must be set to \"Allow mock locations\" under Settings -> Applications -> Development.\n\nOnce this is done, restart X-Plane to GPS.</string>
     <string name="go_to_settings">Go to Settings</string>
