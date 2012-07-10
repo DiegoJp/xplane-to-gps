@@ -77,6 +77,7 @@ public final class DataActivity extends RoboActivity implements PropertyChangeLi
     protected void onStart()
     {
         super.onStart();
+        activeButton.setChecked(DataService.isRunning());
         mainApplication.addPropertyChangeListener(MainApplication.LOCATION_PROPERTY, this);
     }
 
