@@ -20,4 +20,5 @@
     <string name="groundspeed">Groundspeed</string>
     <string name="active">Active</string>
     <string name="paused">Paused</string>
+    <string name="notification">X-Plane to GPS is listening for data from X-Plane.</string>
 </resources>
