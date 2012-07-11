@@ -1,7 +1,6 @@
 package com.appropel.xplanegps.service;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -21,12 +20,12 @@ public final class DataService extends RoboService
     /** Notification identifier. */
     private static final int NOTIFICATION_ID = 1;
 
+    /** Reference to background thread which processes packets. */
+    private static UdpReceiverThread udpReceiverThread;
+
     /** Main application. */
     @Inject
     private MainApplication mainApplication;
-
-    /** Reference to background thread which processes packets. */
-    private static UdpReceiverThread udpReceiverThread;
 
     @Override
     public IBinder onBind(final Intent intent)
@@ -43,7 +42,6 @@ public final class DataService extends RoboService
             new Thread(udpReceiverThread).start();
 
             // Create notification.
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             Notification notification = new Notification(
                     R.drawable.ic_menu_plane, getText(R.string.notification), System.currentTimeMillis());
             Context context = getApplicationContext();
@@ -51,7 +49,7 @@ public final class DataService extends RoboService
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
             notification.setLatestEventInfo(
                     context, getText(R.string.app_name), getText(R.string.notification), contentIntent);
-            notificationManager.notify(NOTIFICATION_ID, notification);
+            startForeground(NOTIFICATION_ID, notification);
         }
 
         return START_STICKY;
@@ -63,9 +61,7 @@ public final class DataService extends RoboService
         super.onDestroy();
         udpReceiverThread.stop();
         udpReceiverThread = null;
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(NOTIFICATION_ID);
+        stopForeground(true);
     }
 
     /**
