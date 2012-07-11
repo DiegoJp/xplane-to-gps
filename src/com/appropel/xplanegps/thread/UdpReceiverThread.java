@@ -133,6 +133,7 @@ public final class UdpReceiverThread implements Runnable
                     Log.w("Exception in receiver loop, continuing", e);
                 }
             }
+            socket.close();
         }
         catch (Exception ex)
         {
