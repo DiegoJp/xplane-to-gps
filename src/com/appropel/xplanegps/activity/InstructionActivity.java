@@ -22,7 +22,12 @@ public final class InstructionActivity extends RoboActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instructions);
+    }
 
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
         ipInstructionsView.setText(
                 String.format(getString(R.string.ip_instructions), NetworkUtility.getLocalIpAddress()));
     }
