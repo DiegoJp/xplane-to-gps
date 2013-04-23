@@ -1,13 +1,16 @@
 package com.appropel.xplanegps.thread;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import com.appropel.xplanegps.guice.MainApplication;
 import java.io.InterruptedIOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -52,6 +55,10 @@ public final class UdpReceiverThread implements Runnable
     /** {@inheritDoc} */
     public void run()
     {
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(mainApplication);
+        final boolean forwardUdp = sharedPreferences.getBoolean("enable_udp_forward", false);
+
         Log.i(TAG, "Starting UdpReceiverThread.");
         try
         {
@@ -77,6 +84,22 @@ public final class UdpReceiverThread implements Runnable
                     catch (final InterruptedIOException iioex)
                     {
                         continue;   // No packet was received so continue loop
+                    }
+
+                    // If forwarding is active, send the packet back out.
+                    if (forwardUdp)
+                    {
+                        final String forwardAddress = sharedPreferences.getString("forward_address", "");
+                        if (forwardAddress != null && forwardAddress.length() > 0)
+                        {
+                            final DatagramPacket outPacket = new DatagramPacket(
+                                    packet.getData(),
+                                    packet.getLength(),
+                                    InetAddress.getByName(forwardAddress),
+                                    49000
+                            );
+                            socket.send(outPacket);
+                        }
                     }
 
                     // Extract data packets from buffer.
