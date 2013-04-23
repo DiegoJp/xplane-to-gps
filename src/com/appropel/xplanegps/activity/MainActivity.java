@@ -45,6 +45,12 @@ public final class MainActivity extends RoboTabActivity
                 .setContent(new Intent(this, DataActivity.class));
         tabHost.addTab(spec);
 
+        // Settings tab
+        spec = tabHost.newTabSpec("settings")
+                .setIndicator(getString(R.string.settings), res.getDrawable(R.drawable.ic_tab_gear))
+                .setContent(new Intent(this, SettingsActivity.class));
+        tabHost.addTab(spec);
+
         // Instructions tab
         spec = tabHost.newTabSpec("instructions")
                 .setIndicator(getString(R.string.instructions), res.getDrawable(R.drawable.ic_tab_gear))

@@ -21,4 +21,8 @@
     <string name="active">Active</string>
     <string name="paused">Paused</string>
     <string name="notification">X-Plane to GPS is listening for data from X-Plane.</string>
+    <string name="forward_udp">Forward UDP</string>
+    <string name="settings">Settings</string>
+    <string name="forward_address">Forward Address</string>
+    <string name="forward_explanation">Enter the IP address to forward packets to:</string>
 </resources>

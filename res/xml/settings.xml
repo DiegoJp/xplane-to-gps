@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+            android:id="@+id/enable_udp_forward"
+            android:key="enable_udp_forward"
+            android:title="@string/forward_udp"
+            />
+
+    <EditTextPreference
+            android:id="@+id/forward_address"
+            android:key="forward_address"
+            android:title="@string/forward_address"
+            android:dialogTitle="@string/forward_address"
+            android:dialogMessage="@string/forward_explanation"
+            android:defaultValue="127.0.0.1"/>
+
+</PreferenceScreen>
