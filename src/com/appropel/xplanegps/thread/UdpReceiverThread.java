@@ -89,16 +89,23 @@ public final class UdpReceiverThread implements Runnable
                     // If forwarding is active, send the packet back out.
                     if (forwardUdp)
                     {
-                        final String forwardAddress = sharedPreferences.getString("forward_address", "");
-                        if (forwardAddress != null && forwardAddress.length() > 0)
+                        try
                         {
-                            final DatagramPacket outPacket = new DatagramPacket(
-                                    packet.getData(),
-                                    packet.getLength(),
-                                    InetAddress.getByName(forwardAddress),
-                                    49000
-                            );
-                            socket.send(outPacket);
+                            final String forwardAddress = sharedPreferences.getString("forward_address", "");
+                            if (forwardAddress != null && forwardAddress.length() > 0)
+                            {
+                                final DatagramPacket outPacket = new DatagramPacket(
+                                        packet.getData(),
+                                        packet.getLength(),
+                                        InetAddress.getByName(forwardAddress),
+                                        49000
+                                );
+                                socket.send(outPacket);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.d(TAG, "Exception forwarding UDP packet", ex);
                         }
                     }
 
@@ -153,7 +160,7 @@ public final class UdpReceiverThread implements Runnable
                 }
                 catch (Exception e)
                 {
-                    Log.w("Exception in receiver loop, continuing", e);
+                    Log.w(TAG, "Exception in receiver loop, continuing", e);
                 }
             }
             socket.close();
