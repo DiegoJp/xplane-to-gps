@@ -14,6 +14,7 @@
             android:title="@string/forward_address"
             android:dialogTitle="@string/forward_address"
             android:dialogMessage="@string/forward_explanation"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            android:enabled="false"/>
 
 </PreferenceScreen>

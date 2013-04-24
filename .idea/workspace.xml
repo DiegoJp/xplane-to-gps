@@ -30,14 +30,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/settings.xml" afterPath="$PROJECT_DIR$/res/xml/settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="X-Plane GPS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366762399757" ignored="false" />
-    <file path="/SettingsActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366762296797" ignored="false" />
-    <file path="/settings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366678266884" ignored="false" />
+    <file path="/Dummy.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366763525596" ignored="false" />
+    <file path="/SettingsActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366763605857" ignored="false" />
+    <file path="/settings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366763582437" ignored="false" />
     <file path="/strings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366678448797" ignored="false" />
     <file path="/MainActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366679259068" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366678570121" ignored="false" />
@@ -107,19 +108,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="81" selection-start="2770" selection-end="2770" vertical-scroll-proportion="0.42075735">
+            <state line="77" column="81" selection-start="2770" selection-end="2770" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="82" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.0">
+            <state line="28" column="82" selection-start="942" selection-end="942" vertical-scroll-proportion="0.43343654">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,7 +131,7 @@
       <file leaf-file-name="settings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="47" selection-start="172" selection-end="190" vertical-scroll-proportion="-3.0">
+            <state line="17" column="34" selection-start="657" selection-end="657" vertical-scroll-proportion="-10.2">
               <folding />
             </state>
           </provider>
@@ -173,9 +174,9 @@
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/drawable/ic_tab_tick.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
         <option value="$PROJECT_DIR$/res/xml/settings.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
       </list>
     </option>
   </component>
@@ -588,7 +589,7 @@
     <property name="options.lastSelected" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
     <property name="AndroidLayoutSelectedEditor" value="android-designer" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="015d21d5055ffe1b" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="920def44" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="AndroidRunProguardForReleaseBuild" value="true" />
     <property name="KeystoreLocation" value="$USER_HOME$/appropel.keystore" />
@@ -764,7 +765,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24105012" sideWeight="0.68569463" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31430537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31430537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -820,7 +821,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update preferences screen with changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Make sure UDP forwarding doesn't throw exceptions." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -834,7 +835,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Split layout into tabs." />
     <MESSAGE value="Cleaned up new layouts." />
     <MESSAGE value="Added icons to tabs." />
     <MESSAGE value="Verify that mock locations are enabled when starting up the app." />
@@ -859,6 +859,7 @@
     <MESSAGE value="Added tick icon for Settings tab." />
     <MESSAGE value="Receiver thread forwards UDP packets to another address." />
     <MESSAGE value="Update preferences screen with changes." />
+    <MESSAGE value="Make sure UDP forwarding doesn't throw exceptions." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -952,26 +953,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="81" selection-start="2770" selection-end="2770" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="47" selection-start="172" selection-end="190" vertical-scroll-proportion="-3.0">
+        <state line="17" column="34" selection-start="657" selection-end="657" vertical-scroll-proportion="-10.2">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="82" selection-start="1352" selection-end="1352" vertical-scroll-proportion="0.0">
+        <state line="28" column="82" selection-start="942" selection-end="942" vertical-scroll-proportion="0.43343654">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="81" selection-start="2770" selection-end="2770" vertical-scroll-proportion="0.42075735">
-          <folding />
         </state>
       </provider>
     </entry>

@@ -26,6 +26,7 @@ public class SettingsActivity extends RoboPreferenceActivity
     {
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "");
     }
 
     @Override
