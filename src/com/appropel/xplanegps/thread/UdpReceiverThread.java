@@ -2,12 +2,15 @@ package com.appropel.xplanegps.thread;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import com.appropel.xplanegps.guice.MainApplication;
 import java.io.InterruptedIOException;
+import java.lang.reflect.Method;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -65,10 +68,9 @@ public final class UdpReceiverThread implements Runnable
             LocationManager locationManager =
                     (LocationManager) mainApplication.getSystemService(Context.LOCATION_SERVICE);
 
-            String mockLocationProvider = LocationManager.GPS_PROVIDER;
-            locationManager.addTestProvider(mockLocationProvider, false, false,
-                    false, false, true, true, true, 0, 5);
-            locationManager.setTestProviderEnabled(mockLocationProvider, true);
+            locationManager.addTestProvider(LocationManager.GPS_PROVIDER, false, false,
+                    false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
+            locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
 
             DatagramSocket socket = new DatagramSocket(49000);
             socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
@@ -129,7 +131,7 @@ public final class UdpReceiverThread implements Runnable
                     }
 
                     // Transfer data values into a Location object.
-                    Location location = new Location(mockLocationProvider);
+                    Location location = new Location(LocationManager.GPS_PROVIDER);
                     for (DataPacket dataPacket : dataPackets)
                     {
                         switch (dataPacket.getIndex())
@@ -154,8 +156,19 @@ public final class UdpReceiverThread implements Runnable
                     // set the time in the location. If the time on this location
                     // matches the time on the one in the previous set call, it will be
                     // ignored
+                    location.setAccuracy(1.0f);
                     location.setTime(System.currentTimeMillis());
-                    locationManager.setTestProviderLocation(mockLocationProvider, location);
+
+                    Method locationJellyBeanFixMethod = Location.class.getMethod("makeComplete");
+                    if (locationJellyBeanFixMethod != null)
+                    {
+                        locationJellyBeanFixMethod.invoke(location);
+                    }
+
+                    locationManager.setTestProviderStatus(LocationManager.GPS_PROVIDER,
+                            LocationProvider.AVAILABLE,
+                            null, System.currentTimeMillis());
+                    locationManager.setTestProviderLocation(LocationManager.GPS_PROVIDER, location);
                     mainApplication.setLocation(location);
                 }
                 catch (Exception e)
