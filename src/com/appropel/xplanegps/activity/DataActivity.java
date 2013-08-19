@@ -13,6 +13,9 @@ import com.appropel.xplanegps.thread.UdpReceiverThread;
 import com.google.inject.Inject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
@@ -21,6 +24,9 @@ import roboguice.inject.InjectView;
  */
 public final class DataActivity extends RoboActivity implements PropertyChangeListener
 {
+    /** Time format. */
+    private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss.SSS");
+
     /** Main application. */
     @Inject
     private MainApplication mainApplication;
@@ -44,6 +50,10 @@ public final class DataActivity extends RoboActivity implements PropertyChangeLi
     /** View holding groundspeed. */
     @InjectView(R.id.groundspeed_view)
     private TextView groundspeedView;
+
+    /** View holding fix time. */
+    @InjectView(R.id.time_view)
+    private TextView timeView;
 
     /** Button to activate service. */
     @InjectView(R.id.active_button)
@@ -103,6 +113,7 @@ public final class DataActivity extends RoboActivity implements PropertyChangeLi
                 altitudeView.setText(String.format("%.0f", location.getAltitude() / UdpReceiverThread.FEET_TO_METERS));
                 headingView.setText(String.format("%03.0f", location.getBearing()));
                 groundspeedView.setText(String.format("%.0f", location.getSpeed() / UdpReceiverThread.KNOTS_TO_M_S));
+                timeView.setText(TIME_FORMAT.format(new Date(location.getTime())));
             }
         });
     }
