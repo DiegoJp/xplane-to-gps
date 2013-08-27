@@ -27,4 +27,8 @@
     <string name="forward_explanation">Enter the IP address to forward packets to:</string>
     <string name="port">Port</string>
     <string name="port_explanation">Enter the port to receive data from X-Plane:</string>
+    <string name="port_gt">Port must be at least 1024</string>
+    <string name="port_lt">Port must be less than 65536</string>
+    <string name="forward_invalid">Forward address is not valid</string>
+    <string name="ok">OK</string>
 </resources>

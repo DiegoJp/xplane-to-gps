@@ -25,7 +25,7 @@
             android:dialogTitle="@string/forward_address"
             android:dialogMessage="@string/forward_explanation"
             android:defaultValue=""
-            android:inputType="numberDecimal"
+            android:inputType="text"
             android:enabled="false"/>
 
 </PreferenceScreen>
