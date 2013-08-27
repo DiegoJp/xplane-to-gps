@@ -72,7 +72,18 @@ public final class UdpReceiverThread implements Runnable
                     false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
             locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
 
-            DatagramSocket socket = new DatagramSocket(49000);
+            int port = 49000;
+            try
+            {
+                port = Integer.valueOf(sharedPreferences.getString("port", "49000"));
+            }
+            catch (Exception ex)
+            {
+                // use default.
+            }
+
+            Log.i(TAG, String.format("Receiver thread is listening on port %d", port));
+            DatagramSocket socket = new DatagramSocket(port);
             socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
             DatagramPacket packet = new DatagramPacket(data, data.length);
             for (; running.get();)
@@ -118,6 +129,7 @@ public final class UdpReceiverThread implements Runnable
                     // Verify that this is a valid packet from X-Plane by examining the first 4 bytes.
                     if (!PACKET_HEADER.equals(new String(buffer.array(), 0, 4)))
                     {
+                        Log.d(TAG, "Received an unknown packet!");
                         continue;
                     }
 

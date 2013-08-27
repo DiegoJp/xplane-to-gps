@@ -95,11 +95,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time of Fix"
-                    android:id="@+id/textView"/>
+                    android:id="@+id/textView" android:textSize="@dimen/font_size"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/time_view" android:gravity="center_horizontal"/>
+                    android:id="@+id/time_view" android:gravity="center_horizontal"
+                    android:textSize="@dimen/font_size"/>
         </TableRow>
     </TableLayout>
     <LinearLayout android:orientation="horizontal"
@@ -112,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/paused"
                 android:textOn="@string/active"
-                />
+                android:layout_marginTop="10dp"/>
     </LinearLayout>
 
 </LinearLayout>
