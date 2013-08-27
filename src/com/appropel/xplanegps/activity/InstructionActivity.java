@@ -1,8 +1,10 @@
 package com.appropel.xplanegps.activity;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.TextView;
 import com.appropel.xplanegps.R;
+import com.appropel.xplanegps.thread.UdpReceiverThread;
 import com.appropel.xplanegps.utility.NetworkUtility;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
@@ -25,10 +27,12 @@ public final class InstructionActivity extends RoboActivity
     }
 
     @Override
-    protected void onStart()
+    protected void onResume()
     {
-        super.onStart();
+        super.onResume();
+        final String port = PreferenceManager.getDefaultSharedPreferences(this).getString(
+                "port", String.valueOf(UdpReceiverThread.DEFAULT_RECEIVE_PORT));
         ipInstructionsView.setText(
-                String.format(getString(R.string.ip_instructions), NetworkUtility.getLocalIpAddress()));
+                String.format(getString(R.string.ip_instructions), NetworkUtility.getLocalIpAddress(), port));
     }
 }

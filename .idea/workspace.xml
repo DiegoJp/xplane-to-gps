@@ -30,22 +30,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/android-support-v13.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/saripaar-11242012.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_support_v13.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/saripaar_11242012.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/X-Plane GPS.iml" afterPath="$PROJECT_DIR$/X-Plane GPS.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/settings.xml" afterPath="$PROJECT_DIR$/res/xml/settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="X-Plane GPS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377628098808" ignored="false" />
+    <file path="/Dummy.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377630274724" ignored="false" />
     <file path="/SettingsActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377629605786" ignored="false" />
     <file path="/settings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377625132114" ignored="false" />
-    <file path="/strings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377625873501" ignored="false" />
+    <file path="/strings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377630756837" ignored="false" />
     <file path="/MainActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371609672833" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371607661041" ignored="false" />
     <file path="/ic_tab_tick.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1366679237572" ignored="false" />
@@ -123,6 +118,7 @@
     <file path="$PROJECT_DIR$/../X-Plane Voice/proguard_logs/dump.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1375408233810" ignored="false" />
     <file path="/DataActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1376876223766" ignored="false" />
     <file path="/*.regexp" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377627236861" ignored="false" />
+    <file path="/InstructionActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377630671940" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,64 +200,28 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="24" selection-start="2348" selection-end="2348" vertical-scroll-proportion="0.0">
+            <state line="5" column="52" selection-start="360" selection-end="360" vertical-scroll-proportion="-3.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="InstructionActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="0" selection-start="800" selection-end="800" vertical-scroll-proportion="0.22089761">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="830" selection-end="830" vertical-scroll-proportion="-0.11500701">
+            <state line="79" column="114" selection-start="2625" selection-end="2679" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnnotationToRuleConverter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/AnnotationToRuleConverter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="6" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NumberRule.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/annotation/NumberRule.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="18" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rules.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/Rules.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="19" selection-start="1844" selection-end="1844" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rule.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/Rule.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="22" selection-start="1053" selection-end="1053" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Validator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/Validator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="13" selection-start="1668" selection-end="1668" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -300,7 +260,6 @@
         <option value="$PROJECT_DIR$/res/layout/instructions.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java" />
         <option value="$PROJECT_DIR$/checkstyle2.xml" />
         <option value="$PROJECT_DIR$/res/drawable/ic_tab_tick.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
@@ -309,8 +268,9 @@
         <option value="$PROJECT_DIR$/res/layout/data.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
         <option value="$PROJECT_DIR$/res/xml/settings.xml" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java" />
       </list>
     </option>
   </component>
@@ -520,96 +480,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saripaar-11242012.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saripaar-11242012.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saripaar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="X-Plane GPS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xplanegps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.30000004" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="ExportedApkPath" value="$PROJECT_DIR$/X-Plane GPS.apk" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="ExportedModule" value="X-Plane GPS" />
     <property name="last_opened_file_path" value="$USER_HOME$/appropel.keystore" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Tablet_1024x600_3.2" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/com/appropel/xplanegps" />
@@ -783,6 +671,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943603" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943603" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943603" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39986235" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -794,7 +683,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28003183" sideWeight="0.6863824" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28241846" sideWeight="0.6863824" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31361762" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.67056394" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -803,7 +692,6 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.67056394" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35509554" sideWeight="0.67033726" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -899,13 +787,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="98" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.41023842">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="19" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0">
@@ -956,13 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/AnnotationToRuleConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="6" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/annotation/NumberRule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="18" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0">
@@ -991,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="24" selection-start="2348" selection-end="2348" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/Validator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="13" selection-start="1668" selection-end="1668" vertical-scroll-proportion="0.0">
@@ -1005,12 +872,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/saripaar-11242012.jar!/com/mobsandgeeks/saripaar/AnnotationToRuleConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="6" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.010504202">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="52" selection-start="360" selection-end="360" vertical-scroll-proportion="-3.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="830" selection-end="830" vertical-scroll-proportion="-0.11500701">
+        <state line="79" column="114" selection-start="2625" selection-end="2679" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="800" selection-end="800" vertical-scroll-proportion="0.22089761">
+          <folding />
         </state>
       </provider>
     </entry>

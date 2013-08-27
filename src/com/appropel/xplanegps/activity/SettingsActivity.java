@@ -20,7 +20,6 @@ import roboguice.inject.InjectPreference;
  */
 public final class SettingsActivity extends RoboPreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener, Validator.ValidationListener
-
 {
     /** Reception port. */
     @InjectPreference("port")
