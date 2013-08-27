@@ -28,4 +28,10 @@
             android:inputType="text"
             android:enabled="false"/>
 
+    <CheckBoxPreference
+            android:id="@+id/easy_vfr"
+            android:key="easy_vfr"
+            android:title="@string/easy_vfr"
+            />
+
 </PreferenceScreen>

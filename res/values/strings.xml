@@ -31,4 +31,5 @@
     <string name="port_lt">Port must be less than 65536</string>
     <string name="forward_invalid">Forward address is not valid</string>
     <string name="ok">OK</string>
+    <string name="easy_vfr">EasyVFR compatibility</string>
 </resources>

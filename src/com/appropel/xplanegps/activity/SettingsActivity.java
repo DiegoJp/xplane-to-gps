@@ -77,7 +77,7 @@ public final class SettingsActivity extends RoboPreferenceActivity
     private void updatePreferenceSummary()
     {
         final SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
-        port.setSummary(sharedPreferences.getString("port", String.valueOf(UdpReceiverThread.DEFAULT_RECEIVE_PORT)));
+        port.setSummary(sharedPreferences.getString("port", String.valueOf(UdpReceiverThread.DEFAULT_PORT)));
         forwardAddress.setSummary(sharedPreferences.getString("forward_address", ""));
         forwardAddress.setEnabled(sharedPreferences.getBoolean("enable_udp_forward", false));
     }
@@ -101,7 +101,7 @@ public final class SettingsActivity extends RoboPreferenceActivity
         // Reset failed value to default.
         if (port.getEditText().equals(failedView))
         {
-            port.setText(String.valueOf(UdpReceiverThread.DEFAULT_RECEIVE_PORT));
+            port.setText(String.valueOf(UdpReceiverThread.DEFAULT_PORT));
         }
         else if (forwardAddress.getEditText().equals(failedView))
         {

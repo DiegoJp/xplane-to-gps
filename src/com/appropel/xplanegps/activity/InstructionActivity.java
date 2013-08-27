@@ -31,7 +31,7 @@ public final class InstructionActivity extends RoboActivity
     {
         super.onResume();
         final String port = PreferenceManager.getDefaultSharedPreferences(this).getString(
-                "port", String.valueOf(UdpReceiverThread.DEFAULT_RECEIVE_PORT));
+                "port", String.valueOf(UdpReceiverThread.DEFAULT_PORT));
         ipInstructionsView.setText(
                 String.format(getString(R.string.ip_instructions), NetworkUtility.getLocalIpAddress(), port));
     }

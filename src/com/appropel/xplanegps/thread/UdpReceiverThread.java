@@ -25,14 +25,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public final class UdpReceiverThread implements Runnable
 {
-    /** Minimum port. */
-    public static final int MINIMUM_PORT = 1024;
-
     /** Default reception port. */
-    public static final int DEFAULT_RECEIVE_PORT = 49000;
-
-    /** Maximum port. */
-    public static final int MAXIMUM_PORT = 65535;
+    public static final int DEFAULT_PORT = 49000;
 
     /** Conversion factor from knots to m/s. */
     public static final float KNOTS_TO_M_S = 0.514444444f;
@@ -45,6 +39,9 @@ public final class UdpReceiverThread implements Runnable
 
     /** Log tag. */
     private static final String TAG = UdpReceiverThread.class.getName();
+
+    /** EasyVFR magic number. */
+    private static final float EASY_VFR = 1234.0f;
 
     /** Data buffer for packet reception. */
     private byte[] data = new byte[1024];
@@ -81,14 +78,14 @@ public final class UdpReceiverThread implements Runnable
                     false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
             locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
 
-            int port = 49000;
+            int port;
             try
             {
-                port = Integer.valueOf(sharedPreferences.getString("port", "49000"));
+                port = Integer.valueOf(sharedPreferences.getString("port", String.valueOf(DEFAULT_PORT)));
             }
-            catch (Exception ex)
+            catch (NumberFormatException ex)
             {
-                // use default.
+                port = DEFAULT_PORT;
             }
 
             Log.i(TAG, String.format("Receiver thread is listening on port %d", port));
@@ -120,7 +117,7 @@ public final class UdpReceiverThread implements Runnable
                                         packet.getData(),
                                         packet.getLength(),
                                         InetAddress.getByName(forwardAddress),
-                                        49000
+                                        DEFAULT_PORT
                                 );
                                 socket.send(outPacket);
                             }
@@ -177,8 +174,11 @@ public final class UdpReceiverThread implements Runnable
                     // set the time in the location. If the time on this location
                     // matches the time on the one in the previous set call, it will be
                     // ignored
-                    location.setAccuracy(1.0f);
                     location.setTime(System.currentTimeMillis());
+
+                    // Set accuracy.
+                    final boolean easyVfr = sharedPreferences.getBoolean("easy_vfr", false);
+                    location.setAccuracy(easyVfr ? EASY_VFR : 1.0f);
 
                     Method locationJellyBeanFixMethod = Location.class.getMethod("makeComplete");
                     if (locationJellyBeanFixMethod != null)
