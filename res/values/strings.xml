@@ -26,4 +26,5 @@
     <string name="forward_address">Forward Address</string>
     <string name="forward_explanation">Enter the IP address to forward packets to:</string>
     <string name="port">Port</string>
+    <string name="port_explanation">Enter the port to receive data from X-Plane:</string>
 </resources>

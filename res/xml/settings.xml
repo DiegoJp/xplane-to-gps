@@ -7,8 +7,9 @@
             android:key="port"
             android:title="@string/port"
             android:dialogTitle="@string/port"
-            android:dialogMessage="@string/port"
+            android:dialogMessage="@string/port_explanation"
             android:defaultValue="49000"
+            android:inputType="number"
             />
 
     <CheckBoxPreference
@@ -24,6 +25,7 @@
             android:dialogTitle="@string/forward_address"
             android:dialogMessage="@string/forward_explanation"
             android:defaultValue=""
+            android:inputType="numberDecimal"
             android:enabled="false"/>
 
 </PreferenceScreen>

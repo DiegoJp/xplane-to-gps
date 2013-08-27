@@ -25,6 +25,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public final class UdpReceiverThread implements Runnable
 {
+    /** Minimum port. */
+    public static final int MINIMUM_PORT = 1024;
+
+    /** Default reception port. */
+    public static final int DEFAULT_RECEIVE_PORT = 49000;
+
+    /** Maximum port. */
+    public static final int MAXIMUM_PORT = 65535;
+
     /** Conversion factor from knots to m/s. */
     public static final float KNOTS_TO_M_S = 0.514444444f;
 
