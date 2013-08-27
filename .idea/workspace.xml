@@ -29,13 +29,14 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="WARN" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="Fixed instructions to track changes to port value.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+    <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proguard-project.txt" afterPath="$PROJECT_DIR$/proguard-project.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="X-Plane GPS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377634876602" ignored="false" />
+    <file path="/Dummy.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377634916194" ignored="false" />
     <file path="/SettingsActivity.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377629605786" ignored="false" />
     <file path="/settings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377631603683" ignored="false" />
     <file path="/strings.xml" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377631586554" ignored="false" />
@@ -100,7 +101,7 @@
     <file path="/WriterTask.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371598118458" ignored="false" />
     <file path="$PROJECT_DIR$/../X-Plane Map/gen/com/appropel/xplanemap/BuildConfig.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371609531810" ignored="false" />
     <file path="$PROJECT_DIR$/../X-Plane Map/proguard-project.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371600763628" ignored="false" />
-    <file path="/proguard-project.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371600763628" ignored="false" />
+    <file path="/proguard-project.txt" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1377635146165" ignored="false" />
     <file path="$PROJECT_DIR$/../X-Plane Map/src/com/appropel/xplanemap/ConnectTask.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1372116227314" ignored="false" />
     <file path="/ConnectTask.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371610036225" ignored="false" />
     <file path="$PROJECT_DIR$/../X-Plane Map/src/com/appropel/xplanemap/DisconnectTask.java" changelist="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" time="1371603609619" ignored="false" />
@@ -198,12 +199,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="35" selection-start="222" selection-end="222" vertical-scroll-proportion="0.042075735">
+            <state line="4" column="35" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="project.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="proguard-project.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/proguard-project.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="61" column="0" selection-start="2157" selection-end="2157" vertical-scroll-proportion="0.6540386">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
           </provider>
         </entry>
       </file>
@@ -272,8 +294,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/proguard-project.txt" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" />
         <option value="$PROJECT_DIR$/res/layout/instructions.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java" />
@@ -288,6 +308,8 @@
         <option value="$PROJECT_DIR$/checkstyle2.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/project.properties" />
+        <option value="$PROJECT_DIR$/proguard-project.txt" />
       </list>
     </option>
   </component>
@@ -734,7 +756,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28440732" sideWeight="0.6863824" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28440732" sideWeight="0.6437414" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31361762" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -788,7 +810,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed instructions to track changes to port value." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bumped version number to 1.31." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -802,7 +824,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Fixes to ProGuard so app works." />
     <MESSAGE value="Fixed potential crash on startup." />
     <MESSAGE value="Added active button to instructions." />
     <MESSAGE value="Updated version to 1.1." />
@@ -827,6 +848,7 @@
     <MESSAGE value="Merged port setting." />
     <MESSAGE value="Validation of port value." />
     <MESSAGE value="Fixed instructions to track changes to port value." />
+    <MESSAGE value="Bumped version number to 1.31." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -836,20 +858,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="16" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="63" selection-start="3795" selection-end="3795" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/DataPacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="19" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.0">
@@ -936,9 +944,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="35" selection-start="222" selection-end="222" vertical-scroll-proportion="0.042075735">
+        <state line="4" column="35" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proguard-project.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="0" selection-start="2157" selection-end="2157" vertical-scroll-proportion="0.6540386">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
   </component>
