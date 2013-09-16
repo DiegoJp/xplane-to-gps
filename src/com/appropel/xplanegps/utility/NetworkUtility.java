@@ -17,6 +17,9 @@ public final class NetworkUtility
     /** Loopback address. */
     private static final String LOOPBACK_SUBNET = "127";
 
+    /** Wireless network device name. */
+    private static final String WIRELESS_DEVICE = "wlan";
+
     /**
      * No public constructor.
      */
@@ -25,7 +28,8 @@ public final class NetworkUtility
     }
 
     /**
-     * Returns the IP address of this device, if able to determine.
+     * Returns the IP address of this device, if able to determine. The address returned will be for the wireless
+     * adapter.
      * @return String form of IP address.
      */
     public static String getLocalIpAddress()
@@ -36,6 +40,10 @@ public final class NetworkUtility
             while (interfaceEnumeration.hasMoreElements())
             {
                 NetworkInterface networkInterface = interfaceEnumeration.nextElement();
+                if (networkInterface.getName().indexOf(WIRELESS_DEVICE) < 0)
+                {
+                    continue;   // Looking specifically for wireless device
+                }
                 Enumeration<InetAddress> addressEnumeration = networkInterface.getInetAddresses();
                 while (addressEnumeration.hasMoreElements())
                 {
