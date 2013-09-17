@@ -171,19 +171,24 @@ public final class UdpReceiverThread implements Runnable
                         }
                     }
 
-                    // set the time in the location. If the time on this location
-                    // matches the time on the one in the previous set call, it will be
-                    // ignored
+                    // Set the time in the location.
                     location.setTime(System.currentTimeMillis());
 
                     // Set accuracy.
                     final boolean easyVfr = sharedPreferences.getBoolean("easy_vfr", false);
                     location.setAccuracy(easyVfr ? EASY_VFR : 1.0f);
 
-                    Method locationJellyBeanFixMethod = Location.class.getMethod("makeComplete");
-                    if (locationJellyBeanFixMethod != null)
+                    try
                     {
-                        locationJellyBeanFixMethod.invoke(location);
+                        Method locationJellyBeanFixMethod = Location.class.getMethod("makeComplete");
+                        if (locationJellyBeanFixMethod != null)
+                        {
+                            locationJellyBeanFixMethod.invoke(location);
+                        }
+                    }
+                    catch (final Exception ex)
+                    {
+                        // Do nothing if method doesn't exist.
                     }
 
                     locationManager.setTestProviderStatus(LocationManager.GPS_PROVIDER,
