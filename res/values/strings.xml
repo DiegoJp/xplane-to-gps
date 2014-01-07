@@ -23,12 +23,15 @@
     <string name="notification">X-Plane to GPS is listening for data from X-Plane.</string>
     <string name="forward_udp">Forward UDP</string>
     <string name="settings">Settings</string>
+    <string name="sim_address">Simulator Address</string>
+    <string name="sim_explanation">Enter the IP address of the machine running X-Plane:</string>
     <string name="forward_address">Forward Address</string>
     <string name="forward_explanation">Enter the IP address to forward packets to:</string>
     <string name="port">Port</string>
     <string name="port_explanation">Enter the port to receive data from X-Plane:</string>
     <string name="port_gt">Port must be at least 1024</string>
     <string name="port_lt">Port must be less than 65536</string>
+    <string name="sim_invalid">Simulator address is not valid</string>
     <string name="forward_invalid">Forward address is not valid</string>
     <string name="ok">OK</string>
     <string name="easy_vfr">EasyVFR compatibility</string>
