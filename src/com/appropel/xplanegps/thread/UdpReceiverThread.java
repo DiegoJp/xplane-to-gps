@@ -8,6 +8,9 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import com.appropel.xplane.udp.Dsel;
+import com.appropel.xplane.udp.Iset;
+import com.appropel.xplane.udp.UdpUtil;
 import com.appropel.xplanegps.guice.MainApplication;
 import java.io.InterruptedIOException;
 import java.lang.reflect.Method;
@@ -19,6 +22,7 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.codehaus.preon.Codecs;
 
 /**
  * Thread which receives UDP packets from X-Plane and translates them into Locations.
@@ -88,6 +92,30 @@ public final class UdpReceiverThread implements Runnable
                 port = DEFAULT_PORT;
             }
 
+            // Send out datagrams to auto-configure X-Plane.
+            try
+            {
+                // TODO: This is X-Plane 10 format. Need to have option for 9.
+
+                final Dsel dsel = new Dsel(new int[] {3, 17, 20});
+                final byte[] dselData = Codecs.encode(dsel, Dsel.CODEC);
+                UdpUtil.INSTANCE.sendDatagramToSubnet(dselData, UdpUtil.XPLANE_UDP_PORT);
+
+                final InetAddress inetAddress = UdpUtil.INSTANCE.getSiteLocalAddress();
+                if (inetAddress != null)
+                {
+                    final Iset iset = new Iset(
+                            Iset.INDEX_DATA_RECEIVER_IP_10, inetAddress.getHostAddress(), String.valueOf(port));
+                    final byte[] isetData = Codecs.encode(iset, Iset.CODEC);
+                    UdpUtil.INSTANCE.sendDatagramToSubnet(isetData, UdpUtil.XPLANE_UDP_PORT);
+                }
+            }
+            catch (final Exception ex)
+            {
+                Log.e(TAG, "Exception sending configuration datagrams", ex);
+            }
+
+
             Log.i(TAG, String.format("Receiver thread is listening on port %d", port));
             DatagramSocket socket = new DatagramSocket(port);
             socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
@@ -135,7 +163,6 @@ public final class UdpReceiverThread implements Runnable
                     // Verify that this is a valid packet from X-Plane by examining the first 4 bytes.
                     if (!PACKET_HEADER.equals(new String(buffer.array(), 0, 4)))
                     {
-                        Log.d(TAG, "Received an unknown packet!");
                         continue;
                     }
 
