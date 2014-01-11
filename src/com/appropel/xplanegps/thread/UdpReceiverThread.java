@@ -8,6 +8,7 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import com.appropel.xplane.udp.Data;
 import com.appropel.xplane.udp.Dsel;
 import com.appropel.xplane.udp.Iset;
 import com.appropel.xplane.udp.UdpUtil;
@@ -20,6 +21,7 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.codehaus.preon.Codecs;
@@ -115,7 +117,6 @@ public final class UdpReceiverThread implements Runnable
                 Log.e(TAG, "Exception sending configuration datagrams", ex);
             }
 
-
             Log.i(TAG, String.format("Receiver thread is listening on port %d", port));
             DatagramSocket socket = new DatagramSocket(port);
             socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
@@ -156,42 +157,41 @@ public final class UdpReceiverThread implements Runnable
                         }
                     }
 
-                    // Extract data packets from buffer.
-                    ByteBuffer buffer = ByteBuffer.wrap(data);
-                    buffer.order(ByteOrder.LITTLE_ENDIAN);
-
-                    // Verify that this is a valid packet from X-Plane by examining the first 4 bytes.
-                    if (!PACKET_HEADER.equals(new String(buffer.array(), 0, 4)))
+                    // Decode packet using Preon.
+                    final List<Data> messages = new ArrayList<Data>();
+                    int index = 0;
+                    for (;;)
                     {
-                        continue;
-                    }
-
-                    int index = 5;
-                    List<DataPacket> dataPackets = new ArrayList<DataPacket>();
-                    while (index + DataPacket.LENGTH <= packet.getLength())
-                    {
-                        DataPacket dataPacket = new DataPacket(buffer, index);
-                        dataPackets.add(dataPacket);
-                        index += DataPacket.LENGTH;
+                        try
+                        {
+                            final Data dataMsg = Codecs.decode(
+                                    Data.CODEC, Arrays.copyOfRange(data, index, data.length));
+                            messages.add(dataMsg);
+                            index += 36;
+                        }
+                        catch (Exception ex)
+                        {
+                            break;
+                        }
                     }
 
                     // Transfer data values into a Location object.
                     Location location = new Location(LocationManager.GPS_PROVIDER);
-                    for (DataPacket dataPacket : dataPackets)
+                    for (Data dataMsg : messages)
                     {
-                        switch (dataPacket.getIndex())
+                        switch (dataMsg.getIndex())
                         {
                             case 3:     // speeds
-                                location.setSpeed(dataPacket.getValues()[3] * KNOTS_TO_M_S);
+                                location.setSpeed(dataMsg.getData()[3] * KNOTS_TO_M_S);
                                 break;
                             case 17:    // pitch, roll, headings (X-Plane 10)
                             case 18:    // pitch, roll, headings (X-Plane 9)
-                                location.setBearing(dataPacket.getValues()[2]);
+                                location.setBearing(dataMsg.getData()[2]);
                                 break;
                             case 20:    // lat, lon, altitude
-                                location.setLatitude(dataPacket.getValues()[0]);
-                                location.setLongitude(dataPacket.getValues()[1]);
-                                location.setAltitude(dataPacket.getValues()[2] * FEET_TO_METERS);
+                                location.setLatitude(dataMsg.getData()[0]);
+                                location.setLongitude(dataMsg.getData()[1]);
+                                location.setAltitude(dataMsg.getData()[2] * FEET_TO_METERS);
                                 break;
                             default:
                                 break;
