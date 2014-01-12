@@ -37,4 +37,5 @@
     <string name="easy_vfr">EasyVFR compatibility</string>
     <string name="broadcast_subnet">Broadcast configuration to entire subnet</string>
     <string name="autoconfigure">Automatically configure X-Plane</string>
+    <string name="xplane_version">X-Plane Version</string>
 </resources>

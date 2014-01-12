@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.view.View;
 import android.widget.TextView;
 import com.appropel.xplanegps.R;
@@ -21,6 +22,10 @@ import roboguice.inject.InjectPreference;
 public final class SettingsActivity extends RoboPreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener, Validator.ValidationListener
 {
+    /** X-Plane version. */
+    @InjectPreference("xplane_version")
+    private ListPreference xplaneVersion;
+
     /** Simulator IP address. */
     @InjectPreference("sim_address")
     private EditTextPreference simulatorAddress;
@@ -83,6 +88,7 @@ public final class SettingsActivity extends RoboPreferenceActivity
     private void updatePreferenceSummary()
     {
         final SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        xplaneVersion.setSummary(sharedPreferences.getString("xplane_version", ""));
         simulatorAddress.setSummary(sharedPreferences.getString("sim_address", ""));
         simulatorAddress.setEnabled(!sharedPreferences.getBoolean("broadcast_subnet", false));
         port.setSummary(sharedPreferences.getString("port", String.valueOf(UdpReceiverThread.DEFAULT_PORT)));

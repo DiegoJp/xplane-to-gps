@@ -2,6 +2,14 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ListPreference
+            android:key="xplane_version"
+            android:title="@string/xplane_version"
+            android:defaultValue="10"
+            android:entries="@array/xplane_version"
+            android:entryValues="@array/version_index"
+            />
+
     <CheckBoxPreference
             android:id="@+id/autoconfigure"
             android:key="autoconfigure"
