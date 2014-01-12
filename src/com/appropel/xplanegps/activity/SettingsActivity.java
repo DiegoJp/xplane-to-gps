@@ -21,6 +21,10 @@ import roboguice.inject.InjectPreference;
 public final class SettingsActivity extends RoboPreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener, Validator.ValidationListener
 {
+    /** Simulator IP address. */
+    @InjectPreference("sim_address")
+    private EditTextPreference simulatorAddress;
+
     /** Reception port. */
     @InjectPreference("port")
     private EditTextPreference port;
@@ -41,6 +45,8 @@ public final class SettingsActivity extends RoboPreferenceActivity
 
         validator = new Validator(this);
         validator.setValidationListener(this);
+        validator.put(simulatorAddress.getEditText(),
+                Rules.regex(getString(R.string.sim_invalid), Rules.REGEX_IP_ADDRESS, true));
         validator.put(port.getEditText(), Rules.gt(getString(R.string.port_gt), 1023));
         validator.put(port.getEditText(), Rules.lt(getString(R.string.port_lt), 65536));
         validator.put(forwardAddress.getEditText(),
@@ -77,6 +83,8 @@ public final class SettingsActivity extends RoboPreferenceActivity
     private void updatePreferenceSummary()
     {
         final SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        simulatorAddress.setSummary(sharedPreferences.getString("sim_address", ""));
+        simulatorAddress.setEnabled(!sharedPreferences.getBoolean("broadcast_subnet", false));
         port.setSummary(sharedPreferences.getString("port", String.valueOf(UdpReceiverThread.DEFAULT_PORT)));
         forwardAddress.setSummary(sharedPreferences.getString("forward_address", ""));
         forwardAddress.setEnabled(sharedPreferences.getBoolean("enable_udp_forward", false));
@@ -86,6 +94,7 @@ public final class SettingsActivity extends RoboPreferenceActivity
     public void preValidation()
     {
         // These values must be updated or they are not always current and cause spurious validation failures.
+        simulatorAddress.getEditText().setText(simulatorAddress.getText(), TextView.BufferType.NORMAL);
         port.getEditText().setText(port.getText(), TextView.BufferType.NORMAL);
         forwardAddress.getEditText().setText(forwardAddress.getText(), TextView.BufferType.NORMAL);
     }
@@ -99,7 +108,11 @@ public final class SettingsActivity extends RoboPreferenceActivity
     public void onFailure(final View failedView, final Rule<?> failedRule)
     {
         // Reset failed value to default.
-        if (port.getEditText().equals(failedView))
+         if (simulatorAddress.getEditText().equals(failedView))
+        {
+            simulatorAddress.setText("127.0.0.1");
+        }
+        else if (port.getEditText().equals(failedView))
         {
             port.setText(String.valueOf(UdpReceiverThread.DEFAULT_PORT));
         }
