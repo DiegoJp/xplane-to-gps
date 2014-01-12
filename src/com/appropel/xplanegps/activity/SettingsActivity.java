@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.view.View;
@@ -25,6 +26,10 @@ public final class SettingsActivity extends RoboPreferenceActivity
     /** X-Plane version. */
     @InjectPreference("xplane_version")
     private ListPreference xplaneVersion;
+
+    /** Broadcast subnet checkbox. */
+    @InjectPreference("broadcast_subnet")
+    private CheckBoxPreference broadcastSubnet;
 
     /** Simulator IP address. */
     @InjectPreference("sim_address")
@@ -89,8 +94,10 @@ public final class SettingsActivity extends RoboPreferenceActivity
     {
         final SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
         xplaneVersion.setSummary(sharedPreferences.getString("xplane_version", ""));
+        broadcastSubnet.setEnabled(sharedPreferences.getBoolean("autoconfigure", false));
         simulatorAddress.setSummary(sharedPreferences.getString("sim_address", ""));
-        simulatorAddress.setEnabled(!sharedPreferences.getBoolean("broadcast_subnet", false));
+        simulatorAddress.setEnabled(sharedPreferences.getBoolean("autoconfigure", false)
+                && !sharedPreferences.getBoolean("broadcast_subnet", false));
         port.setSummary(sharedPreferences.getString("port", String.valueOf(UdpReceiverThread.DEFAULT_PORT)));
         forwardAddress.setSummary(sharedPreferences.getString("forward_address", ""));
         forwardAddress.setEnabled(sharedPreferences.getBoolean("enable_udp_forward", false));

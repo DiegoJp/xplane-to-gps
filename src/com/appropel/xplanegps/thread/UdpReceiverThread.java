@@ -95,26 +95,58 @@ public final class UdpReceiverThread implements Runnable
             }
 
             // Send out datagrams to auto-configure X-Plane.
-            try
+            if (sharedPreferences.getBoolean("autoconfigure", false))
             {
-                // TODO: This is X-Plane 10 format. Need to have option for 9.
-
-                final Dsel dsel = new Dsel(new int[] {3, 17, 20});
-                final byte[] dselData = Codecs.encode(dsel, Dsel.CODEC);
-                UdpUtil.INSTANCE.sendDatagramToSubnet(dselData, UdpUtil.XPLANE_UDP_PORT);
-
-                final InetAddress inetAddress = UdpUtil.INSTANCE.getSiteLocalAddress();
-                if (inetAddress != null)
+                try
                 {
-                    final Iset iset = new Iset(
-                            Iset.INDEX_DATA_RECEIVER_IP_10, inetAddress.getHostAddress(), String.valueOf(port));
-                    final byte[] isetData = Codecs.encode(iset, Iset.CODEC);
-                    UdpUtil.INSTANCE.sendDatagramToSubnet(isetData, UdpUtil.XPLANE_UDP_PORT);
+                    Dsel dsel;
+                    switch(Integer.valueOf(sharedPreferences.getString("xplane_version", "10")))
+                    {
+                        case 9:
+                            dsel = new Dsel(new int[] {3, 18, 20});
+                            break;
+                        case 10:
+                        default:
+                            dsel = new Dsel(new int[] {3, 17, 20});
+                            break;
+                    }
+
+                    final String simulatorAddress = sharedPreferences.getString("sim_address", "127.0.0.1");
+                    final boolean broadcast = sharedPreferences.getBoolean("broadcast_subnet", false);
+
+                    final byte[] dselData = Codecs.encode(dsel, Dsel.CODEC);
+                    if (broadcast)
+                    {
+                        UdpUtil.INSTANCE.sendDatagramToSubnet(dselData, UdpUtil.XPLANE_UDP_PORT);
+                    }
+                    else
+                    {
+                        UdpUtil.INSTANCE.sendDatagram(
+                                dselData, InetAddress.getByName(simulatorAddress), UdpUtil.XPLANE_UDP_PORT);
+                    }
+
+                    final InetAddress inetAddress = UdpUtil.INSTANCE.getSiteLocalAddress();
+                    if (inetAddress != null)
+                    {
+                        final Iset iset = new Iset(
+                                Iset.INDEX_DATA_RECEIVER_IP_10, inetAddress.getHostAddress(), String.valueOf(port));
+                        final byte[] isetData = Codecs.encode(iset, Iset.CODEC);
+
+                        if (broadcast)
+                        {
+                            UdpUtil.INSTANCE.sendDatagramToSubnet(isetData, UdpUtil.XPLANE_UDP_PORT);
+                        }
+                        else
+                        {
+                            UdpUtil.INSTANCE.sendDatagram(
+                                    isetData, InetAddress.getByName(simulatorAddress), UdpUtil.XPLANE_UDP_PORT);
+                        }
+                    }
                 }
-            }
-            catch (final Exception ex)
-            {
-                Log.e(TAG, "Exception sending configuration datagrams", ex);
+                catch (final Exception ex)
+                {
+                    Log.e(TAG, "Exception sending configuration datagrams", ex);
+                }
             }
 
             Log.i(TAG, String.format("Receiver thread is listening on port %d", port));
