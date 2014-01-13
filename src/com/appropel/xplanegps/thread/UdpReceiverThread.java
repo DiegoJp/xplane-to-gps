@@ -18,8 +18,6 @@ import java.lang.reflect.Method;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -254,7 +252,7 @@ public final class UdpReceiverThread implements Runnable
                             LocationProvider.AVAILABLE,
                             null, System.currentTimeMillis());
                     locationManager.setTestProviderLocation(LocationManager.GPS_PROVIDER, location);
-                    mainApplication.setLocation(location);
+                    mainApplication.getEventBus().post(location);
                 }
                 catch (Exception e)
                 {
