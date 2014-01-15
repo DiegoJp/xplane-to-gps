@@ -3,12 +3,9 @@
     <string name="app_name">X-Plane to GPS</string>
     <string name="instructions">Instructions</string>
     <string name="mock_location">1. Ensure that this device is set to \"Allow mock locations\" under Settings -> Applications -> Development.</string>
-    <string name="ip_instructions" formatted="false">2. Under X-Plane Settings -> Net Connections -> Data, configure X-Plane to broadcast to %s:%s.</string>
-    <string name="data_instructions">3. Under X-Plane Settings -> Data Input &amp; Output, activate the following items for \"Internet via UDP\" by checking the leftmost box:</string>
-    <string name="active_instructions">4. Set the Paused/Active button to Active. This starts a background Service to keep data flowing while you switch to another application.</string>
-    <string name="speeds">3 speeds</string>
-    <string name="headings">17 pitch, roll, headings (18 for X-Plane 9)</string>
-    <string name="latlon">20 lat, lon, altitude</string>
+    <string name="ip_instructions" formatted="false">2. Go to the Data tab of this application and select your X-Plane version. Leave the next two boxes checked for automatic configuration of X-Plane.</string>
+    <string name="active_instructions">3. Set the Paused/Active button to Active. This starts a background service to keep data flowing while you switch to another application.</string>
+    <string name="problem_instructions">4. If there are any issues please consult the application manual available on the appropel.com website for further instructions.</string>
     <string name="mock_location_warning">This device must be set to \"Allow mock locations\" under Settings -> Applications -> Development.\n\nOnce this is done, return to X-Plane to GPS.</string>
     <string name="go_to_settings">Go to Settings</string>
     <string name="quit">Quit</string>
