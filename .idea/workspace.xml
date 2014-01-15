@@ -28,7 +28,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="X-Plane GPS.iws" />
@@ -96,7 +95,7 @@
       <file leaf-file-name="DataActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="22" selection-start="2836" selection-end="2836" vertical-scroll-proportion="0.78335625" vertical-offset="31" max-vertical-offset="1665">
+            <state line="67" column="188" selection-start="1994" selection-end="1994" vertical-scroll-proportion="0.5048143" vertical-offset="31" max-vertical-offset="1620">
               <folding />
             </state>
           </provider>
@@ -723,7 +722,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Close socket when receiver thread stops." />
     <MESSAGE value="Changed service to run as foreground." />
     <MESSAGE value="Refresh local IP address every time instruction page starts." />
     <MESSAGE value="Bumped to revision 1.22." />
@@ -748,7 +746,8 @@
     <MESSAGE value="Fully use settings when sending configuration datagrams." />
     <MESSAGE value="Use Greenrobot EventBus to feed Location to UI." />
     <MESSAGE value="Updated instructions text." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated instructions text." />
+    <MESSAGE value="Allow use of back button when Mock Locations warning dialog is shown." />
+    <option name="LAST_COMMIT_MESSAGE" value="Allow use of back button when Mock Locations warning dialog is shown." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1127,7 +1126,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="22" selection-start="2836" selection-end="2836" vertical-scroll-proportion="0.78335625" vertical-offset="31" max-vertical-offset="1665">
+        <state line="67" column="188" selection-start="1994" selection-end="1994" vertical-scroll-proportion="0.5048143" vertical-offset="31" max-vertical-offset="1620">
           <folding />
         </state>
       </provider>

@@ -89,10 +89,7 @@ public final class DataActivity extends RoboActivity
         try
         {
             int enabled = Settings.Secure.getInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION);
-            if (enabled != 1)
-            {
-                activeButton.setEnabled(false);
-            }
+            activeButton.setEnabled(enabled == 1);
         }
         catch (final Exception ex)
         {
