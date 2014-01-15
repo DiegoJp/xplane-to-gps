@@ -27,8 +27,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/instructions.xml" afterPath="$PROJECT_DIR$/res/layout/instructions.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="X-Plane GPS.iws" />
@@ -93,24 +93,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="strings.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <file leaf-file-name="DataActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="143" selection-start="847" selection-end="847" vertical-scroll-proportion="0.07347795" vertical-offset="0" max-vertical-offset="1429">
+            <state line="98" column="22" selection-start="2836" selection-end="2836" vertical-scroll-proportion="0.78335625" vertical-offset="31" max-vertical-offset="1665">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="instructions.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/instructions.xml">
-          <provider editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="0" selection-start="2122" selection-end="2275" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1515">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="80" column="0" selection-start="2628" selection-end="2628" vertical-scroll-proportion="0.0" vertical-offset="2206" max-vertical-offset="3930">
               <folding />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="InstructionActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="99" selection-start="1158" selection-end="1175" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="98" column="88" selection-start="3508" selection-end="3508" vertical-scroll-proportion="0.0" vertical-offset="661" max-vertical-offset="2115">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -152,15 +178,15 @@
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/res/xml/settings.xml" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java" />
-        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/instructions.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
       </list>
     </option>
   </component>
@@ -697,7 +723,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fixed bug with state of Active/Paused button." />
     <MESSAGE value="Close socket when receiver thread stops." />
     <MESSAGE value="Changed service to run as foreground." />
     <MESSAGE value="Refresh local IP address every time instruction page starts." />
@@ -722,7 +747,8 @@
     <MESSAGE value="Added X-Plane version to preferences." />
     <MESSAGE value="Fully use settings when sending configuration datagrams." />
     <MESSAGE value="Use Greenrobot EventBus to feed Location to UI." />
-    <option name="LAST_COMMIT_MESSAGE" value="Use Greenrobot EventBus to feed Location to UI." />
+    <MESSAGE value="Updated instructions text." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated instructions text." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -947,13 +973,6 @@
         <state line="61" column="0" selection-start="2157" selection-end="2157" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="99" selection-start="1158" selection-end="1175" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="15" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
@@ -1022,18 +1041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="0" selection-start="1388" selection-end="1388" vertical-scroll-proportion="0.38170564" vertical-offset="0" max-vertical-offset="1454">
-          <folding>
-            <element signature="e#1215#1243#0" expanded="false" />
-            <element signature="e#1480#1504#0" expanded="false" />
-            <element signature="e#1754#1786#0" expanded="false" />
-            <element signature="e#2387#2417#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="42" selection-start="445" selection-end="458" vertical-scroll-proportion="0.13645907" vertical-offset="0" max-vertical-offset="1429">
@@ -1056,26 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="88" selection-start="3508" selection-end="3508" vertical-scroll-proportion="0.6911967" vertical-offset="240" max-vertical-offset="2115">
-          <folding>
-            <element signature="e#1896#1927#0" expanded="false" />
-            <element signature="e#2012#2039#0" expanded="false" />
-            <element signature="e#2100#2127#0" expanded="false" />
-            <element signature="e#2218#2253#0" expanded="false" />
-            <element signature="e#5207#5218#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="16" selection-start="2270" selection-end="2270" vertical-scroll-proportion="0.0" vertical-offset="676" max-vertical-offset="1485">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/guice/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="14" selection-start="388" selection-end="388" vertical-scroll-proportion="0.16506189" vertical-offset="0" max-vertical-offset="1454">
@@ -1091,16 +1078,6 @@
         <state line="6" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="0.052484255" vertical-offset="0" max-vertical-offset="2130" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="254" column="45" selection-start="10489" selection-end="10489" vertical-scroll-proportion="0.9277854" vertical-offset="2461" max-vertical-offset="4260">
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#7500#7506#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/instructions.xml">
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
@@ -1114,6 +1091,43 @@
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="143" selection-start="847" selection-end="847" vertical-scroll-proportion="0.07347795" vertical-offset="0" max-vertical-offset="1429">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="99" selection-start="1158" selection-end="1175" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="88" selection-start="3508" selection-end="3508" vertical-scroll-proportion="0.0" vertical-offset="661" max-vertical-offset="2115">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="0" selection-start="2628" selection-end="2628" vertical-scroll-proportion="0.0" vertical-offset="2206" max-vertical-offset="3930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="0" selection-start="2122" selection-end="2275" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1515">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="22" selection-start="2836" selection-end="2836" vertical-scroll-proportion="0.78335625" vertical-offset="31" max-vertical-offset="1665">
           <folding />
         </state>
       </provider>

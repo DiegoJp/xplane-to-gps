@@ -70,7 +70,7 @@ public final class MainActivity extends RoboTabActivity
             if (enabled != 1)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.mock_location_warning).setCancelable(false);
+                builder.setMessage(R.string.mock_location_warning).setCancelable(true);
                 alertDialog = builder.create();
                 alertDialog.show();
             }

@@ -3,6 +3,7 @@ package com.appropel.xplanegps.activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -85,6 +86,18 @@ public final class DataActivity extends RoboActivity
     protected void onStart()
     {
         super.onStart();
+        try
+        {
+            int enabled = Settings.Secure.getInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION);
+            if (enabled != 1)
+            {
+                activeButton.setEnabled(false);
+            }
+        }
+        catch (final Exception ex)
+        {
+            // Ignore.
+        }
         activeButton.setChecked(DataService.isRunning());
         mainApplication.getEventBus().register(this);
     }
