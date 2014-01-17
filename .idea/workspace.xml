@@ -26,8 +26,9 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="Make sure run button is properly enabled.&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" afterPath="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
+    <list default="true" id="4e8a4e29-26d2-42c0-81ce-f92a7595f3bb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/xplane-udp.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proguard-project.txt" afterPath="$PROJECT_DIR$/proguard-project.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="X-Plane GPS.iws" />
@@ -92,10 +93,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UdpReceiverThread.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="0" selection-start="5404" selection-end="5404" vertical-scroll-proportion="0.6389271" vertical-offset="856" max-vertical-offset="4095">
+            <state line="141" column="0" selection-start="5404" selection-end="5404" vertical-scroll-proportion="0.0" vertical-offset="856" max-vertical-offset="4095">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="proguard-project.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/proguard-project.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="22" selection-start="2247" selection-end="2247" vertical-scroll-proportion="1.05178" vertical-offset="0" max-vertical-offset="1125">
               <folding />
             </state>
           </provider>
@@ -134,7 +144,6 @@
         <option value="$PROJECT_DIR$/res/layout/data.xml" />
         <option value="$PROJECT_DIR$/checkstyle2.xml" />
         <option value="$PROJECT_DIR$/project.properties" />
-        <option value="$PROJECT_DIR$/proguard-project.txt" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/InstructionActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/service/DataService.java" />
@@ -148,6 +157,7 @@
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/activity/DataActivity.java" />
         <option value="$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java" />
+        <option value="$PROJECT_DIR$/proguard-project.txt" />
       </list>
     </option>
   </component>
@@ -651,7 +661,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32966277" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35560054" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35560054" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4352227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -685,7 +695,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Refresh local IP address every time instruction page starts." />
     <MESSAGE value="Bumped to revision 1.22." />
     <MESSAGE value="Added new Settings tab." />
     <MESSAGE value="Added tick icon for Settings tab." />
@@ -710,7 +719,8 @@
     <MESSAGE value="Updated instructions text." />
     <MESSAGE value="Allow use of back button when Mock Locations warning dialog is shown." />
     <MESSAGE value="Make sure run button is properly enabled." />
-    <option name="LAST_COMMIT_MESSAGE" value="Make sure run button is properly enabled." />
+    <MESSAGE value="Use proper value in ISET message." />
+    <option name="LAST_COMMIT_MESSAGE" value="Use proper value in ISET message." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -925,16 +935,6 @@
         <state line="164" column="34" selection-start="6542" selection-end="6548" vertical-scroll-proportion="0.5714286" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proguard-project.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="2157" selection-end="2157" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/utility/NetworkUtility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="15" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
@@ -1074,7 +1074,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/appropel/xplanegps/thread/UdpReceiverThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="0" selection-start="5404" selection-end="5404" vertical-scroll-proportion="0.6389271" vertical-offset="856" max-vertical-offset="4095">
+        <state line="141" column="0" selection-start="5404" selection-end="5404" vertical-scroll-proportion="0.0" vertical-offset="856" max-vertical-offset="4095">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="526" selection-end="526" vertical-scroll-proportion="0.17799352" vertical-offset="0" max-vertical-offset="927">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proguard-project.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="22" selection-start="2247" selection-end="2247" vertical-scroll-proportion="1.05178" vertical-offset="0" max-vertical-offset="1125">
           <folding />
         </state>
       </provider>

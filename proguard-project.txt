@@ -59,3 +59,11 @@
 -dontwarn **CompatHoneycomb
 -dontwarn android.support.**
 -keep class android.support.v4.** { *; }
+
+# Preon warnings
+-dontwarn org.codehaus.**
+-dontwarn nl.flotsam.**
+-dontwarn org.antlr.**
+
+# slf4j warnings
+-dontwarn org.slf4j.**
