@@ -126,8 +126,19 @@ public final class UdpReceiverThread implements Runnable
                     final InetAddress inetAddress = UdpUtil.INSTANCE.getSiteLocalAddress();
                     if (inetAddress != null)
                     {
-                        final Iset iset = new Iset(
-                                Iset.INDEX_DATA_RECEIVER_IP_10, inetAddress.getHostAddress(), String.valueOf(port));
+                        Iset iset;
+                        switch(Integer.valueOf(sharedPreferences.getString("xplane_version", "10")))
+                        {
+                            case 9:
+                                iset = new Iset(
+                                    Iset.INDEX_DATA_RECEIVER_IP_9, inetAddress.getHostAddress(), String.valueOf(port));
+                                break;
+                            case 10:
+                            default:
+                                iset = new Iset(
+                                    Iset.INDEX_DATA_RECEIVER_IP_10, inetAddress.getHostAddress(), String.valueOf(port));
+                                break;
+                        }
                         final byte[] isetData = Codecs.encode(iset, Iset.CODEC);
 
                         if (broadcast)
