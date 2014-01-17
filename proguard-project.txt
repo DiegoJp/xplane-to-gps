@@ -67,3 +67,8 @@
 
 # slf4j warnings
 -dontwarn org.slf4j.**
+
+# Greenrobot EventBus
+-keepclassmembers class ** {
+    public void onEvent*(**);
+}
