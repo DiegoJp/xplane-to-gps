@@ -2,6 +2,38 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ListPreference
+            android:key="xplane_version"
+            android:title="@string/xplane_version"
+            android:defaultValue="10"
+            android:entries="@array/xplane_version"
+            android:entryValues="@array/version_index"
+            />
+
+    <CheckBoxPreference
+            android:id="@+id/autoconfigure"
+            android:key="autoconfigure"
+            android:title="@string/autoconfigure"
+            android:defaultValue="true"
+            />
+
+    <CheckBoxPreference
+            android:id="@+id/broadcast_subnet"
+            android:key="broadcast_subnet"
+            android:title="@string/broadcast_subnet"
+            android:defaultValue="true"
+            />
+
+    <EditTextPreference
+            android:id="@+id/sim_address"
+            android:key="sim_address"
+            android:title="@string/sim_address"
+            android:dialogTitle="@string/sim_address"
+            android:dialogMessage="@string/sim_explanation"
+            android:defaultValue="127.0.0.1"
+            android:inputType="text"
+            />
+
     <EditTextPreference
             android:id="@+id/port"
             android:key="port"
@@ -24,7 +56,7 @@
             android:title="@string/forward_address"
             android:dialogTitle="@string/forward_address"
             android:dialogMessage="@string/forward_explanation"
-            android:defaultValue=""
+            android:defaultValue="127.0.0.1"
             android:inputType="text"
             android:enabled="false"/>
 

@@ -17,6 +17,9 @@ import roboguice.service.RoboService;
  */
 public final class DataService extends RoboService
 {
+    /** Log tag. */
+    private static final String TAG = DataService.class.getName();
+
     /** Notification identifier. */
     private static final int NOTIFICATION_ID = 1;
 

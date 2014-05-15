@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="X-Plane UDP">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../X-Plane UDP" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../X-Plane UDP/src" />
+    </SOURCES>
+  </library>
+</component>

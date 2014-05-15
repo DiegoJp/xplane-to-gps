@@ -18,37 +18,12 @@
             android:text="@string/ip_instructions"
             android:textSize="@dimen/font_size"
             />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="@string/active_instructions" android:textSize="@dimen/font_size"
+              android:id="@+id/textView2" android:layout_gravity="center_horizontal"/>
     <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/data_instructions"
-            android:textSize="@dimen/font_size"
-            />
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/speeds"
-            android:paddingLeft="20dp"
-            android:textSize="@dimen/font_size"
-            />
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/headings"
-            android:paddingLeft="20dp"
-            android:textSize="@dimen/font_size"
-            />
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/latlon"
-            android:paddingLeft="20dp"
-            android:textSize="@dimen/font_size"
-            />
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/active_instructions"
-            android:textSize="@dimen/font_size"
-            />
+            android:text="@string/problem_instructions"
+            android:id="@+id/textView" android:textSize="@dimen/font_size"/>
 </LinearLayout>

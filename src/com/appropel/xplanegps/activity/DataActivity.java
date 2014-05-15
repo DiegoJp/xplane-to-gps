@@ -3,6 +3,7 @@ package com.appropel.xplanegps.activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -11,8 +12,6 @@ import com.appropel.xplanegps.guice.MainApplication;
 import com.appropel.xplanegps.service.DataService;
 import com.appropel.xplanegps.thread.UdpReceiverThread;
 import com.google.inject.Inject;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +21,7 @@ import roboguice.inject.InjectView;
 /**
  * Activity which displays the data stream coming from X-Plane.
  */
-public final class DataActivity extends RoboActivity implements PropertyChangeListener
+public final class DataActivity extends RoboActivity
 {
     /** Time format. */
     private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss.SSS");
@@ -87,44 +86,37 @@ public final class DataActivity extends RoboActivity implements PropertyChangeLi
     protected void onStart()
     {
         super.onStart();
+        try
+        {
+            int enabled = Settings.Secure.getInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION);
+            activeButton.setEnabled(enabled == 1);
+        }
+        catch (final Exception ex)
+        {
+            // Ignore.
+        }
         activeButton.setChecked(DataService.isRunning());
-        mainApplication.addPropertyChangeListener(MainApplication.LOCATION_PROPERTY, this);
+        mainApplication.getEventBus().register(this);
     }
 
     @Override
     protected void onStop()
     {
         super.onStop();
-        mainApplication.removePropertyChangeListener(MainApplication.LOCATION_PROPERTY, this);
+        mainApplication.getEventBus().unregister(this);
     }
 
     /**
      * Updates the onscreen information from the given location.
      * @param location location.
      */
-    public void updateData(final Location location)
+    public void onEventMainThread(final Location location)
     {
-        runOnUiThread(new Runnable()
-        {
-            public void run()
-            {
-                latitudeView.setText(Location.convert(location.getLatitude(), Location.FORMAT_SECONDS));
-                longitudeView.setText(Location.convert(location.getLongitude(), Location.FORMAT_SECONDS));
-                altitudeView.setText(String.format("%.0f", location.getAltitude() / UdpReceiverThread.FEET_TO_METERS));
-                headingView.setText(String.format("%03.0f", location.getBearing()));
-                groundspeedView.setText(String.format("%.0f", location.getSpeed() / UdpReceiverThread.KNOTS_TO_M_S));
-                timeView.setText(TIME_FORMAT.format(new Date(location.getTime())));
-            }
-        });
-    }
-
-    /** {@inheritDoc} */
-    public void propertyChange(final PropertyChangeEvent propertyChangeEvent)
-    {
-        final Location location = (Location) propertyChangeEvent.getNewValue();
-        if (location != null)
-        {
-            updateData(location);
-        }
+        latitudeView.setText(Location.convert(location.getLatitude(), Location.FORMAT_SECONDS));
+        longitudeView.setText(Location.convert(location.getLongitude(), Location.FORMAT_SECONDS));
+        altitudeView.setText(String.format("%.0f", location.getAltitude() / UdpReceiverThread.FEET_TO_METERS));
+        headingView.setText(String.format("%03.0f", location.getBearing()));
+        groundspeedView.setText(String.format("%.0f", location.getSpeed() / UdpReceiverThread.KNOTS_TO_M_S));
+        timeView.setText(TIME_FORMAT.format(new Date(location.getTime())));
     }
 }

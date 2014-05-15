@@ -39,16 +39,16 @@ public final class MainActivity extends RoboTabActivity
         TabHost tabHost = getTabHost();
         TabHost.TabSpec spec;
 
-        // Data tab
-        spec = tabHost.newTabSpec("data")
-                .setIndicator(getString(R.string.data), res.getDrawable(R.drawable.ic_tab_plane))
-                .setContent(new Intent(this, DataActivity.class));
-        tabHost.addTab(spec);
-
         // Settings tab
         spec = tabHost.newTabSpec("settings")
                 .setIndicator(getString(R.string.settings), res.getDrawable(R.drawable.ic_tab_tick))
                 .setContent(new Intent(this, SettingsActivity.class));
+        tabHost.addTab(spec);
+
+        // Data tab
+        spec = tabHost.newTabSpec("data")
+                .setIndicator(getString(R.string.data), res.getDrawable(R.drawable.ic_tab_plane))
+                .setContent(new Intent(this, DataActivity.class));
         tabHost.addTab(spec);
 
         // Instructions tab
@@ -70,7 +70,7 @@ public final class MainActivity extends RoboTabActivity
             if (enabled != 1)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.mock_location_warning).setCancelable(false);
+                builder.setMessage(R.string.mock_location_warning).setCancelable(true);
                 alertDialog = builder.create();
                 alertDialog.show();
             }

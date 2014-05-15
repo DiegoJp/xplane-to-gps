@@ -8,17 +8,21 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import com.appropel.xplane.udp.Data;
+import com.appropel.xplane.udp.Dsel;
+import com.appropel.xplane.udp.Iset;
+import com.appropel.xplane.udp.UdpUtil;
 import com.appropel.xplanegps.guice.MainApplication;
 import java.io.InterruptedIOException;
 import java.lang.reflect.Method;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.codehaus.preon.Codecs;
 
 /**
  * Thread which receives UDP packets from X-Plane and translates them into Locations.
@@ -88,6 +92,72 @@ public final class UdpReceiverThread implements Runnable
                 port = DEFAULT_PORT;
             }
 
+            // Send out datagrams to auto-configure X-Plane.
+            if (sharedPreferences.getBoolean("autoconfigure", false))
+            {
+                try
+                {
+                    Dsel dsel;
+                    switch(Integer.valueOf(sharedPreferences.getString("xplane_version", "10")))
+                    {
+                        case 9:
+                            dsel = new Dsel(new int[] {3, 18, 20});
+                            break;
+                        case 10:
+                        default:
+                            dsel = new Dsel(new int[] {3, 17, 20});
+                            break;
+                    }
+
+                    final String simulatorAddress = sharedPreferences.getString("sim_address", "127.0.0.1");
+                    final boolean broadcast = sharedPreferences.getBoolean("broadcast_subnet", false);
+
+                    final byte[] dselData = Codecs.encode(dsel, Dsel.CODEC);
+                    if (broadcast)
+                    {
+                        UdpUtil.INSTANCE.sendDatagramToSubnet(dselData, UdpUtil.XPLANE_UDP_PORT);
+                    }
+                    else
+                    {
+                        UdpUtil.INSTANCE.sendDatagram(
+                                dselData, InetAddress.getByName(simulatorAddress), UdpUtil.XPLANE_UDP_PORT);
+                    }
+
+                    final InetAddress inetAddress = UdpUtil.INSTANCE.getSiteLocalAddress();
+                    if (inetAddress != null)
+                    {
+                        Iset iset;
+                        switch(Integer.valueOf(sharedPreferences.getString("xplane_version", "10")))
+                        {
+                            case 9:
+                                iset = new Iset(
+                                    Iset.INDEX_DATA_RECEIVER_IP_9, inetAddress.getHostAddress(), String.valueOf(port));
+                                break;
+                            case 10:
+                            default:
+                                iset = new Iset(
+                                    Iset.INDEX_DATA_RECEIVER_IP_10, inetAddress.getHostAddress(), String.valueOf(port));
+                                break;
+                        }
+                        final byte[] isetData = Codecs.encode(iset, Iset.CODEC);
+
+                        if (broadcast)
+                        {
+                            UdpUtil.INSTANCE.sendDatagramToSubnet(isetData, UdpUtil.XPLANE_UDP_PORT);
+                        }
+                        else
+                        {
+                            UdpUtil.INSTANCE.sendDatagram(
+                                    isetData, InetAddress.getByName(simulatorAddress), UdpUtil.XPLANE_UDP_PORT);
+                        }
+                    }
+                }
+                catch (final Exception ex)
+                {
+                    Log.e(TAG, "Exception sending configuration datagrams", ex);
+                }
+            }
+
             Log.i(TAG, String.format("Receiver thread is listening on port %d", port));
             DatagramSocket socket = new DatagramSocket(port);
             socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
@@ -128,43 +198,41 @@ public final class UdpReceiverThread implements Runnable
                         }
                     }
 
-                    // Extract data packets from buffer.
-                    ByteBuffer buffer = ByteBuffer.wrap(data);
-                    buffer.order(ByteOrder.LITTLE_ENDIAN);
-
-                    // Verify that this is a valid packet from X-Plane by examining the first 4 bytes.
-                    if (!PACKET_HEADER.equals(new String(buffer.array(), 0, 4)))
+                    // Decode packet using Preon.
+                    final List<Data> messages = new ArrayList<Data>();
+                    int index = 0;
+                    for (;;)
                     {
-                        Log.d(TAG, "Received an unknown packet!");
-                        continue;
-                    }
-
-                    int index = 5;
-                    List<DataPacket> dataPackets = new ArrayList<DataPacket>();
-                    while (index + DataPacket.LENGTH <= packet.getLength())
-                    {
-                        DataPacket dataPacket = new DataPacket(buffer, index);
-                        dataPackets.add(dataPacket);
-                        index += DataPacket.LENGTH;
+                        try
+                        {
+                            final Data dataMsg = Codecs.decode(
+                                    Data.CODEC, Arrays.copyOfRange(data, index, data.length));
+                            messages.add(dataMsg);
+                            index += 36;
+                        }
+                        catch (Exception ex)
+                        {
+                            break;
+                        }
                     }
 
                     // Transfer data values into a Location object.
                     Location location = new Location(LocationManager.GPS_PROVIDER);
-                    for (DataPacket dataPacket : dataPackets)
+                    for (Data dataMsg : messages)
                     {
-                        switch (dataPacket.getIndex())
+                        switch (dataMsg.getIndex())
                         {
                             case 3:     // speeds
-                                location.setSpeed(dataPacket.getValues()[3] * KNOTS_TO_M_S);
+                                location.setSpeed(dataMsg.getData()[3] * KNOTS_TO_M_S);
                                 break;
                             case 17:    // pitch, roll, headings (X-Plane 10)
                             case 18:    // pitch, roll, headings (X-Plane 9)
-                                location.setBearing(dataPacket.getValues()[2]);
+                                location.setBearing(dataMsg.getData()[2]);
                                 break;
                             case 20:    // lat, lon, altitude
-                                location.setLatitude(dataPacket.getValues()[0]);
-                                location.setLongitude(dataPacket.getValues()[1]);
-                                location.setAltitude(dataPacket.getValues()[2] * FEET_TO_METERS);
+                                location.setLatitude(dataMsg.getData()[0]);
+                                location.setLongitude(dataMsg.getData()[1]);
+                                location.setAltitude(dataMsg.getData()[2] * FEET_TO_METERS);
                                 break;
                             default:
                                 break;
@@ -195,7 +263,7 @@ public final class UdpReceiverThread implements Runnable
                             LocationProvider.AVAILABLE,
                             null, System.currentTimeMillis());
                     locationManager.setTestProviderLocation(LocationManager.GPS_PROVIDER, location);
-                    mainApplication.setLocation(location);
+                    mainApplication.getEventBus().post(location);
                 }
                 catch (Exception e)
                 {
