@@ -35,4 +35,5 @@
     <string name="broadcast_subnet">Broadcast configuration to entire subnet</string>
     <string name="autoconfigure">Automatically configure X-Plane</string>
     <string name="xplane_version">X-Plane Version</string>
+    <string name="time_of_fix">Time of Fix</string>
 </resources>

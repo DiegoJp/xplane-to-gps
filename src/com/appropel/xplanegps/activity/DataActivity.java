@@ -5,8 +5,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.guice.MainApplication;
 import com.appropel.xplanegps.service.DataService;
@@ -56,7 +56,7 @@ public final class DataActivity extends RoboActivity
 
     /** Button to activate service. */
     @InjectView(R.id.active_button)
-    private ToggleButton activeButton;
+    private CompoundButton activeButton;
 
     /** {@inheritDoc} */
     @Override
