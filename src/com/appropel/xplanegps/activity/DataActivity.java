@@ -1,6 +1,7 @@
 package com.appropel.xplanegps.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -21,7 +22,7 @@ import roboguice.inject.InjectView;
 /**
  * Activity which displays the data stream coming from X-Plane.
  */
-public final class DataActivity extends RoboActivity
+public final class DataActivity extends RoboActivity implements TabConstants
 {
     /** Time format. */
     private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss.SSS");
@@ -97,6 +98,10 @@ public final class DataActivity extends RoboActivity
         }
         activeButton.setChecked(DataService.isRunning());
         mainApplication.getEventBus().register(this);
+
+        // Store current tab.
+        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+        sharedPreferences.edit().putString(TAB_TAG_KEY, DATA_TAB_TAG).apply();
     }
 
     @Override

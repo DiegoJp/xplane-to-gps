@@ -21,7 +21,7 @@ import roboguice.inject.InjectPreference;
  * Activity for user preferences.
  */
 public final class SettingsActivity extends RoboPreferenceActivity
-        implements SharedPreferences.OnSharedPreferenceChangeListener, Validator.ValidationListener
+        implements SharedPreferences.OnSharedPreferenceChangeListener, Validator.ValidationListener, TabConstants
 {
     /** X-Plane version. */
     @InjectPreference("xplane_version")
@@ -70,6 +70,10 @@ public final class SettingsActivity extends RoboPreferenceActivity
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         updatePreferenceSummary();
+
+        // Store current tab.
+        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+        sharedPreferences.edit().putString(TAB_TAG_KEY, SETTINGS_TAB_TAG).apply();
     }
 
     /** {@inheritDoc} */
