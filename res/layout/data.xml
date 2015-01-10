@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-        >
+              android:padding="40dp">
     <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -110,7 +110,8 @@
         <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/active_button" android:textOff="@string/paused" android:textOn="@string/active"/>
+                android:id="@+id/active_button" android:textOff="@string/paused" android:textOn="@string/active"
+                android:layout_marginTop="20dp"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -1,39 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">X-Plane to GPS</string>
-    <string name="instructions">Instructions</string>
-    <string name="mock_location">1. Ensure that this device is set to \"Allow mock locations\" under Settings -> Applications -> Development.</string>
-    <string name="ip_instructions" formatted="false">2. Go to the Data tab of this application and select your X-Plane version. Leave the next two boxes checked for automatic configuration of X-Plane.</string>
-    <string name="active_instructions">3. Set the Paused/Active button to Active. This starts a background service to keep data flowing while you switch to another application.</string>
-    <string name="problem_instructions">4. If there are any issues please consult the application manual available on the appropel.com website for further instructions.</string>
-    <string name="mock_location_warning">This device must be set to \"Allow mock locations\" under Settings -> Applications -> Development.\n\nOnce this is done, return to X-Plane to GPS.</string>
-    <string name="go_to_settings">Go to Settings</string>
-    <string name="quit">Quit</string>
-    <string name="data">Data</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="altitude">Altitude</string>
-    <string name="heading">Heading</string>
-    <string name="groundspeed">Groundspeed</string>
-    <string name="active">Active</string>
-    <string name="paused">Paused</string>
-    <string name="notification">X-Plane to GPS is listening for data from X-Plane.</string>
-    <string name="forward_udp">Forward UDP</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Name of the application. "GPS" is Global Positioning System. "X-Plane" is the name of a product and should
+         not be translated anywhere.-->
+    <string name="app_name"><xliff:g id="xplane">X-Plane</xliff:g> to GPS</string>
+
+    <!-- Warning shown in a dialog box if the user has not enabled mock locations. -->
+    <string name="mock_location_warning">This device must be set to \"Allow mock locations\" under Settings -> Applications -> Development.\n\nOnce this is done, return to <xliff:g id="xplane">X-Plane</xliff:g> to GPS.</string>
+
+    <!-- Header for Settings tab. -->
     <string name="settings">Settings</string>
-    <string name="sim_address">Simulator IP Address</string>
-    <string name="sim_explanation">Enter the IP address of the machine running X-Plane:</string>
-    <string name="forward_address">Forward Address</string>
-    <string name="forward_explanation">Enter the IP address to forward packets to:</string>
-    <string name="port">Receive Port</string>
-    <string name="port_explanation">Enter the port to receive data from X-Plane:</string>
-    <string name="port_gt">Port must be at least 1024</string>
-    <string name="port_lt">Port must be less than 65536</string>
-    <string name="sim_invalid">Simulator address is not valid</string>
-    <string name="forward_invalid">Forward address is not valid</string>
-    <string name="ok">OK</string>
-    <string name="easy_vfr">EasyVFR compatibility</string>
+
+    <!-- Label for X-Plane version text field. -->
+    <string name="xplane_version"><xliff:g id="xplane">X-Plane</xliff:g> version</string>
+
+    <!-- Label for automatic configuration checkbox. -->
+    <string name="autoconfigure">Automatically configure <xliff:g id="xplane">X-Plane</xliff:g></string>
+
+    <!-- Label for broadcast configuration checkbox. "subnet" is a networking term. -->
     <string name="broadcast_subnet">Broadcast configuration to entire subnet</string>
-    <string name="autoconfigure">Automatically configure X-Plane</string>
-    <string name="xplane_version">X-Plane Version</string>
+
+    <!-- Label for IP Address text field. "IP Address" is a networking term. -->
+    <string name="sim_address">Simulator IP Address</string>
+
+    <!-- Detailed explanation when entering IP address. -->
+    <string name="sim_explanation">Enter the IP address of the machine running <xliff:g id="xplane">X-Plane</xliff:g>:</string>
+
+    <!-- Error message when simulator IP address is not a valid format. -->
+    <string name="sim_invalid">Simulator IP address is not valid</string>
+
+    <!-- Label for receive port text field. "Port" in the networking sense. -->
+    <string name="port">Receive Port</string>
+
+    <!-- Detailed explanation when entering receive port. -->
+    <string name="port_explanation">Enter the port to receive data from <xliff:g id="xplane">X-Plane</xliff:g>:</string>
+
+    <!-- Error message when port value is too low. -->
+    <string name="port_gt">Port must be at least 1024</string>
+
+    <!-- Error message when port value is too high. -->
+    <string name="port_lt">Port must be less than 65536</string>
+
+    <!-- Label for "Forward UDP" checkbox. "Forward" in the networking sense of sending a packet to another machine.
+         UDP is User Datagram Protocol, a networking term. -->
+    <string name="forward_udp">Forward UDP</string>
+
+    <!-- Label for forward address text field. This is the IP address to forward packets to. -->
+    <string name="forward_address">Forward Address</string>
+
+    <!-- Detailed explanation when entering forward IP address. -->
+    <string name="forward_explanation">Enter the IP address to forward packets to:</string>
+
+    <!-- Error message when forward IP address is not a valid format. -->
+    <string name="forward_invalid">Forward IP address is not valid</string>
+
+    <!-- Label for EasyVFR compatibility checkbox. "EasyVFR" is the name of a product and should not be translated. -->
+    <string name="easy_vfr"><xliff:g id="easyvfr">EasyVFR</xliff:g> compatibility</string>
+
+    <!-- Header for Data tab. -->
+    <string name="data">Data</string>
+
+    <!-- Latitude table row (in the geographical sense). -->
+    <string name="latitude">Latitude</string>
+
+    <!-- Longitude table row (in the geographical sense). -->
+    <string name="longitude">Longitude</string>
+
+    <!-- Altitude table row - height above the ground. -->
+    <string name="altitude">Altitude</string>
+
+    <!-- Heading table row - the compass course of the aircraft. -->
+    <string name="heading">Heading</string>
+
+    <!-- Groundspeed table row - the speed of the aircraft over the ground. -->
+    <string name="groundspeed">Groundspeed</string>
+
+    <!-- Time of fix table row. "Fix" in the sense of a calculated navigational position. -->
     <string name="time_of_fix">Time of Fix</string>
+
+    <!-- Paused label for on/off switch. -->
+    <string name="paused">Paused</string>
+
+    <!-- Active label for on/off switch. -->
+    <string name="active">Active</string>
+
+    <!-- Text that appears in the notification bar. -->
+    <string name="notification"><xliff:g id="xplane">X-Plane</xliff:g> to GPS is listening for data from <xliff:g id="xplane">X-Plane</xliff:g>.</string>
+
+    <!-- Header for Instructions tab. -->
+    <string name="instructions">Instructions</string>
+
+    <!-- Step 1 of instructions. -->
+    <string name="mock_location">1. Ensure that this device is set to \"Allow mock locations\" under Settings -> Applications -> Development.</string>
+
+    <!-- Step 2 of instructions. -->
+    <string name="ip_instructions" formatted="false">2. Go to the Data tab of this application and select your <xliff:g id="xplane">X-Plane</xliff:g> version. Leave the next two boxes checked for automatic configuration of <xliff:g id="xplane">X-Plane</xliff:g>.</string>
+
+    <!-- Step 3 of instructions. -->
+    <string name="active_instructions">3. Set the Paused/Active switch to Active. This starts a background service to keep data flowing while you switch to another application.</string>
+
+    <!-- Step 4 of instructions. Do not translate "appropel.com", the name of a website. -->
+    <string name="problem_instructions">4. If there are any issues consult the application manual available on the <xliff:g id="appropel">http://www.appropel.com</xliff:g> website for further instructions.</string>
+
 </resources>

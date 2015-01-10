@@ -141,7 +141,7 @@ public final class SettingsActivity extends RoboPreferenceActivity
         // Show dialog alerting user to validation failure.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(failedRule.getFailureMessage())
-               .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+               .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                    public void onClick(final DialogInterface dialogInterface, final int i)
                    {
                        dialogInterface.dismiss();

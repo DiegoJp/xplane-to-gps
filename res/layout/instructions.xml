@@ -3,8 +3,7 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:paddingRight="5dp"
-        >
+              android:padding="40dp">
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -25,5 +24,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/problem_instructions"
-            android:id="@+id/textView" android:textSize="@dimen/font_size"/>
+            android:id="@+id/textView" android:textSize="@dimen/font_size" android:autoLink="web"/>
 </LinearLayout>

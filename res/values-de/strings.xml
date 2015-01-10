@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Name of the application. "GPS" is Global Positioning System. "X-Plane" is the name of a product and should
+         not be translated anywhere.-->
+    <string name="app_name">
+    <xliff:g id="xplane">X-Plane</xliff:g> to GPS</string>
+
+    <!-- Warning shown in a dialog box if the user has not enabled mock locations. -->
+    <string name="mock_location_warning">Das Gerät muss unter Einstellungen -&gt; Anwendungen -&gt; Entwicklung auf \"Falsche Standorte\" (\"Allow mock locations\") eingestellt sein. \n\nSobald dies geschehen ist, zurück auf <xliff:g id="xplane">X-Plane</xliff:g> to GPS</string>
+
+    <!-- Header for Settings tab. -->
+    <string name="settings">Einstellungen</string>
+
+    <!-- Label for X-Plane version text field. -->
+    <string name="xplane_version">
+    <xliff:g id="xplane">X-Plane</xliff:g> Version</string>
+
+    <!-- Label for automatic configuration checkbox. -->
+    <string name="autoconfigure"> <xliff:g id="xplane">X-Plane</xliff:g> automatisch konfigurieren</string>
+
+    <!-- Label for broadcast configuration checkbox. "subnet" is a networking term. -->
+    <string name="broadcast_subnet">Broadcast-Konfiguration für das gesamte Subnet</string>
+
+    <!-- Label for IP Address text field. "IP Address" is a networking term. -->
+    <string name="sim_address">IP-Adresse des Simulators</string>
+
+    <!-- Detailed explanation when entering IP address. -->
+    <string name="sim_explanation">Geben Sie die IP-Adresse der Maschine ein, die <xliff:g id="xplane">X-Plane</xliff:g> benutzt:</string>
+
+    <!-- Error message when simulator IP address is not a valid format. -->
+    <string name="sim_invalid">IP-Adresse des Simulators ist ungültig</string>
+
+    <!-- Label for receive port text field. "Port" in the networking sense. -->
+    <string name="port">Empfangs-Port</string>
+
+    <!-- Detailed explanation when entering receive port. -->
+    <string name="port_explanation">Geben Sie den Port ein, um Daten von <xliff:g id="xplane">X-Plane</xliff:g> zu erhalten:</string>
+
+    <!-- Error message when port value is too low. -->
+    <string name="port_gt">Port-Mindestwert beträgt 1024</string>
+
+    <!-- Error message when port value is too high. -->
+    <string name="port_lt">Port-Höchstwert beträgt 65536</string>
+
+    <!-- Label for "Forward UDP" checkbox. "Forward" in the networking sense of sending a packet to another machine.
+         UDP is User Datagram Protocol, a networking term. -->
+    <string name="forward_udp">UDP senden</string>
+
+    <!-- Label for forward address text field. This is the IP address to forward packets to. -->
+    <string name="forward_address">Versandadresse</string>
+
+    <!-- Detailed explanation when entering forward IP address. -->
+    <string name="forward_explanation">Geben Sie die IP-Adresse ein, um Datenpakete zu versenden:</string>
+
+    <!-- Error message when forward IP address is not a valid format. -->
+    <string name="forward_invalid">Versand-IP-Adresse ist ungültig</string>
+
+    <!-- Label for EasyVFR compatibility checkbox. "EasyVFR" is the name of a product and should not be translated. -->
+    <string name="easy_vfr">
+    <xliff:g id="easyvfr">EasyVFR</xliff:g> Kompatibilität</string>
+
+    <!-- Header for Data tab. -->
+    <string name="data">Daten</string>
+
+    <!-- Latitude table row (in the geographical sense). -->
+    <string name="latitude">Breitengrad</string>
+
+    <!-- Longitude table row (in the geographical sense). -->
+    <string name="longitude">Längengrad</string>
+
+    <!-- Altitude table row - height above the ground. -->
+    <string name="altitude">Höhe</string>
+
+    <!-- Heading table row - the compass course of the aircraft. -->
+    <string name="heading">Kurs</string>
+
+    <!-- Groundspeed table row - the speed of the aircraft over the ground. -->
+    <string name="groundspeed">Groundspeed</string>
+
+    <!-- Time of fix table row. "Fix" in the sense of a calculated navigational position. -->
+    <string name="time_of_fix">Zeitpunkt der Positionsbestimmung</string>
+
+    <!-- Paused label for on/off switch. -->
+    <string name="paused">Angehalten</string>
+
+    <!-- Active label for on/off switch. -->
+    <string name="active">Aktiv</string>
+
+    <!-- Text that appears in the notification bar. -->
+    <string name="notification">
+    <xliff:g id="xplane">X-Plane</xliff:g> to GPS horcht nach Daten von <xliff:g id="xplane">X-Plane</xliff:g>.</string>
+
+    <!-- Header for Instructions tab. -->
+    <string name="instructions">Anleitungen</string>
+
+    <!-- Step 1 of instructions. -->
+    <string name="mock_location">1. Stellen Sie sicher, dass dieses Gerät auf \"Falsche Standorte\" unter Einstellungen -&gt; Anwendungen -&gt; Entwicklung eingestellt ist.</string>
+
+    <!-- Step 2 of instructions. -->
+    <string formatted="false" name="ip_instructions">2. Gehen Sie auf die Registerkarte dieser Anwendung, und wählen Sie die Version  <xliff:g id="xplane">X-Plane</xliff:g>. Lassen Sie die nächsten zwei Kästchen angekreuzt für die automatische Konfiguration von <xliff:g id="xplane">X-Plane</xliff:g>.</string>
+
+    <!-- Step 3 of instructions. -->
+    <string name="active_instructions">3. Stellen Sie den Pause/Aktiv-Schalter auf Aktiv. Dieser startet einen Hintergrundservice, damit Daten fließen, während Sie zu einer anderen Anwendung wechseln.</string>
+
+    <!-- Step 4 of instructions. Do not translate "appropel.com", the name of a website. -->
+    <string name="problem_instructions">4. Wenn es irgendwelche Probleme gibt, finden Sie im Anwender-Handbuch auf der <xliff:g id="appropel">http://www.appropel.com</xliff:g> Website weitere Anleitungen.</string>
+
+</resources>
