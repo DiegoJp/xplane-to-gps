@@ -67,9 +67,9 @@ public final class DataActivity extends RoboActivity implements TabConstants
         setContentView(R.layout.data);
 
         final Intent dataServiceIntent = new Intent(this, DataService.class);
-        activeButton.setOnClickListener(new View.OnClickListener()
+        activeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
-            public void onClick(final View view)
+            public void onCheckedChanged(final CompoundButton compoundButton, final boolean b)
             {
                 if (activeButton.isChecked())
                 {
