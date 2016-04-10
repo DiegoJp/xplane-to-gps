@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.guice.MainApplication;
 import com.appropel.xplanegps.service.DataService;
 import com.appropel.xplanegps.thread.UdpReceiverThread;
+import com.appropel.xplanegps.utility.SettingsUtility;
 import com.google.inject.Inject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -87,15 +86,7 @@ public final class DataActivity extends RoboActivity implements TabConstants
     protected void onStart()
     {
         super.onStart();
-        try
-        {
-            int enabled = Settings.Secure.getInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION);
-            activeButton.setEnabled(enabled == 1);
-        }
-        catch (final Exception ex)
-        {
-            // Ignore.
-        }
+        activeButton.setEnabled(SettingsUtility.isMockLocationEnabled(this));
         activeButton.setChecked(DataService.isRunning());
         mainApplication.getEventBus().register(this);
 

@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.TabHost;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.guice.MainApplication;
+import com.appropel.xplanegps.utility.SettingsUtility;
 import com.google.inject.Inject;
 import roboguice.activity.RoboTabActivity;
 
@@ -67,8 +67,7 @@ public final class MainActivity extends RoboTabActivity implements TabConstants
         // Ensure that mock locations are enabled. If not, pop up an eternal dialog.
         try
         {
-            int enabled = Settings.Secure.getInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION);
-            if (enabled != 1)
+            if (!SettingsUtility.isMockLocationEnabled(this))
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.mock_location_warning).setCancelable(true);
@@ -99,4 +98,5 @@ public final class MainActivity extends RoboTabActivity implements TabConstants
             alertDialog = null;
         }
     }
+
 }

@@ -45,13 +45,18 @@ public final class DataService extends RoboService
             new Thread(udpReceiverThread).start();
 
             // Create notification.
-            Notification notification = new Notification(
-                    R.drawable.ic_menu_plane, getText(R.string.notification), System.currentTimeMillis());
             Context context = getApplicationContext();
             Intent notificationIntent = new Intent(this, MainActivity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-            notification.setLatestEventInfo(
-                    context, getText(R.string.app_name), getText(R.string.notification), contentIntent);
+            final Notification notification = new Notification.Builder(this)
+                    .setTicker(getText(R.string.notification))
+                    .setContentTitle(getText(R.string.app_name))
+                    .setContentText(getText(R.string.notification))
+                    .setSmallIcon(R.drawable.ic_menu_plane)
+                    .setWhen(System.currentTimeMillis())
+                    .setContentIntent(contentIntent)
+                    .build();
+
             startForeground(NOTIFICATION_ID, notification);
         }
 
