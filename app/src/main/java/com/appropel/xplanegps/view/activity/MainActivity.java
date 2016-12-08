@@ -23,29 +23,6 @@ public final class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-//        // Set up tabs.
-//        Resources res = getResources();
-//        TabHost tabHost = getTabHost();
-//        TabHost.TabSpec spec;
-//
-//        // Settings tab
-//        spec = tabHost.newTabSpec(SETTINGS_TAB_TAG)
-//                .setIndicator(getString(R.string.settings), res.getDrawable(R.drawable.ic_tab_tick))
-//                .setContent(new Intent(this, SettingsActivity.class));
-//        tabHost.addTab(spec);
-//
-//        // Data tab
-//        spec = tabHost.newTabSpec(DATA_TAB_TAG)
-//                .setIndicator(getString(R.string.data), res.getDrawable(R.drawable.ic_tab_plane))
-//                .setContent(new Intent(this, DataActivity.class));
-//        tabHost.addTab(spec);
-//
-//        // Instructions tab
-//        spec = tabHost.newTabSpec(INSTRUCTIONS_TAB_TAG)
-//                .setIndicator(getString(R.string.instructions), res.getDrawable(R.drawable.ic_tab_gear))
-//                .setContent(new Intent(this, InstructionActivity.class));
-//        tabHost.addTab(spec);
     }
 /*
     @Override
