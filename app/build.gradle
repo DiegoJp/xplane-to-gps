@@ -35,12 +35,16 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-v13:24.2.1'
 
     // Depend on X-Plane UDP library
 //    compile project(':X-PlaneUdp')
@@ -51,6 +55,9 @@ dependencies {
     // ButterKnife binding
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
+
+    // Preference binding
+    compile 'me.denley.preferenceinjector:PreferenceInjector:3.0.2'
 
     // SLF4j logging
     compile 'org.slf4j:slf4j-api:1.7.21'

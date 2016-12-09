@@ -38,6 +38,19 @@
 -keep class com.appropel.kearsarge.view.validation.ValidLatLngRule {*;}
 -keep class com.appropel.kearsarge.view.validation.ValidRouteRule {*;}
 
+# Preference binding
+-keep class me.denley.preferencebinder.** { *; }
+-dontwarn me.denley.preferencebinder.internal.**
+-keep class **$$SharedPreferenceBinder { *; }
+
+-keepclasseswithmembernames class * {
+    @me.denley.preferencebinder.* <fields>;
+}
+
+-keepclasseswithmembernames class * {
+    @me.denley.preferencebinder.* <methods>;
+}
+
 # Suppress warnings
 -dontwarn org.slf4j.impl.StaticLoggerBinder
 -dontwarn org.slf4j.impl.StaticMDCBinder
