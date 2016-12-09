@@ -24,10 +24,10 @@ public interface Preferences
     int getXplaneVersion();
 
     @KeyByString(KEY_AUTOCONFIGURE)
-    boolean getAutoconfigure();
+    boolean isAutoconfigure();
 
     @KeyByString(KEY_BROADCASTSUBNET)
-    boolean getBroadcastSubnet();
+    boolean isBroadcastSubnet();
 
     @KeyByString(KEY_SIMULATORADDRESS)
     @DefaultValue(R.string.localhost)
@@ -38,12 +38,12 @@ public interface Preferences
     int getReceivePort();
 
     @KeyByString(KEY_UDPFORWARD)
-    boolean getUdpForward();
+    boolean isUdpForward();
 
     @KeyByString(KEY_FORWARDADDRESS)
     @DefaultValue(R.string.localhost)
     String getForwardAddress();
 
     @KeyByString(KEY_EASYVFR)
-    boolean getEasyVfr();
+    boolean isEasyVfr();
 }

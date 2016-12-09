@@ -27,7 +27,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -71,11 +71,8 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.1'
 
     // Dagger dependency injection
-    compile 'com.google.dagger:dagger:2.4'
-    apt 'com.google.dagger:dagger-compiler:2.4'
-
-    // Saripaar validation library
-    compile 'com.mobsandgeeks:android-saripaar:1.0.3'
+    compile 'com.google.dagger:dagger:2.6'
+    apt 'com.google.dagger:dagger-compiler:2.6'
 
     // Apache Commons I/O
     compile 'commons-io:commons-io:2.4'
