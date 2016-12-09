@@ -1,0 +1,67 @@
+// FROM : http://searchcode.com/codesearch/view/10588770
+
+configurations {
+    codequality
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    codequality fileTree(include: '*.jar', dir: 'libs')
+}
+
+task classycle(type: AndroidClassycleTask) {
+    ignoreFailures true
+    showViolations false
+}
+
+///////////////////////////////////////////////
+////////////// Groovy Task Class //////////////
+///////////////////////////////////////////////
+import org.gradle.api.internal.project.IsolatedAntBuilder
+
+/**
+ * See parameters at http://checkstyle.sourceforge.net/anttask.html
+ */
+class AndroidClassycleTask extends DefaultTask {
+    @InputFile @Optional File definitionFile = new File("$project.rootDir/app/config/classycle.txt")
+    @InputFile @Optional File xslFile = new File("$project.rootDir/app/config/classycle-noframes-sorted.xsl")
+    @OutputFile @Optional File outputFile = new File("$project.buildDir/reports/classycle/classycle-${project.name}.txt")
+    FileCollection classycleClasspath = project.configurations.codequality
+    Boolean ignoreFailures = false
+    Boolean showViolations = true
+    Boolean failOnUnwantedDependencies = true
+    Boolean mergeInnerClasses = true
+    Project gradleProject = project
+
+    def AndroidclassycleTask() {
+        description = 'Runs classycle against Android sourcesets.'
+        group = 'Code Quality'
+    }
+
+    @TaskAction
+    def runClassycle() {
+        outputFile.parentFile.mkdirs()
+        def antBuilder = services.get(IsolatedAntBuilder)
+        antBuilder.withClasspath(classycleClasspath).execute {
+            ant.taskdef(name: 'classycle', classname: 'classycle.ant.DependencyCheckingTask')
+            // see also, maxWarnings and failureProperty arguments
+            ant.classycle(reportFile: outputFile, failOnUnwantedDependencies: failOnUnwantedDependencies, mergeInnerClasses: mergeInnerClasses,
+                    definitionFile: definitionFile ) {
+                fileset(dir: "$gradleProject.buildDir/intermediates/classes/debug")
+            }
+            if (showViolations) {
+//                formatter(type: 'plain', useFile: false)
+                formatter(type: 'xml', toFile: outputFile)
+            }
+        }
+//        if (xslFile != null && xslFile.exists()) {
+//            ant.xslt(in:   outputFile,
+//                    style: xslFile,
+//                    out:   outputFile.absolutePath.replaceFirst(~/\.[^\.]+$/, ".html")
+//            )
+//        }
+    }
+}

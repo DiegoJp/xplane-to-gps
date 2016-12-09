@@ -7,7 +7,7 @@ show allResults
 # Definition of class sets.
 #
 
-{package} = com.openmobile
+{package} = com.appropel.xplanegps
 
 # Dagger definitions.
 [dagger] = ${package}.dagger.*
@@ -18,26 +18,19 @@ show allResults
 [common] = ${package}.common.*
 [controller] = ${package}.controller.*
 [model] = ${package}.model.*
-[serverapi] = ${package}.serverapi.*
-[vending] = ${package}.vending.* excluding com.openmobile.vending.BuildConfig
 [view] = ${package}.view.*
 
 layer common = [common]
 layer controller = [controller]
 layer model = [model]
-layer serverapi = [serverapi]
-layer vending = [vending]
 layer view = [view]
 
 # Other useful definitions
 [common-android] = ${package}.common.android.*
-[billingprovider] = ${package}.controller.billingprovider.*
-[controller-utils] = ${package}.controller.utils.*
-[cache] = ${package}.serverapi.cache.*
 
 # Definition of where Android may be referenced.
 [android] = android.* excluding android.annotation.* android.support.annotation.* android.os.Build
-[android-allowed] = [view] [common-android] [dagger] [billingprovider] [controller-utils] [vending] [cache]
+[android-allowed] = [view] [common-android] [dagger]
 [non-android-allowed] = ${package}.* excluding [android-allowed]
 
 #
@@ -53,11 +46,8 @@ check [non-dagger] directlyIndependentOf dagger.*
 # Check that nobody uses Android logging - SLF4J is the preferred method.
 check ${package}.* independentOf android.util.Log
 
-# The Apache HTTP client was removed in Lollipop - make sure we don't use it.
-check ${package}.* independentOf org.apache.http.*
-
 # Check that only certain well-defined parts of the app are dependent on Android.
 check [non-android-allowed] directlyIndependentOf [android]
 
 # Check that the layers are proper. Note that the ordering is from lowest to highest.
-check layeringOf common model serverapi controller vending view
+check layeringOf common model controller view
