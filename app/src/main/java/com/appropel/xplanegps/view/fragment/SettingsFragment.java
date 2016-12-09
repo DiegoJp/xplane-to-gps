@@ -1,18 +1,25 @@
 package com.appropel.xplanegps.view.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
+import android.view.View;
 import android.widget.TextView;
 
 import com.appropel.xplanegps.R;
-import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Rule;
+import com.mobsandgeeks.saripaar.Rules;
 import com.mobsandgeeks.saripaar.Validator;
 
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Activity for user preferences.
@@ -20,24 +27,22 @@ import java.util.List;
 public final class SettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener, Validator.ValidationListener
 {
+    /** Logger. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SettingsFragment.class);
+
     /** X-Plane version. */
-//    @InjectPreference("xplane_version")
     private ListPreference xplaneVersion;
-//
+
     /** Broadcast subnet checkbox. */
-//    @InjectPreference("broadcast_subnet")
     private CheckBoxPreference broadcastSubnet;
-//
+
     /** Simulator IP address. */
-//    @InjectPreference("sim_address")
     private EditTextPreference simulatorAddress;
-//
+
     /** Reception port. */
-//    @InjectPreference("port")
     private EditTextPreference port;
-//
+
     /** Port forward address. */
-//    @InjectPreference("forward_address")
     private EditTextPreference forwardAddress;
 
     /** Validator. */
@@ -49,14 +54,22 @@ public final class SettingsFragment extends PreferenceFragment
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
 
+        // Find preferences the hard way.
+        xplaneVersion = (ListPreference) findPreference("xplane_version");
+        broadcastSubnet = (CheckBoxPreference) findPreference("broadcast_subnet");
+        simulatorAddress = (EditTextPreference) findPreference("sim_address");
+        port = (EditTextPreference) findPreference("port");
+        forwardAddress = (EditTextPreference) findPreference("forward_address");
+
+        // Set up validation rules.
         validator = new Validator(this);
         validator.setValidationListener(this);
-//        validator.put(simulatorAddress.getEditText(),
-//                Rules.regex(getString(R.string.sim_invalid), Rules.REGEX_IP_ADDRESS, true));
-//        validator.put(port.getEditText(), Rules.gt(getString(R.string.port_gt), 1023));
-//        validator.put(port.getEditText(), Rules.lt(getString(R.string.port_lt), 65536));
-//        validator.put(forwardAddress.getEditText(),
-//                Rules.regex(getString(R.string.forward_invalid), Rules.REGEX_IP_ADDRESS, true));
+        validator.put(simulatorAddress.getEditText(),
+                Rules.regex(getString(R.string.sim_invalid), Rules.REGEX_IP_ADDRESS, true));
+        validator.put(port.getEditText(), Rules.gt(getString(R.string.port_gt), 1023));
+        validator.put(port.getEditText(), Rules.lt(getString(R.string.port_lt), 65536));
+        validator.put(forwardAddress.getEditText(),
+                Rules.regex(getString(R.string.forward_invalid), Rules.REGEX_IP_ADDRESS, true));
     }
 
     @Override
@@ -64,7 +77,7 @@ public final class SettingsFragment extends PreferenceFragment
     {
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-//        updatePreferenceSummary();
+        updatePreferenceSummary();
 
         // Store current tab.
 //        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
@@ -74,8 +87,8 @@ public final class SettingsFragment extends PreferenceFragment
     @Override
     public void onPause()
     {
-        super.onPause();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        super.onPause();
     }
 
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String shared)
@@ -100,6 +113,13 @@ public final class SettingsFragment extends PreferenceFragment
         forwardAddress.setEnabled(sharedPreferences.getBoolean("enable_udp_forward", false));
     }
 
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
+    {
+        LOGGER.debug("PreferenceScreen {} Preference {}", preferenceScreen, preference);
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
     /**
      * Might be obsolete.
      */
@@ -118,31 +138,32 @@ public final class SettingsFragment extends PreferenceFragment
     }
 
     @Override
-    public void onValidationFailed(final List<ValidationError> errors)
+    public void onValidationFailed(View failedView, Rule<?> failedRule)
     {
-//        // Reset failed value to default.
-//        if (simulatorAddress.getEditText().equals(failedView))
-//        {
-//            simulatorAddress.setText("127.0.0.1");
-//        }
-//        else if (port.getEditText().equals(failedView))
-//        {
-////            port.setText(String.valueOf(UdpReceiverThread.DEFAULT_PORT));
-//        }
-//        else if (forwardAddress.getEditText().equals(failedView))
-//        {
-//            forwardAddress.setText("127.0.0.1");
-//        }
-//
-//        // Show dialog alerting user to validation failure.
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setMessage(failedRule.getMessage(getActivity()))
-//                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-//                    public void onClick(final DialogInterface dialogInterface, final int i)
-//                    {
-//                        dialogInterface.dismiss();
-//                    }
-//                });
-//        builder.show();
+        // Reset failed value to default.
+        if (simulatorAddress.getEditText().equals(failedView))
+        {
+            simulatorAddress.setText("127.0.0.1");
+        }
+        else if (port.getEditText().equals(failedView))
+        {
+//            port.setText(String.valueOf(UdpReceiverThread.DEFAULT_PORT));
+        }
+        else if (forwardAddress.getEditText().equals(failedView))
+        {
+            forwardAddress.setText("127.0.0.1");
+        }
+
+        // Show dialog alerting user to validation failure.
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(failedRule.getFailureMessage())
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialogInterface, final int i)
+                    {
+                        dialogInterface.dismiss();
+                    }
+                });
+        builder.show();
     }
 }

@@ -107,4 +107,6 @@
     <!-- Step 4 of instructions. Do not translate "appropel.com", the name of a website. -->
     <string name="problem_instructions">4. Wenn es irgendwelche Probleme gibt, finden Sie im Anwender-Handbuch auf der <xliff:g id="appropel">http://www.appropel.com</xliff:g> Website weitere Anleitungen.</string>
 
+    <!-- Localhost address, used as default for prefs. -->
+    <string name="localhost">127.0.0.1</string>
 </resources>

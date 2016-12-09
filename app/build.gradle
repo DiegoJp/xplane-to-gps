@@ -59,6 +59,9 @@ dependencies {
     // Preference binding
     compile 'me.denley.preferenceinjector:PreferenceInjector:3.0.2'
 
+    // StoreBox
+    compile 'net.orange-box.storebox:storebox-lib:1.4.0'
+
     // SLF4j logging
     compile 'org.slf4j:slf4j-api:1.7.21'
     debugApk 'com.noveogroup.android:android-logger:1.3.6'
@@ -72,7 +75,7 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.4'
 
     // Saripaar validation library
-    compile 'com.mobsandgeeks:android-saripaar:2.0.3'
+    compile 'com.mobsandgeeks:android-saripaar:1.0.3'
 
     // Apache Commons I/O
     compile 'commons-io:commons-io:2.4'
