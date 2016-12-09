@@ -7,6 +7,9 @@
     <!-- Warning shown in a dialog box if the user has not enabled mock locations. -->
     <string name="mock_location_warning">Das Gerät muss unter Einstellungen -&gt; Anwendungen -&gt; Entwicklung auf \"Falsche Standorte\" (\"Allow mock locations\") eingestellt sein. \n\nSobald dies geschehen ist, zurück auf <xliff:g id="xplane">X-Plane</xliff:g> to GPS</string>
 
+    <!-- Warning shown in a dialog box if the user has not enabled mock locations. -->
+    <string name="mock_location_app_warning">Das Gerät muss unter Einstellungen -&gt; Anwendungen -&gt; Entwicklung auf \"Falsche Standorte\" (\"Allow mock locations\") eingestellt sein. \n\nSobald dies geschehen ist, zurück auf <xliff:g id="xplane">X-Plane</xliff:g> to GPS</string>
+
     <!-- Header for Settings tab. -->
     <string name="settings">Einstellungen</string>
 

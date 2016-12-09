@@ -7,6 +7,9 @@
     <!-- Warning shown in a dialog box if the user has not enabled mock locations. -->
     <string name="mock_location_warning">This device must be set to \"Allow mock locations\" under Settings -> Applications -> Development.\n\nOnce this is done, return to <xliff:g id="xplane">X-Plane</xliff:g> to GPS.</string>
 
+    <!-- Warning shown in a dialog box if the user has not enabled mock locations. -->
+    <string name="mock_location_app_warning">This app must be selected under Settings -> Developer options -> Select mock location app.\n\nOnce this is done, return to <xliff:g id="xplane">X-Plane</xliff:g> to GPS.</string>
+
     <!-- Header for Settings tab. -->
     <string name="settings">Settings</string>
 

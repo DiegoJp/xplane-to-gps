@@ -1,0 +1,63 @@
+# This is the rules file for the Classycle tool.
+# see http://classycle.sourceforge.net/
+
+show allResults
+
+#
+# Definition of class sets.
+#
+
+{package} = com.openmobile
+
+# Dagger definitions.
+[dagger] = ${package}.dagger.*
+[dagger-internal] = *MembersInjector
+[non-dagger] = ${package}.* excluding [dagger] [dagger-internal]
+
+# Definitions of the primary software layers
+[common] = ${package}.common.*
+[controller] = ${package}.controller.*
+[model] = ${package}.model.*
+[serverapi] = ${package}.serverapi.*
+[vending] = ${package}.vending.* excluding com.openmobile.vending.BuildConfig
+[view] = ${package}.view.*
+
+layer common = [common]
+layer controller = [controller]
+layer model = [model]
+layer serverapi = [serverapi]
+layer vending = [vending]
+layer view = [view]
+
+# Other useful definitions
+[common-android] = ${package}.common.android.*
+[billingprovider] = ${package}.controller.billingprovider.*
+[controller-utils] = ${package}.controller.utils.*
+[cache] = ${package}.serverapi.cache.*
+
+# Definition of where Android may be referenced.
+[android] = android.* excluding android.annotation.* android.support.annotation.* android.os.Build
+[android-allowed] = [view] [common-android] [dagger] [billingprovider] [controller-utils] [vending] [cache]
+[non-android-allowed] = ${package}.* excluding [android-allowed]
+
+#
+# Architectural checks.
+#
+
+# Check for package cycles.
+check absenceOfPackageCycles > 1 in [non-dagger]
+
+# Check that only the dagger package references Dagger.
+check [non-dagger] directlyIndependentOf dagger.*
+
+# Check that nobody uses Android logging - SLF4J is the preferred method.
+check ${package}.* independentOf android.util.Log
+
+# The Apache HTTP client was removed in Lollipop - make sure we don't use it.
+check ${package}.* independentOf org.apache.http.*
+
+# Check that only certain well-defined parts of the app are dependent on Android.
+check [non-android-allowed] directlyIndependentOf [android]
+
+# Check that the layers are proper. Note that the ordering is from lowest to highest.
+check layeringOf common model serverapi controller vending view

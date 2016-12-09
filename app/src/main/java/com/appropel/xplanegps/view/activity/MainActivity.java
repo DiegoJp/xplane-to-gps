@@ -2,29 +2,33 @@ package com.appropel.xplanegps.view.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.appropel.xplanegps.R;
+import com.appropel.xplanegps.view.util.SettingsUtility;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main activity of the application.
  */
 public final class MainActivity extends Activity
 {
-    /** Log tag. */
-    private static final String TAG = MainActivity.class.getName();
+    /** Logger. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainActivity.class);
 
     /** Alert dialog to warn about mock locations. */
     private AlertDialog alertDialog;
 
-    /** {@inheritDoc} */
     @Override
     public void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
     }
-/*
+
     @Override
     protected void onStart()
     {
@@ -36,33 +40,33 @@ public final class MainActivity extends Activity
             if (!SettingsUtility.isMockLocationEnabled(this))
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.mock_location_warning).setCancelable(true);
+                builder.setMessage(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        ? R.string.mock_location_app_warning : R.string.mock_location_warning)
+                        .setCancelable(true);
                 alertDialog = builder.create();
                 alertDialog.show();
             }
         }
         catch (Exception e)
         {
-            Log.e(TAG, "Error checking device settings", e);
+            LOGGER.error("Error checking device settings", e);
         }
 
         // Restore app to the previous tab seen, using Settings as the default.
-        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-        final String tabTag = sharedPreferences.getString(TabConstants.TAB_TAG_KEY, SETTINGS_TAB_TAG);
-        Log.i(TAG, "Previous tab was: " + tabTag);
-        getTabHost().setCurrentTabByTag(tabTag);
+//        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+//        final String tabTag = sharedPreferences.getString(TabConstants.TAB_TAG_KEY, SETTINGS_TAB_TAG);
+//        Log.i(TAG, "Previous tab was: " + tabTag);
+//        getTabHost().setCurrentTabByTag(tabTag);
     }
 
     @Override
     protected void onStop()
     {
-        super.onStop();
-
         if (alertDialog != null)
         {
             alertDialog.dismiss();
             alertDialog = null;
         }
+        super.onStop();
     }
-*/
 }

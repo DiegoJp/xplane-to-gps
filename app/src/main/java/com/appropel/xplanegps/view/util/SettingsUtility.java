@@ -1,4 +1,4 @@
-package com.appropel.xplanegps.utility;
+package com.appropel.xplanegps.view.util;
 
 import android.app.AppOpsManager;
 import android.content.Context;
@@ -37,15 +37,22 @@ public final class SettingsUtility
         }
     }
 
-    private static interface SettingsChecker
+    /**
+     * Interface to an object that can check if mock locations are enabled.
+     */
+    private interface SettingsChecker
     {
         /**
          * Returns true if Mock Locations are enabled.
          * @return true if enabled.
          */
-        boolean isMockLocationEnabled(Context context) throws Exception;
+        boolean isMockLocationEnabled(Context context) throws Exception;    // NOPMD
     }
 
+    /**
+     * Implementation of a settings checker for Marshmallow and above. In these versions the user must
+     * manually select the mock location app.
+     */
     private static class MarshmallowSettingsChecker implements SettingsChecker
     {
         @Override
@@ -57,6 +64,10 @@ public final class SettingsUtility
         }
     }
 
+    /**
+     * Implementation of a legacy settings checker. In these versions mock locations must be enabled
+     * in the developer settings.
+     */
     private static class OldSettingsChecker implements SettingsChecker
     {
         @Override
