@@ -23,7 +23,7 @@ public final class SettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener
 {
     /** Key for shared pref. */
-    private static final String PREF_VALUE = "settings";
+    public static final String PREF_VALUE = "settings";
 
     /** X-Plane version. */
     private ListPreference xplaneVersion;

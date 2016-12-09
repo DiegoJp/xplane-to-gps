@@ -10,10 +10,14 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.appropel.xplanegps.R;
+import com.appropel.xplanegps.dagger.DaggerWrapper;
+import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.util.SettingsUtility;
 
 import java.text.DateFormat;
 import java.util.Date;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,12 +28,11 @@ import butterknife.Unbinder;
  */
 public final class DataFragment extends Fragment
 {
+    /** Key for shared pref. */
+    public static final String PREF_VALUE = "data";
+
     /** Time format. */
     private final DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.LONG);
-
-    /** Main application. */
-//    @Inject
-//    private MainApplication mainApplication;
 
     /** View holding latitude. */
     @BindView(R.id.latitude_view)
@@ -59,6 +62,10 @@ public final class DataFragment extends Fragment
     @BindView(R.id.active_button)
     CompoundButton activeButton;
 
+    /** Preferences. */
+    @Inject
+    Preferences preferences;
+
     /** Used by ButterKnife. */
     private Unbinder unbinder;
 
@@ -74,6 +81,8 @@ public final class DataFragment extends Fragment
     public void onCreate(final Bundle savedInstanceState) // NOPMD
     {
         super.onCreate(savedInstanceState);
+
+        DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
 
 //        final Intent dataServiceIntent = new Intent(this, DataService.class);
 //        activeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
@@ -101,8 +110,7 @@ public final class DataFragment extends Fragment
 //        mainApplication.getEventBus().register(this);
 
         // Store current tab.
-//        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-//        sharedPreferences.edit().putString(TAB_TAG_KEY, DATA_TAB_TAG).apply();
+        preferences.setSelectedTab(PREF_VALUE);
     }
 
     @Override

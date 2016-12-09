@@ -11,12 +11,16 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.appropel.xplanegps.R;
+import com.appropel.xplanegps.dagger.DaggerWrapper;
+import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.fragment.DataFragment;
 import com.appropel.xplanegps.view.fragment.SettingsFragment;
 import com.appropel.xplanegps.view.util.SettingsUtility;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +41,10 @@ public final class MainActivity extends Activity
     @BindView(R.id.pager)
     ViewPager viewPager;
 
+    /** Preferences. */
+    @Inject
+    Preferences preferences;
+
     /** Alert dialog to warn about mock locations. */
     private AlertDialog alertDialog;
 
@@ -45,6 +53,7 @@ public final class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
         ButterKnife.bind(this);
 
         final MyAdapter adapter = new MyAdapter(getFragmentManager());
@@ -86,10 +95,16 @@ public final class MainActivity extends Activity
         }
 
         // Restore app to the previous tab seen, using Settings as the default.
-//        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-//        final String tabTag = sharedPreferences.getString(TabConstants.TAB_TAG_KEY, SETTINGS_TAB_TAG);
-//        Log.i(TAG, "Previous tab was: " + tabTag);
-//        getTabHost().setCurrentTabByTag(tabTag);
+        final String tabTag = preferences.getSelectedTab();
+        LOGGER.info("Previous tab was: {}",  tabTag);
+        if (DataFragment.PREF_VALUE.equals(tabTag))
+        {
+            viewPager.setCurrentItem(1);
+        }
+        else
+        {
+            viewPager.setCurrentItem(0);
+        }
     }
 
     @Override
