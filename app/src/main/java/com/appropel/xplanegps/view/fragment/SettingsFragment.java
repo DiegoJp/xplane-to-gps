@@ -1,17 +1,18 @@
 package com.appropel.xplanegps.view.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
+import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
 
 import com.appropel.xplanegps.R;
+import com.appropel.xplanegps.common.util.Expressions;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 
@@ -21,8 +22,23 @@ import javax.inject.Inject;
 public final class SettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener
 {
-    /** Logger. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SettingsFragment.class);
+    /** Key for shared pref. */
+    private static final String PREF_VALUE = "settings";
+
+    /** X-Plane version. */
+    private ListPreference xplaneVersion;
+
+    /** Broadcast subnet checkbox. */
+    private CheckBoxPreference broadcastSubnet;
+
+    /** Simulator IP address. */
+    private EditTextPreference simulatorAddress;
+
+    /** Reception port. */
+    private EditTextPreference port;
+
+    /** Port forward address. */
+    private EditTextPreference forwardAddress;
 
     /** Preferences. */
     @Inject
@@ -36,15 +52,12 @@ public final class SettingsFragment extends PreferenceFragment
 
         DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
 
-        // Set up validation rules.
-//        validator = new Validator(this);
-//        validator.setValidationListener(this);
-//        validator.put(simulatorAddress.getEditText(),
-//                Rules.regex(getString(R.string.sim_invalid), Rules.REGEX_IP_ADDRESS, true));
-//        validator.put(port.getEditText(), Rules.gt(getString(R.string.port_gt), 1023));
-//        validator.put(port.getEditText(), Rules.lt(getString(R.string.port_lt), 65536));
-//        validator.put(forwardAddress.getEditText(),
-//                Rules.regex(getString(R.string.forward_invalid), Rules.REGEX_IP_ADDRESS, true));
+        // Find preferences the hard way.
+        xplaneVersion = (ListPreference) findPreference("xplane_version");
+        broadcastSubnet = (CheckBoxPreference) findPreference("broadcast_subnet");
+        simulatorAddress = (EditTextPreference) findPreference("sim_address");
+        port = (EditTextPreference) findPreference("port");
+        forwardAddress = (EditTextPreference) findPreference("forward_address");
     }
 
     @Override
@@ -55,8 +68,7 @@ public final class SettingsFragment extends PreferenceFragment
         updatePreferenceSummary();
 
         // Store current tab.
-//        final SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-//        sharedPreferences.edit().putString(TAB_TAG_KEY, SETTINGS_TAB_TAG).apply();
+        preferences.setSelectedTab(PREF_VALUE);
     }
 
     @Override
@@ -68,6 +80,7 @@ public final class SettingsFragment extends PreferenceFragment
 
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String shared)
     {
+        validate();
         updatePreferenceSummary();
     }
 
@@ -76,51 +89,60 @@ public final class SettingsFragment extends PreferenceFragment
      */
     private void updatePreferenceSummary()
     {
-//        final SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
-//        xplaneVersion.setSummary(sharedPreferences.getString("xplane_version", ""));
-//        broadcastSubnet.setEnabled(sharedPreferences.getBoolean("autoconfigure", false));
-//        simulatorAddress.setSummary(sharedPreferences.getString("sim_address", ""));
-//        simulatorAddress.setEnabled(sharedPreferences.getBoolean("autoconfigure", false)
-//                && !sharedPreferences.getBoolean("broadcast_subnet", false));
-////        port.setSummary(sharedPreferences.getString("port", String.valueOf(UdpReceiverThread.DEFAULT_PORT)));
-//        forwardAddress.setSummary(sharedPreferences.getString("forward_address", ""));
-//        forwardAddress.setEnabled(sharedPreferences.getBoolean("enable_udp_forward", false));
+        xplaneVersion.setSummary(preferences.getXplaneVersion());
+        broadcastSubnet.setEnabled(preferences.isAutoconfigure());
+        simulatorAddress.setSummary(preferences.getSimulatorAddress());
+        simulatorAddress.setEnabled(preferences.isAutoconfigure() && !preferences.isBroadcastSubnet());
+        port.setSummary(preferences.getReceivePort());
+        forwardAddress.setSummary(preferences.getForwardAddress());
+        forwardAddress.setEnabled(preferences.isUdpForward());
     }
 
-    @Override
-    public boolean onPreferenceTreeClick(final PreferenceScreen preferenceScreen, final Preference preference)
+    /**
+     * Validates the preference values and shows an alert dialog if there is a problem.
+     */
+    private void validate()
     {
-        LOGGER.debug("PreferenceScreen {} Preference {}", preferenceScreen, preference);
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        if (!Expressions.IP_ADDRESS_PATTERN.matcher(preferences.getSimulatorAddress()).matches())
+        {
+            showAlertDialog(getString(R.string.sim_invalid));
+            preferences.setSimulatorAddress(getString(R.string.localhost));
+        }
+        
+        final int port = Integer.valueOf(preferences.getReceivePort());
+        if (port < 1024)
+        {
+            showAlertDialog(getString(R.string.port_gt));
+            preferences.setReceivePort(getString(R.string.default_port));
+        }
+        else if (port > 65535)
+        {
+            showAlertDialog(getString(R.string.port_lt));
+            preferences.setReceivePort(getString(R.string.default_port));
+        }
+
+        if (!Expressions.IP_ADDRESS_PATTERN.matcher(preferences.getForwardAddress()).matches())
+        {
+            showAlertDialog(getString(R.string.forward_invalid));
+            preferences.setForwardAddress(getString(R.string.localhost));
+        }
     }
 
-//    @Override
-//    public void onValidationFailed(final View failedView, final Rule<?> failedRule)
-//    {
-//        // Reset failed value to default.
-//        if (simulatorAddress.getEditText().equals(failedView))
-//        {
-//            simulatorAddress.setText("127.0.0.1");
-//        }
-//        else if (port.getEditText().equals(failedView))
-//        {
-////            port.setText(String.valueOf(UdpReceiverThread.DEFAULT_PORT));
-//        }
-//        else if (forwardAddress.getEditText().equals(failedView))
-//        {
-//            forwardAddress.setText("127.0.0.1");
-//        }
-//
-//        // Show dialog alerting user to validation failure.
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setMessage(failedRule.getFailureMessage())
-//                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-//                {
-//                    public void onClick(final DialogInterface dialogInterface, final int which)
-//                    {
-//                        dialogInterface.dismiss();
-//                    }
-//                });
-//        builder.show();
-//    }
+    /**
+     * Show dialog alerting user to validation failure.
+     * @param message message.
+     */
+    private void showAlertDialog(final String message)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialogInterface, final int which)
+                    {
+                        dialogInterface.dismiss();
+                    }
+                });
+        builder.show();
+    }
 }

@@ -19,9 +19,10 @@ public interface Preferences
     String KEY_UDPFORWARD = "enable_udp_forward";
     String KEY_FORWARDADDRESS = "forward_address";
     String KEY_EASYVFR = "easy_vfr";
+    String KEY_SELECTEDTAB = "tab_tag";
 
     @KeyByString(KEY_XPLANEVERSION)
-    int getXplaneVersion();
+    String getXplaneVersion();
 
     @KeyByString(KEY_AUTOCONFIGURE)
     boolean isAutoconfigure();
@@ -33,9 +34,15 @@ public interface Preferences
     @DefaultValue(R.string.localhost)
     String getSimulatorAddress();
 
+    @KeyByString(KEY_SIMULATORADDRESS)
+    void setSimulatorAddress(String simulatorAddress);
+
     @KeyByString(KEY_RECEIVEPORT)
-    @DefaultValue(R.integer.receive_port)
-    int getReceivePort();
+    @DefaultValue(R.string.default_port)
+    String getReceivePort();
+
+    @KeyByString(KEY_RECEIVEPORT)
+    void setReceivePort(String receivePort);
 
     @KeyByString(KEY_UDPFORWARD)
     boolean isUdpForward();
@@ -44,6 +51,15 @@ public interface Preferences
     @DefaultValue(R.string.localhost)
     String getForwardAddress();
 
+    @KeyByString(KEY_FORWARDADDRESS)
+    void setForwardAddress(String forwardAddress);
+
     @KeyByString(KEY_EASYVFR)
     boolean isEasyVfr();
+
+    @KeyByString(KEY_SELECTEDTAB)
+    String getSelectedTab();
+
+    @KeyByString(KEY_SELECTEDTAB)
+    void setSelectedTab(String selectedTab);
 }

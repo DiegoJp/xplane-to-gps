@@ -106,4 +106,7 @@
 
     <!-- Localhost address, used as default for prefs. -->
     <string name="localhost">127.0.0.1</string>
+
+    <!-- Default receive port. -->
+    <string name="default_port">49000</string>
 </resources>
