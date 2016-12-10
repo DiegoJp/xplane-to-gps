@@ -103,7 +103,7 @@ public final class SettingsFragment extends PreferenceFragment
      */
     private void validate()
     {
-        if (!Expressions.IP_ADDRESS_PATTERN.matcher(preferences.getSimulatorAddress()).matches())
+        if (!Expressions.isValidIpAddress(preferences.getSimulatorAddress()))
         {
             showAlertDialog(getString(R.string.sim_invalid));
             preferences.setSimulatorAddress(getString(R.string.localhost));
@@ -121,7 +121,7 @@ public final class SettingsFragment extends PreferenceFragment
             preferences.setReceivePort(getString(R.string.default_port));
         }
 
-        if (!Expressions.IP_ADDRESS_PATTERN.matcher(preferences.getForwardAddress()).matches())
+        if (!Expressions.isValidIpAddress(preferences.getForwardAddress()))
         {
             showAlertDialog(getString(R.string.forward_invalid));
             preferences.setForwardAddress(getString(R.string.localhost));
