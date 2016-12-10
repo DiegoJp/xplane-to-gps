@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.model.Preferences;
+import com.appropel.xplanegps.view.application.DefaultIntentProvider;
+import com.appropel.xplanegps.view.util.IntentProvider;
 
 import net.orange_box.storebox.StoreBox;
 
@@ -53,5 +55,12 @@ public final class DaggerModule
     UdpReceiverThread provideUdpReceiverThread()
     {
         return new UdpReceiverThread();
+    }
+
+    @Provides
+    @Singleton
+    IntentProvider provideIntentProvider()
+    {
+        return new DefaultIntentProvider(context);
     }
 }

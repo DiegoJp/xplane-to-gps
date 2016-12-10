@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
-import com.appropel.xplanegps.view.service.DataService;
+import com.appropel.xplanegps.view.util.IntentProvider;
 import com.appropel.xplanegps.view.util.SettingsUtility;
 
 import java.text.DateFormat;
@@ -68,6 +68,10 @@ public final class DataFragment extends Fragment
     @Inject
     UdpReceiverThread udpReceiverThread;
 
+    /** Intent provider. */
+    @Inject
+    IntentProvider intentProvider;
+
     /** Used by ButterKnife. */
     private Unbinder unbinder;
 
@@ -91,7 +95,7 @@ public final class DataFragment extends Fragment
     public void onViewCreated(final View view, final Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        final Intent dataServiceIntent = new Intent(getActivity(), DataService.class);
+        final Intent dataServiceIntent = intentProvider.getServiceIntent();
         activeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean isChecked)

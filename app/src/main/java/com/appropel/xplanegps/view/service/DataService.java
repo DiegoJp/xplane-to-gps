@@ -9,7 +9,7 @@ import android.os.IBinder;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
-import com.appropel.xplanegps.view.activity.MainActivity;
+import com.appropel.xplanegps.view.util.IntentProvider;
 
 import javax.inject.Inject;
 
@@ -24,6 +24,10 @@ public final class DataService extends Service
     /** Reference to background thread which processes packets. */
     @Inject
     UdpReceiverThread udpReceiverThread;
+
+    /** Intent provider. */
+    @Inject
+    IntentProvider intentProvider;
 
     @Override
     public void onCreate()
@@ -44,7 +48,7 @@ public final class DataService extends Service
         new Thread(udpReceiverThread).start();
 
         // Create notification.
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = intentProvider.getActivityIntent();
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         final Notification notification = new Notification.Builder(this)
                 .setTicker(getText(R.string.notification))
