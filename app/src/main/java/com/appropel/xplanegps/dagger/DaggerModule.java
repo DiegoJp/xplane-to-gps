@@ -2,6 +2,7 @@ package com.appropel.xplanegps.dagger;
 
 import android.content.Context;
 
+import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.model.Preferences;
 
 import net.orange_box.storebox.StoreBox;
@@ -45,5 +46,12 @@ public final class DaggerModule
     Preferences providePreferences()
     {
         return StoreBox.create(context, Preferences.class);
+    }
+
+    @Provides
+    @Singleton
+    UdpReceiverThread provideUdpReceiverThread()
+    {
+        return new UdpReceiverThread();
     }
 }

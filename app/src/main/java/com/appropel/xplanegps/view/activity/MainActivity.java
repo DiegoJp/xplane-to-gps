@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 /**
  * Main activity of the application.
  */
-public final class MainActivity extends Activity
+public final class MainActivity extends Activity implements TabLayout.OnTabSelectedListener
 {
     /** Logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(MainActivity.class);
@@ -105,6 +105,8 @@ public final class MainActivity extends Activity
         {
             viewPager.setCurrentItem(0);
         }
+
+        tabLayout.addOnTabSelectedListener(this);
     }
 
     @Override
@@ -115,7 +117,37 @@ public final class MainActivity extends Activity
             alertDialog.dismiss();
             alertDialog = null;
         }
+        tabLayout.removeOnTabSelectedListener(this);
         super.onStop();
+    }
+
+    @Override
+    public void onTabSelected(final TabLayout.Tab tab)
+    {
+        switch (tabLayout.getSelectedTabPosition())
+        {
+            case 0:
+                preferences.setSelectedTab(SettingsFragment.PREF_VALUE);
+                break;
+            case 1:
+                preferences.setSelectedTab(DataFragment.PREF_VALUE);
+                break;
+            default:
+                LOGGER.error("Unknown tab: {}", tabLayout.getSelectedTabPosition());
+                break;
+        }
+    }
+
+    @Override
+    public void onTabUnselected(final TabLayout.Tab tab)
+    {
+        // Not used.
+    }
+
+    @Override
+    public void onTabReselected(final TabLayout.Tab tab)
+    {
+        // Not used.
     }
 
     /**

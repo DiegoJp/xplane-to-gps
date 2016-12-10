@@ -1,11 +1,36 @@
 package com.appropel.xplanegps.controller;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * Thread which listens for UDP data from X-Plane.
  */
-public final class UdpReceiverThread
+public final class UdpReceiverThread implements Runnable
 {
-    /** Default reception port. */
-    public static final int DEFAULT_PORT = 49000;
+    /** Flag to indicate if this thread is running. */
+    private final AtomicBoolean running = new AtomicBoolean(false);
 
+    @Override
+    public void run()
+    {
+        running.set(true);
+
+        while (running.get())
+        {   // NOPMD
+            // Empty.
+        }
+    }
+
+    /**
+     * Shuts down this thread.
+     */
+    public void stop()
+    {
+        running.set(false);
+    }
+
+    public boolean isRunning()
+    {
+        return running.get();
+    }
 }

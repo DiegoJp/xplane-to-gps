@@ -3,6 +3,7 @@ package com.appropel.xplanegps.dagger;
 import com.appropel.xplanegps.view.activity.MainActivity;
 import com.appropel.xplanegps.view.fragment.DataFragment;
 import com.appropel.xplanegps.view.fragment.SettingsFragment;
+import com.appropel.xplanegps.view.service.DataService;
 
 import javax.inject.Singleton;
 
@@ -17,6 +18,7 @@ public interface DaggerComponent
 {
     // CSOFF: EmptyLineSeparator
     void inject(DataFragment dataFragment);
+    void inject(DataService dataService);
     void inject(MainActivity mainActivity);
     void inject(SettingsFragment settingsFragment);
 }

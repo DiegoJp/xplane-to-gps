@@ -1,6 +1,7 @@
 package com.appropel.xplanegps.view.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +11,9 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.appropel.xplanegps.R;
+import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
-import com.appropel.xplanegps.model.Preferences;
+import com.appropel.xplanegps.view.service.DataService;
 import com.appropel.xplanegps.view.util.SettingsUtility;
 
 import java.text.DateFormat;
@@ -62,9 +64,9 @@ public final class DataFragment extends Fragment
     @BindView(R.id.active_button)
     CompoundButton activeButton;
 
-    /** Preferences. */
+    /** Reference to background thread which processes packets. */
     @Inject
-    Preferences preferences;
+    UdpReceiverThread udpReceiverThread;
 
     /** Used by ButterKnife. */
     private Unbinder unbinder;
@@ -81,24 +83,29 @@ public final class DataFragment extends Fragment
     public void onCreate(final Bundle savedInstanceState) // NOPMD
     {
         super.onCreate(savedInstanceState);
-
+        setRetainInstance(true);
         DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
+    }
 
-//        final Intent dataServiceIntent = new Intent(this, DataService.class);
-//        activeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-//        {
-//            public void onCheckedChanged(final CompoundButton compoundButton, final boolean b)
-//            {
-//                if (activeButton.isChecked())
-//                {
-//                    DataFragment.this.startService(dataServiceIntent);
-//                }
-//                else
-//                {
-//                    DataFragment.this.stopService(dataServiceIntent);
-//                }
-//            }
-//        });
+    @Override
+    public void onViewCreated(final View view, final Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+        final Intent dataServiceIntent = new Intent(getActivity(), DataService.class);
+        activeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(final CompoundButton compoundButton, final boolean isChecked)
+            {
+                if (activeButton.isChecked())
+                {
+                    getActivity().startService(dataServiceIntent);
+                }
+                else
+                {
+                    getActivity().stopService(dataServiceIntent);
+                }
+            }
+        });
     }
 
     @Override
@@ -106,11 +113,9 @@ public final class DataFragment extends Fragment
     {
         super.onStart();
         activeButton.setEnabled(SettingsUtility.isMockLocationEnabled(getActivity()));
-//        activeButton.setChecked(DataService.isRunning());
+        activeButton.setChecked(udpReceiverThread.isRunning());
 //        mainApplication.getEventBus().register(this);
 
-        // Store current tab.
-        preferences.setSelectedTab(PREF_VALUE);
     }
 
     @Override

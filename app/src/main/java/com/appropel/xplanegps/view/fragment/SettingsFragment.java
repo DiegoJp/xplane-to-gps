@@ -48,6 +48,7 @@ public final class SettingsFragment extends PreferenceFragment
     public void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         addPreferencesFromResource(R.xml.settings);
 
         DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
@@ -66,9 +67,6 @@ public final class SettingsFragment extends PreferenceFragment
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         updatePreferenceSummary();
-
-        // Store current tab.
-        preferences.setSelectedTab(PREF_VALUE);
     }
 
     @Override

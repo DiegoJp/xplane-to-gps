@@ -18,9 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!--<activity android:name="com.appropel.xplanegps.activity.DataActivity"/>-->
-        <!--<activity android:name="com.appropel.xplanegps.activity.InstructionActivity"/>-->
-        <!--<activity android:name="com.appropel.xplanegps.activity.SettingsActivity"/>-->
-        <!--<service android:name="com.appropel.xplanegps.service.DataService"/>-->
+        <service android:name="com.appropel.xplanegps.view.service.DataService"/>
     </application>
 </manifest>
