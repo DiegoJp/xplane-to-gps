@@ -1,7 +1,9 @@
 package com.appropel.xplanegps.controller;
 
+import com.appropel.xplane.udp.Data;
 import com.appropel.xplane.udp.Dsel;
 import com.appropel.xplane.udp.Iset;
+import com.appropel.xplane.udp.PacketBase;
 import com.appropel.xplane.udp.PacketUtil;
 import com.appropel.xplane.udp.UdpUtil;
 import com.appropel.xplanegps.common.util.XPlaneVersion;
@@ -11,15 +13,16 @@ import com.appropel.xplanegps.model.Preferences;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InterruptedIOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import javax.inject.Inject;
 
 /**
  * Thread which listens for UDP data from X-Plane.
  */
-public final class UdpReceiverThread implements Runnable
+public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
 {
     /** Logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(UdpReceiverThread.class);
@@ -33,6 +36,9 @@ public final class UdpReceiverThread implements Runnable
     /** UDP utility. */
     private final UdpUtil udpUtil = new UdpUtil();
 
+    /** Data buffer for packet reception. */
+    private final byte[] data = new byte[256];
+
     /**
      * Constructs a new {@code UdpReceiverThread}.
      * @param preferences preferences.
@@ -43,7 +49,7 @@ public final class UdpReceiverThread implements Runnable
     }
 
     @Override
-    public void run()
+    public void run()   // NOPMD - long method
     {
         LOGGER.info("Starting UdpReceiverThread.");
         running.set(true);
@@ -94,10 +100,55 @@ public final class UdpReceiverThread implements Runnable
             }
         }
 
-        while (running.get())
-        {   // NOPMD
-            // Empty.
+        LOGGER.info("Receiver thread is listening on port {}", port);
+        DatagramPacket packet = new DatagramPacket(data, data.length);
+        try (final DatagramSocket socket = new DatagramSocket(port))
+        {
+            socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
+
+            while (running.get())
+            {
+                try
+                {
+                    socket.receive(packet);
+                }
+                catch (final InterruptedIOException iioex)
+                {
+                    continue;   // No packet was received so continue loop
+                }
+
+                LOGGER.trace("Received packet length {} {}", packet.getLength(), udpUtil.dumpBuffer(data));
+
+                // If forwarding is active, send the packet back out.
+                if (forwardUdp)
+                {
+                    final String forwardAddress = preferences.getForwardAddress();
+                    if (forwardAddress != null && forwardAddress.length() > 0)
+                    {
+                        final DatagramPacket outPacket = new DatagramPacket(
+                                packet.getData(),
+                                packet.getLength(),
+                                InetAddress.getByName(forwardAddress),
+                                UdpUtil.XPLANE_UDP_PORT
+                        );
+                        socket.send(outPacket);
+                    }
+                }
+
+                // Decode the packet and look for DATA packets.
+                final PacketBase packetBase = PacketUtil.decode(data);
+                if (packetBase instanceof Data)
+                {  // NOMPD
+                    // TODO.
+                }
+            }
         }
+        catch (Exception ex)
+        {
+            LOGGER.error("Exception receiving UDP data", ex);
+            // TODO: can we alert the user? Send an event to pop a toast?
+        }
+        LOGGER.info("Stopping UdpReceiverThread.");
     }
 
     /**

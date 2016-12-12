@@ -2,7 +2,6 @@ package com.appropel.xplanegps.dagger;
 
 import android.content.Context;
 
-import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.application.DefaultIntentProvider;

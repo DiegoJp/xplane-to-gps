@@ -1,16 +1,10 @@
 package com.appropel.xplanegps.common.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Utility for obtaining the X-Plane version.
  */
 public final class XPlaneVersionUtil
 {
-    /** Logger. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(XPlaneVersionUtil.class);
-
     /** Version 9. */
     private static final XPlaneVersion VERSION_9 = new XPlane9();
 
@@ -30,7 +24,7 @@ public final class XPlaneVersionUtil
      * @param version version number - 9, 10, or 11.
      * @return X-Plane version.
      */
-    public static XPlaneVersion getXPlaneVersion(int version)
+    public static XPlaneVersion getXPlaneVersion(final int version)
     {
         switch (version)
         {
@@ -50,7 +44,7 @@ public final class XPlaneVersionUtil
      * @param version version number - 9, 10, or 11.
      * @return X-Plane version.
      */
-    public static XPlaneVersion getXPlaneVersion(String version)
+    public static XPlaneVersion getXPlaneVersion(final String version)
     {
         return getXPlaneVersion(Integer.valueOf(version));
     }
