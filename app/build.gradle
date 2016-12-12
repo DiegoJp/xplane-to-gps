@@ -72,9 +72,6 @@ dependencies {
     compile 'com.google.dagger:dagger:2.6'
     apt 'com.google.dagger:dagger-compiler:2.6'
 
-    // Apache Commons I/O
-    compile 'commons-io:commons-io:2.4'
-
     // Console logging for tests.
     testCompile 'org.slf4j:slf4j-simple:1.7.21'
 
