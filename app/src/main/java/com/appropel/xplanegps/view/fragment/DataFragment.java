@@ -110,10 +110,6 @@ public final class DataFragment extends Fragment
         DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-        locationManager.addTestProvider(LocationManager.GPS_PROVIDER, false, false,
-                false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
-        locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
     }
 
     @Override
@@ -145,6 +141,12 @@ public final class DataFragment extends Fragment
         activeButton.setChecked(udpReceiverThread.isRunning());
         eventBus.register(this);
 
+        if (SettingsUtil.isMockLocationEnabled(getActivity()))
+        {
+            locationManager.addTestProvider(LocationManager.GPS_PROVIDER, false, false,
+                    false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
+            locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
+        }
     }
 
     @Override
@@ -176,9 +178,9 @@ public final class DataFragment extends Fragment
 
         latitudeView.setText(Location.convert(location.getLatitude(), Location.FORMAT_SECONDS));
         longitudeView.setText(Location.convert(location.getLongitude(), Location.FORMAT_SECONDS));
-        altitudeView.setText(String.format("%.0f", location.getAltitude() / LocationUtil.FEET_TO_METERS));
-        headingView.setText(String.format("%03.0f", location.getBearing()));
-        groundspeedView.setText(String.format("%.0f", location.getSpeed() / LocationUtil.KNOTS_TO_M_S));
+        altitudeView.setText(String.format("%.0f ft", location.getAltitude() / LocationUtil.FEET_TO_METERS));
+        headingView.setText(String.format("%03.0f\u00B0T", location.getBearing()));
+        groundspeedView.setText(String.format("%.0f kts", location.getSpeed() / LocationUtil.KNOTS_TO_M_S));
         timeView.setText(timeFormat.format(new Date(location.getTime())));
     }
 }

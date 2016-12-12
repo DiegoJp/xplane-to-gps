@@ -1,6 +1,5 @@
 package com.appropel.xplanegps.view.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -10,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
@@ -30,7 +30,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /**
  * Main activity of the application.
  */
-public final class MainActivity extends Activity implements TabLayout.OnTabSelectedListener
+public final class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener
 {
     /** Logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(MainActivity.class);

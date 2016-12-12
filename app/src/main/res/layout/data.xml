@@ -104,14 +104,32 @@
         </TableRow>
     </TableLayout>
     <LinearLayout android:orientation="horizontal"
-                  android:gravity="center_horizontal"
+                  android:gravity="center_horizontal|center_vertical"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content" android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/font_size"
+            android:text="@string/paused"
+            android:padding="10dp"/>
+
         <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/active_button" android:textOff="@string/paused" android:textOn="@string/active"
-                android:layout_marginTop="20dp"/>
+                android:id="@+id/active_button"
+                android:padding="10dp"
+                />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/font_size"
+            android:text="@string/active"
+            android:padding="10dp"/>
     </LinearLayout>
 
 </LinearLayout>
