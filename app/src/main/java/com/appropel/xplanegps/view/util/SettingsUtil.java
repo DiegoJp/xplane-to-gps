@@ -8,9 +8,9 @@ import android.provider.Settings;
 /**
  * Utility methods for querying settings.
  */
-public final class SettingsUtility
+public final class SettingsUtil
 {
-    private SettingsUtility()
+    private SettingsUtil()
     {
         // Utility.
     }

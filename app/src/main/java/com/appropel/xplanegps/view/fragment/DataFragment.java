@@ -1,8 +1,12 @@
 package com.appropel.xplanegps.view.fragment;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +15,13 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.appropel.xplanegps.R;
+import com.appropel.xplanegps.common.event.DataEvent;
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
+import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.util.IntentProvider;
-import com.appropel.xplanegps.view.util.SettingsUtility;
+import com.appropel.xplanegps.view.util.LocationUtil;
+import com.appropel.xplanegps.view.util.SettingsUtil;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -24,6 +31,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import de.greenrobot.event.EventBus;
 
 /**
  * Activity which displays the data stream coming from X-Plane.
@@ -72,8 +80,19 @@ public final class DataFragment extends Fragment
     @Inject
     IntentProvider intentProvider;
 
+    /** Preferences. */
+    @Inject
+    Preferences preferences;
+
+    /** Event bus. */
+    @Inject
+    EventBus eventBus;
+
     /** Used by ButterKnife. */
     private Unbinder unbinder;
+
+    /** Location manager. */
+    private LocationManager locationManager;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -89,6 +108,12 @@ public final class DataFragment extends Fragment
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
+
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        locationManager.addTestProvider(LocationManager.GPS_PROVIDER, false, false,
+                false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
+        locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
     }
 
     @Override
@@ -116,17 +141,17 @@ public final class DataFragment extends Fragment
     public void onStart()
     {
         super.onStart();
-        activeButton.setEnabled(SettingsUtility.isMockLocationEnabled(getActivity()));
+        activeButton.setEnabled(SettingsUtil.isMockLocationEnabled(getActivity()));
         activeButton.setChecked(udpReceiverThread.isRunning());
-//        mainApplication.getEventBus().register(this);
+        eventBus.register(this);
 
     }
 
     @Override
     public void onStop() // NOPMD
     {
+        eventBus.unregister(this);
         super.onStop();
-//        mainApplication.getEventBus().unregister(this);
     }
 
     @Override
@@ -138,15 +163,22 @@ public final class DataFragment extends Fragment
 
     /**
      * Updates the onscreen information from the given location.
-     * @param location location.
+     * @param dataEvent DataEvent.
      */
-    public void onEventMainThread(final Location location)
+    public void onEventMainThread(final DataEvent dataEvent)
     {
+        final Location location = LocationUtil.getLocation(dataEvent.getData(), preferences);
+
+        locationManager.setTestProviderStatus(LocationManager.GPS_PROVIDER,
+                LocationProvider.AVAILABLE,
+                null, System.currentTimeMillis());
+        locationManager.setTestProviderLocation(LocationManager.GPS_PROVIDER, location);
+
         latitudeView.setText(Location.convert(location.getLatitude(), Location.FORMAT_SECONDS));
         longitudeView.setText(Location.convert(location.getLongitude(), Location.FORMAT_SECONDS));
-//        altitudeView.setText(String.format("%.0f", location.getAltitude() / UdpReceiverThread.FEET_TO_METERS));
+        altitudeView.setText(String.format("%.0f", location.getAltitude() / LocationUtil.FEET_TO_METERS));
         headingView.setText(String.format("%03.0f", location.getBearing()));
-//        groundspeedView.setText(String.format("%.0f", location.getSpeed() / UdpReceiverThread.KNOTS_TO_M_S));
+        groundspeedView.setText(String.format("%.0f", location.getSpeed() / LocationUtil.KNOTS_TO_M_S));
         timeView.setText(timeFormat.format(new Date(location.getTime())));
     }
 }

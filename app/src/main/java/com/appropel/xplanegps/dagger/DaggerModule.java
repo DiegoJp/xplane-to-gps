@@ -13,6 +13,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.greenrobot.event.EventBus;
 
 /**
  * Dagger Module.
@@ -52,9 +53,16 @@ public final class DaggerModule
 
     @Provides
     @Singleton
-    UdpReceiverThread provideUdpReceiverThread(final Preferences preferences)
+    EventBus provideEventBus()
     {
-        return new UdpReceiverThread(preferences);
+        return new EventBus();
+    }
+
+    @Provides
+    @Singleton
+    UdpReceiverThread provideUdpReceiverThread(final Preferences preferences, final EventBus eventBus)
+    {
+        return new UdpReceiverThread(preferences, eventBus);
     }
 
     @Provides

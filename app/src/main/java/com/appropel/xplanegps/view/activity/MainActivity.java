@@ -15,7 +15,7 @@ import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.fragment.DataFragment;
 import com.appropel.xplanegps.view.fragment.SettingsFragment;
-import com.appropel.xplanegps.view.util.SettingsUtility;
+import com.appropel.xplanegps.view.util.SettingsUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,7 +79,7 @@ public final class MainActivity extends Activity implements TabLayout.OnTabSelec
         // Ensure that mock locations are enabled. If not, pop up an eternal dialog.
         try
         {
-            if (!SettingsUtility.isMockLocationEnabled(this))
+            if (!SettingsUtil.isMockLocationEnabled(this))
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M

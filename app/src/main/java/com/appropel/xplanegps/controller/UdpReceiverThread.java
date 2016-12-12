@@ -6,6 +6,7 @@ import com.appropel.xplane.udp.Iset;
 import com.appropel.xplane.udp.PacketBase;
 import com.appropel.xplane.udp.PacketUtil;
 import com.appropel.xplane.udp.UdpUtil;
+import com.appropel.xplanegps.common.event.DataEvent;
 import com.appropel.xplanegps.common.util.XPlaneVersion;
 import com.appropel.xplanegps.common.util.XPlaneVersionUtil;
 import com.appropel.xplanegps.model.Preferences;
@@ -19,6 +20,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Thread which listens for UDP data from X-Plane.
  */
@@ -29,6 +32,9 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
 
     /** Preferences. */
     final Preferences preferences;
+
+    /** Event bus. */
+    final EventBus eventBus;
 
     /** Flag to indicate if this thread is running. */
     private final AtomicBoolean running = new AtomicBoolean(false);
@@ -43,9 +49,10 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
      * Constructs a new {@code UdpReceiverThread}.
      * @param preferences preferences.
      */
-    public UdpReceiverThread(final Preferences preferences)
+    public UdpReceiverThread(final Preferences preferences, final EventBus eventBus)
     {
         this.preferences = preferences;
+        this.eventBus = eventBus;
     }
 
     @Override
@@ -117,8 +124,6 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
                     continue;   // No packet was received so continue loop
                 }
 
-                LOGGER.trace("Received packet length {} {}", packet.getLength(), udpUtil.dumpBuffer(data));
-
                 // If forwarding is active, send the packet back out.
                 if (forwardUdp)
                 {
@@ -136,10 +141,10 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
                 }
 
                 // Decode the packet and look for DATA packets.
-                final PacketBase packetBase = PacketUtil.decode(data);
+                final PacketBase packetBase = PacketUtil.decode(data, packet.getLength());
                 if (packetBase instanceof Data)
-                {  // NOMPD
-                    // TODO.
+                {
+                    eventBus.post(new DataEvent((Data) packetBase));
                 }
             }
         }
