@@ -48,7 +48,7 @@ dependencies {
     compile 'com.android.support:support-v13:24.2.1'
 
     // Depend on X-Plane UDP library
-//    compile project(':X-PlaneUdp')
+    compile project(':XPlaneUDP')
 
     // Android Design Support library
     compile 'com.android.support:design:24.2.1'

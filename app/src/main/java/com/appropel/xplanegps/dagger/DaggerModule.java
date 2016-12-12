@@ -2,6 +2,7 @@ package com.appropel.xplanegps.dagger;
 
 import android.content.Context;
 
+import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.application.DefaultIntentProvider;
@@ -52,9 +53,9 @@ public final class DaggerModule
 
     @Provides
     @Singleton
-    UdpReceiverThread provideUdpReceiverThread()
+    UdpReceiverThread provideUdpReceiverThread(final Preferences preferences)
     {
-        return new UdpReceiverThread();
+        return new UdpReceiverThread(preferences);
     }
 
     @Provides

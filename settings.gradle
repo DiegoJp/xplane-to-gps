@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':XPlaneUDP'
+project(':XPlaneUDP').projectDir = new File(rootProject.projectDir, '../X-Plane UDP')
