@@ -19,6 +19,11 @@ public final class LocationUtil
     /** Conversion factor from feet to meters. */
     public static final float FEET_TO_METERS = 0.3048f;
 
+    /**
+     * Name of mock location provider.
+     */
+    public static final String MOCK_PROVIDER_NAME = "XPlane";
+
     /** EasyVFR magic number. */
     private static final float EASY_VFR = 1234.0f;
 

@@ -109,8 +109,10 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
 
         LOGGER.info("Receiver thread is listening on port {}", port);
         DatagramPacket packet = new DatagramPacket(data, data.length);
-        try (final DatagramSocket socket = new DatagramSocket(port))
+        DatagramSocket socket = null;
+        try
         {
+            socket = new DatagramSocket(port);
             socket.setSoTimeout(100);   // Receive will timeout every 1/10 sec
 
             while (running.get())
@@ -154,6 +156,10 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
             // TODO: can we alert the user? Send an event to pop a toast?
         }
         LOGGER.info("Stopping UdpReceiverThread.");
+        if (socket != null)
+        {
+            socket.close();
+        }
     }
 
     /**

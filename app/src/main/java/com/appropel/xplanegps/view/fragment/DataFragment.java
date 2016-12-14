@@ -1,12 +1,8 @@
 package com.appropel.xplanegps.view.fragment;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,9 +87,6 @@ public final class DataFragment extends Fragment
     /** Used by ButterKnife. */
     private Unbinder unbinder;
 
-    /** Location manager. */
-    private LocationManager locationManager;
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
     {
@@ -108,8 +101,6 @@ public final class DataFragment extends Fragment
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
-
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
     }
 
     @Override
@@ -140,13 +131,6 @@ public final class DataFragment extends Fragment
         activeButton.setEnabled(SettingsUtil.isMockLocationEnabled(getActivity()));
         activeButton.setChecked(udpReceiverThread.isRunning());
         eventBus.register(this);
-
-        if (SettingsUtil.isMockLocationEnabled(getActivity()))
-        {
-            locationManager.addTestProvider(LocationManager.GPS_PROVIDER, false, false,
-                    false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
-            locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
-        }
     }
 
     @Override
@@ -170,11 +154,6 @@ public final class DataFragment extends Fragment
     public void onEventMainThread(final DataEvent dataEvent)
     {
         final Location location = LocationUtil.getLocation(dataEvent.getData(), preferences);
-
-        locationManager.setTestProviderStatus(LocationManager.GPS_PROVIDER,
-                LocationProvider.AVAILABLE,
-                null, System.currentTimeMillis());
-        locationManager.setTestProviderLocation(LocationManager.GPS_PROVIDER, location);
 
         latitudeView.setText(Location.convert(location.getLatitude(), Location.FORMAT_SECONDS));
         longitudeView.setText(Location.convert(location.getLongitude(), Location.FORMAT_SECONDS));

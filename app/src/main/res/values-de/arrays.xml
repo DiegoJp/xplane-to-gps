@@ -2,10 +2,12 @@
     <string-array name="xplane_version">
         <item>X-Plane 9</item>
         <item>X-Plane 10</item>
+        <item>X-Plane 11</item>
     </string-array>
 
     <string-array name="version_index">
         <item>9</item>
         <item>10</item>
+        <item>11</item>
     </string-array>
 </resources>

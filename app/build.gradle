@@ -21,9 +21,9 @@ android {
     defaultConfig {
         applicationId "com.appropel.xplanegps"
         minSdkVersion 19
-        targetSdkVersion 19
-        versionCode 150
-        versionName "1.50"
+        targetSdkVersion 24
+        versionCode 151
+        versionName "1.50b2"
     }
 
     buildTypes {
