@@ -13,12 +13,11 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 import com.appropel.xplanegps.R;
-import com.appropel.xplanegps.common.event.DataEvent;
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.util.IntentProvider;
-import com.appropel.xplanegps.view.util.LocationUtil;
+import com.appropel.xplanegps.view.util.LocationUtilImpl;
 import com.appropel.xplanegps.view.util.SettingsUtil;
 
 import javax.inject.Inject;
@@ -101,11 +100,11 @@ public final class DataService extends Service
         try
         {
             if (SettingsUtil.isMockLocationEnabled(getApplicationContext())
-                    && locationManager.getProvider(LocationUtil.MOCK_PROVIDER_NAME) == null)
+                    && locationManager.getProvider(LocationUtilImpl.MOCK_PROVIDER_NAME) == null)
             {
-                locationManager.addTestProvider(LocationUtil.MOCK_PROVIDER_NAME, false, false,
+                locationManager.addTestProvider(LocationUtilImpl.MOCK_PROVIDER_NAME, false, false,
                         false, false, true, true, true, Criteria.POWER_LOW, Criteria.ACCURACY_FINE);
-                locationManager.setTestProviderEnabled(LocationUtil.MOCK_PROVIDER_NAME, true);
+                locationManager.setTestProviderEnabled(LocationUtilImpl.MOCK_PROVIDER_NAME, true);
             }
         }
         catch (SecurityException ex)
@@ -126,9 +125,9 @@ public final class DataService extends Service
             eventBus.unregister(this);
         }
 
-        if (locationManager.getProvider(LocationUtil.MOCK_PROVIDER_NAME) != null)
+        if (locationManager.getProvider(LocationUtilImpl.MOCK_PROVIDER_NAME) != null)
         {
-            locationManager.removeTestProvider(LocationUtil.MOCK_PROVIDER_NAME);
+            locationManager.removeTestProvider(LocationUtilImpl.MOCK_PROVIDER_NAME);
         }
 
         super.onDestroy();
@@ -137,14 +136,13 @@ public final class DataService extends Service
     /**
      * Updates the mock location from the given location.
      *
-     * @param dataEvent DataEvent.
+     * @param location location.
      */
-    public void onEventMainThread(final DataEvent dataEvent)
+    public void onEventMainThread(final Location location)
     {
-        final Location location = LocationUtil.getLocation(dataEvent.getData(), preferences);
-        locationManager.setTestProviderStatus(LocationUtil.MOCK_PROVIDER_NAME,
+        locationManager.setTestProviderStatus(LocationUtilImpl.MOCK_PROVIDER_NAME,
                 LocationProvider.AVAILABLE,
                 null, System.currentTimeMillis());
-        locationManager.setTestProviderLocation(LocationUtil.MOCK_PROVIDER_NAME, location);
+        locationManager.setTestProviderLocation(LocationUtilImpl.MOCK_PROVIDER_NAME, location);
     }
 }

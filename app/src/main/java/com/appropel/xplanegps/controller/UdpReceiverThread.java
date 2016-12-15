@@ -6,7 +6,7 @@ import com.appropel.xplane.udp.Iset;
 import com.appropel.xplane.udp.PacketBase;
 import com.appropel.xplane.udp.PacketUtil;
 import com.appropel.xplane.udp.UdpUtil;
-import com.appropel.xplanegps.common.event.DataEvent;
+import com.appropel.xplanegps.common.util.LocationUtil;
 import com.appropel.xplanegps.common.util.XPlaneVersion;
 import com.appropel.xplanegps.common.util.XPlaneVersionUtil;
 import com.appropel.xplanegps.model.Preferences;
@@ -45,14 +45,20 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
     /** Data buffer for packet reception. */
     private final byte[] data = new byte[256];
 
+    /** Location utility. */
+    private final LocationUtil locationUtil;
+
     /**
      * Constructs a new {@code UdpReceiverThread}.
      * @param preferences preferences.
+     * @param eventBus event bus.
+     * @param locationUtil location utility.
      */
-    public UdpReceiverThread(final Preferences preferences, final EventBus eventBus)
+    public UdpReceiverThread(final Preferences preferences, final EventBus eventBus, final LocationUtil locationUtil)
     {
         this.preferences = preferences;
         this.eventBus = eventBus;
+        this.locationUtil = locationUtil;
     }
 
     @Override
@@ -146,7 +152,7 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
                 final PacketBase packetBase = PacketUtil.decode(data, packet.getLength());
                 if (packetBase instanceof Data)
                 {
-                    eventBus.post(new DataEvent((Data) packetBase));
+                    locationUtil.broadcastLocation((Data) packetBase);
                 }
             }
         }

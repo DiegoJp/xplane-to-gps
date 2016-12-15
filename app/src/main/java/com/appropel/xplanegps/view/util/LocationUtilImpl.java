@@ -4,14 +4,17 @@ import android.location.Location;
 import android.location.LocationManager;
 
 import com.appropel.xplane.udp.Data;
+import com.appropel.xplanegps.common.util.LocationUtil;
 import com.appropel.xplanegps.model.Preferences;
 
 import java.lang.reflect.Method;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Utility for converting raw data into Android Location format.
  */
-public final class LocationUtil
+public final class LocationUtilImpl implements LocationUtil
 {
     /** Conversion factor from knots to m/s. */
     public static final float KNOTS_TO_M_S = 0.514444444f;
@@ -19,26 +22,31 @@ public final class LocationUtil
     /** Conversion factor from feet to meters. */
     public static final float FEET_TO_METERS = 0.3048f;
 
-    /**
-     * Name of mock location provider.
-     */
+    /** Name of mock location provider. */
     public static final String MOCK_PROVIDER_NAME = "XPlane";
 
     /** EasyVFR magic number. */
     private static final float EASY_VFR = 1234.0f;
 
-    private LocationUtil()
-    {
-        // Utility class.
-    }
+    /** Preferences. */
+    private final Preferences preferences;
+
+    /** Event bus. */
+    private final EventBus eventBus;
 
     /**
-     * Converts the given DATA packet into an Android Location.
-     * @param data DATA packet.
+     * Constructs a new {@code LocationUtilImpl}.
      * @param preferences preferences.
-     * @return populated Location.
+     * @param eventBus event bus.
      */
-    public static Location getLocation(final Data data, final Preferences preferences)
+    public LocationUtilImpl(final Preferences preferences, final EventBus eventBus)
+    {
+        this.preferences = preferences;
+        this.eventBus = eventBus;
+    }
+
+    @Override
+    public void broadcastLocation(final Data data)
     {
         // Transfer data values into a Location object.
         Location location = new Location(LocationManager.GPS_PROVIDER);
@@ -83,6 +91,6 @@ public final class LocationUtil
             // Do nothing if method doesn't exist.
         }
 
-        return location;
+        eventBus.post(location);
     }
 }

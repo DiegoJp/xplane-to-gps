@@ -22,8 +22,8 @@ android {
         applicationId "com.appropel.xplanegps"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 151
-        versionName "1.50b2"
+        versionCode 152
+        versionName "1.50"
     }
 
     buildTypes {
@@ -90,7 +90,6 @@ check {
     }
     findbugs {
         config project.file('config/findbugs-filter.xml')
-        skip true
     }
 }
 

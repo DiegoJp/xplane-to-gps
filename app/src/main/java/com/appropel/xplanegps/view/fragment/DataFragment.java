@@ -11,12 +11,11 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.appropel.xplanegps.R;
-import com.appropel.xplanegps.common.event.DataEvent;
 import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.util.IntentProvider;
-import com.appropel.xplanegps.view.util.LocationUtil;
+import com.appropel.xplanegps.view.util.LocationUtilImpl;
 import com.appropel.xplanegps.view.util.SettingsUtil;
 
 import java.text.DateFormat;
@@ -149,17 +148,15 @@ public final class DataFragment extends Fragment
 
     /**
      * Updates the onscreen information from the given location.
-     * @param dataEvent DataEvent.
+     * @param location location.
      */
-    public void onEventMainThread(final DataEvent dataEvent)
+    public void onEventMainThread(final Location location)
     {
-        final Location location = LocationUtil.getLocation(dataEvent.getData(), preferences);
-
         latitudeView.setText(Location.convert(location.getLatitude(), Location.FORMAT_SECONDS));
         longitudeView.setText(Location.convert(location.getLongitude(), Location.FORMAT_SECONDS));
-        altitudeView.setText(String.format("%.0f ft", location.getAltitude() / LocationUtil.FEET_TO_METERS));
+        altitudeView.setText(String.format("%.0f ft", location.getAltitude() / LocationUtilImpl.FEET_TO_METERS));
         headingView.setText(String.format("%03.0f\u00B0T", location.getBearing()));
-        groundspeedView.setText(String.format("%.0f kts", location.getSpeed() / LocationUtil.KNOTS_TO_M_S));
+        groundspeedView.setText(String.format("%.0f kts", location.getSpeed() / LocationUtilImpl.KNOTS_TO_M_S));
         timeView.setText(timeFormat.format(new Date(location.getTime())));
     }
 }
