@@ -125,9 +125,16 @@ public final class DataService extends Service
             eventBus.unregister(this);
         }
 
-        if (locationManager.getProvider(LocationUtilImpl.MOCK_PROVIDER_NAME) != null)
+        try
         {
-            locationManager.removeTestProvider(LocationUtilImpl.MOCK_PROVIDER_NAME);
+            if (locationManager.getProvider(LocationUtilImpl.MOCK_PROVIDER_NAME) != null)
+            {
+                locationManager.removeTestProvider(LocationUtilImpl.MOCK_PROVIDER_NAME);
+            }
+        }
+        catch (SecurityException ex)
+        {
+            // Ignore this.
         }
 
         super.onDestroy();
