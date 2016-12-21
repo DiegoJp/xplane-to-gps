@@ -109,4 +109,7 @@
 
     <!-- Default receive port. -->
     <string name="default_port">49000</string>
+
+    <!-- Copilot X pitch -->
+    <string name="copilot_x">Control X-Plane using voice commands with Copilot X! Click here to visit the Play Store.</string>
 </resources>

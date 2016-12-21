@@ -3,6 +3,7 @@ package com.appropel.xplanegps.view.fragment;
 import android.app.Fragment;
 import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import de.greenrobot.event.EventBus;
 
@@ -35,6 +37,9 @@ public final class DataFragment extends Fragment
 {
     /** Key for shared pref. */
     public static final String PREF_VALUE = "data";
+
+    /** Package name for Copilot X. */
+    private static final String COPILOT_X = "com.appropel.xplanevoice";
 
     /** Time format. */
     private final DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.LONG);
@@ -130,6 +135,23 @@ public final class DataFragment extends Fragment
         activeButton.setEnabled(SettingsUtil.isMockLocationEnabled(getActivity()));
         activeButton.setChecked(udpReceiverThread.isRunning());
         eventBus.register(this);
+    }
+
+    /**
+     * Handler for when the user clicks on the Copilot X advertisement.
+     */
+    @OnClick(R.id.copilot_x_button)
+    public void onClickCopilotX()
+    {
+        try
+        {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + COPILOT_X)));
+        }
+        catch (android.content.ActivityNotFoundException anfe)
+        {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=" + COPILOT_X)));
+        }
     }
 
     @Override

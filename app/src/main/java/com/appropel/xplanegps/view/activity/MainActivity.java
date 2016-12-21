@@ -94,6 +94,7 @@ public final class MainActivity extends AppCompatActivity implements TabLayout.O
                         ? R.string.mock_location_app_warning : R.string.mock_location_warning)
                         .setCancelable(true);
                 alertDialog = builder.create();
+                alertDialog.setCancelable(false);
                 alertDialog.show();
             }
         }
