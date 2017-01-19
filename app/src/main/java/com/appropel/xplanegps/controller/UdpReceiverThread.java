@@ -86,7 +86,7 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
         if (preferences.isAutoconfigure())
         {
             // Send out a DSEL to select the appropriate data indexes.
-            Dsel dsel = xplaneVersion.getDsel();
+            PacketBase dsel = xplaneVersion.getDsel();
             final String simulatorAddress = preferences.getSimulatorAddress();
             if (preferences.isBroadcastSubnet())
             {
@@ -101,7 +101,7 @@ public final class UdpReceiverThread implements Runnable    // NOPMD: complexity
             final InetAddress inetAddress = udpUtil.getSiteLocalAddress();
             if (inetAddress != null)
             {
-                final Iset iset = xplaneVersion.getIset(inetAddress.getHostAddress(), String.valueOf(port));
+                final PacketBase iset = xplaneVersion.getIset(inetAddress.getHostAddress(), String.valueOf(port));
                 if (preferences.isBroadcastSubnet())
                 {
                     udpUtil.sendDatagramToSubnet(PacketUtil.encode(iset), UdpUtil.XPLANE_UDP_PORT);
