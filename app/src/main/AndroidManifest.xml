@@ -18,5 +18,9 @@
             </intent-filter>
         </activity>
         <service android:name="com.appropel.xplanegps.view.service.DataService"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="00013c84155cdbd7021f4c1b4a9a79547c6e7792"
+            />
     </application>
 </manifest>

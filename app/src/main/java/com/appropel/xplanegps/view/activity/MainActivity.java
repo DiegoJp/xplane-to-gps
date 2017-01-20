@@ -11,12 +11,15 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.appropel.xplanegps.BuildConfig;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.fragment.DataFragment;
 import com.appropel.xplanegps.view.fragment.SettingsFragment;
 import com.appropel.xplanegps.view.util.SettingsUtil;
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +28,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -57,6 +61,8 @@ public final class MainActivity extends AppCompatActivity implements TabLayout.O
         setContentView(R.layout.main);
         DaggerWrapper.INSTANCE.getDaggerComponent().inject(this);
         ButterKnife.bind(this);
+        Fabric.with(this, new Crashlytics.Builder().core(
+                new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
 
         final MyAdapter adapter = new MyAdapter(getFragmentManager());
         viewPager.setAdapter(adapter);

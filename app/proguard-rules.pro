@@ -16,6 +16,11 @@
 #   public *;
 #}
 
+-keepattributes *Annotation*
+
+# Keep UDP packets
+-keep,allowobfuscation class com.appropel.xplane.udp.** { *; }
+
 # Keep Event Bus event handler methods.
 -keepclassmembers class com.appropel.** {
     void onEvent*(***);

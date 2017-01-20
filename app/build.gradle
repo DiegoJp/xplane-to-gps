@@ -1,7 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.noveogroup.android.check'
+apply plugin: 'io.fabric'
 apply from: 'classycle.gradle'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
 
 check {
     abortOnError true
@@ -27,6 +32,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            ext.enableCrashlytics = false
+        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -78,6 +86,11 @@ dependencies {
 
     // Calligraphy font library
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+
+    // Crashlytics
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+        transitive = true;
+    }
 }
 
 check {
