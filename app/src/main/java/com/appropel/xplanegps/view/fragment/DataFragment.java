@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.util.IntentProvider;
 import com.appropel.xplanegps.view.util.LocationUtilImpl;
 import com.appropel.xplanegps.view.util.SettingsUtil;
+import com.appropel.xplanegps.view.util.ViewUtil;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -75,6 +77,18 @@ public final class DataFragment extends Fragment
     /** Button to activate service. */
     @BindView(R.id.active_button)
     CompoundButton activeButton;
+
+    /** Banner ad. */
+    @BindView(R.id.copilot_x_ad)
+    View bannerAd;
+
+    /** On switch. */
+    @BindView(R.id.on_switch)
+    View onSwitch;
+
+    /** Data table. */
+    @BindView(R.id.table_layout)
+    View dataTable;
 
     /** Reference to background thread which processes packets. */
     @Inject
@@ -130,6 +144,19 @@ public final class DataFragment extends Fragment
                 }
             }
         });
+
+        // Hide the banner ad if it would obscure the screen.
+        ViewTreeObserver vto = bannerAd.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                bannerAd.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                if (ViewUtil.intersects(bannerAd, onSwitch) || ViewUtil.intersects(bannerAd, dataTable))
+                {
+                    bannerAd.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     @Override
@@ -141,6 +168,7 @@ public final class DataFragment extends Fragment
         activeButton.setChecked(udpReceiverThread.isRunning());
         eventBus.register(this);
     }
+
 
     /**
      * Handler for when the user clicks on the Copilot X advertisement.
