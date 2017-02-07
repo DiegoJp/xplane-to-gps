@@ -100,11 +100,11 @@ public final class DataService extends Service
         try
         {
             if (SettingsUtil.isMockLocationEnabled(getApplicationContext())
-                    && locationManager.getProvider(LocationUtilImpl.MOCK_PROVIDER_NAME) == null)
+                    && locationManager.getProvider(LocationManager.GPS_PROVIDER) == null)
             {
-                locationManager.addTestProvider(LocationUtilImpl.MOCK_PROVIDER_NAME, false, false,
+                locationManager.addTestProvider(LocationManager.GPS_PROVIDER, false, false,
                         false, false, true, true, true, Criteria.POWER_LOW, Criteria.ACCURACY_FINE);
-                locationManager.setTestProviderEnabled(LocationUtilImpl.MOCK_PROVIDER_NAME, true);
+                locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
             }
         }
         catch (SecurityException ex)
@@ -125,18 +125,6 @@ public final class DataService extends Service
             eventBus.unregister(this);
         }
 
-        try
-        {
-            if (locationManager.getProvider(LocationUtilImpl.MOCK_PROVIDER_NAME) != null)
-            {
-                locationManager.removeTestProvider(LocationUtilImpl.MOCK_PROVIDER_NAME);
-            }
-        }
-        catch (SecurityException ex)
-        {
-            // Ignore this.
-        }
-
         super.onDestroy();
     }
 
@@ -147,9 +135,9 @@ public final class DataService extends Service
      */
     public void onEventMainThread(final Location location)
     {
-        locationManager.setTestProviderStatus(LocationUtilImpl.MOCK_PROVIDER_NAME,
+        locationManager.setTestProviderStatus(LocationManager.GPS_PROVIDER,
                 LocationProvider.AVAILABLE,
                 null, System.currentTimeMillis());
-        locationManager.setTestProviderLocation(LocationUtilImpl.MOCK_PROVIDER_NAME, location);
+        locationManager.setTestProviderLocation(LocationManager.GPS_PROVIDER, location);
     }
 }
