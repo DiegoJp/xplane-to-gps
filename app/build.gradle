@@ -16,7 +16,7 @@ android {
         applicationId "com.appropel.xplanegps"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 159
+        versionCode 160
         versionName "1.51"
     }
 

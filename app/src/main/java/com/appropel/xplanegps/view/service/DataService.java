@@ -99,11 +99,10 @@ public final class DataService extends Service
 
         try
         {
-            if (SettingsUtil.isMockLocationEnabled(getApplicationContext())
-                    && locationManager.getProvider(LocationManager.GPS_PROVIDER) == null)
+            if (SettingsUtil.isMockLocationEnabled(getApplicationContext()))
             {
                 locationManager.addTestProvider(LocationManager.GPS_PROVIDER, false, false,
-                        false, false, true, true, true, Criteria.POWER_LOW, Criteria.ACCURACY_FINE);
+                        false, false, true, true, true, 0, Criteria.ACCURACY_FINE);
                 locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
             }
         }
