@@ -124,6 +124,15 @@ public final class DataService extends Service
             eventBus.unregister(this);
         }
 
+        try
+        {
+            locationManager.removeTestProvider(LocationManager.GPS_PROVIDER);
+        }
+        catch (Exception ex)
+        {
+            // Ignore this.
+        }
+
         super.onDestroy();
     }
 
