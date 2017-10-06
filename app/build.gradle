@@ -10,14 +10,14 @@ repositories {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.appropel.xplanegps"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 161
-        versionName "1.52"
+        versionCode 162
+        versionName "1.60"
     }
 
     buildTypes {
@@ -75,6 +75,9 @@ dependencies {
 
     // Calligraphy font library
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+
+    // Apache Commons I/O
+    compile 'commons-io:commons-io:2.5'
 
     // Crashlytics
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {

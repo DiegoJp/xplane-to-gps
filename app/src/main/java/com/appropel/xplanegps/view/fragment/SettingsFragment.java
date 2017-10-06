@@ -9,12 +9,23 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 
+import com.appropel.xplane.udp.Becn;
+import com.appropel.xplane.udp.PacketUtil;
+import com.appropel.xplane.udp.UdpUtil;
 import com.appropel.xplanegps.R;
 import com.appropel.xplanegps.common.util.Expressions;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.MulticastSocket;
+
 import javax.inject.Inject;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Activity for user preferences.
@@ -40,9 +51,20 @@ public final class SettingsFragment extends PreferenceFragment
     /** Port forward address. */
     private EditTextPreference forwardAddress;
 
+    /** Event bus. */
+    @Inject
+    EventBus eventBus;
+
     /** Preferences. */
     @Inject
     Preferences preferences;
+
+    /** UDP utilities. */
+    @Inject
+    UdpUtil udpUtil;
+
+    /** Socket used to listen for X-Plane beacon. */
+    private MulticastSocket socket;
 
     @Override
     public void onCreate(final Bundle savedInstanceState)
@@ -62,6 +84,15 @@ public final class SettingsFragment extends PreferenceFragment
     }
 
     @Override
+    public void onStart()
+    {
+        super.onStart();
+        eventBus.register(this);
+        socket = udpUtil.joinMulticastGroup(UdpUtil.XPLANE_BEACON_ADDRESS, UdpUtil.XPLANE_BEACON_PORT);
+        new Thread(new BeaconReceiver(socket, eventBus)).start();
+    }
+
+    @Override
     public void onResume()
     {
         super.onResume();
@@ -76,11 +107,61 @@ public final class SettingsFragment extends PreferenceFragment
         super.onPause();
     }
 
+    @Override
+    public void onStop()
+    {
+        IOUtils.closeQuietly(socket);
+        eventBus.unregister(this);
+        super.onStop();
+    }
+
     public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String shared)
     {
         validate();
         updatePreferenceSummary();
     }
+
+    /**
+     * Handles an X-Plane beacon event.
+     * @param event event
+     */
+    public void onEventMainThread(final XPlaneBeaconEvent event)
+    {
+        if (event.getAddress().equals(preferences.getSimulatorAddress()))
+        {
+            return; // Already set to this address
+        }
+
+        final String version = String.valueOf(event.getBecn().getVersionNumber() / 10000);
+        final String message = getActivity().getResources().getString(R.string.beacon,
+                version,
+                event.getBecn().getComputerName(),
+                event.getAddress());
+        new AlertDialog.Builder(getActivity())
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int which)
+                    {
+                        preferences.setSimulatorAddress(event.getAddress());
+                        preferences.setBroadcastSubnet(false);
+                        preferences.setXplaneVersion(version);
+                        updatePreferenceSummary();
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int which)
+                    {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
 
     /**
      * Update displayed value of preferences.
@@ -89,6 +170,7 @@ public final class SettingsFragment extends PreferenceFragment
     {
         xplaneVersion.setSummary(preferences.getXplaneVersion());
         broadcastSubnet.setEnabled(preferences.isAutoconfigure());
+        broadcastSubnet.setChecked(preferences.isBroadcastSubnet());
         simulatorAddress.setSummary(preferences.getSimulatorAddress());
         simulatorAddress.setEnabled(preferences.isAutoconfigure() && !preferences.isBroadcastSubnet());
         port.setSummary(preferences.getReceivePort());
@@ -142,5 +224,77 @@ public final class SettingsFragment extends PreferenceFragment
                     }
                 });
         builder.show();
+    }
+
+    private class BeaconReceiver implements Runnable
+    {
+        /** Buffer. */
+        private final byte[] buffer = new byte[1024];
+
+        /** Socket to receive on. */
+        private final MulticastSocket socket;
+
+        /** Event bus. */
+        private final EventBus eventBus;
+
+        /**
+         * Constructs a new {@code BeaconReceiver}.
+         * @param socket multicast socket
+         * @param eventBus event bus
+         */
+        public BeaconReceiver(final MulticastSocket socket, final EventBus eventBus)
+        {
+            this.socket = socket;
+            this.eventBus = eventBus;
+        }
+
+        @Override
+        public void run()
+        {
+            final DatagramPacket recv = new DatagramPacket(buffer, buffer.length);
+            try
+            {
+                socket.receive(recv);
+                final Becn becn = (Becn) PacketUtil.decode(buffer, buffer.length);  // NOPMD: future use
+                eventBus.post(new XPlaneBeaconEvent(recv.getAddress().getHostAddress(), becn));
+            }
+            catch (IOException e)   // NOPMD
+            {
+                // Ignore, could be interruption.
+            }
+        }
+    }
+
+    /**
+     * Event broadcast when an X-Plane beacon message is received.
+     */
+    private final class XPlaneBeaconEvent
+    {
+        /** Internet address the packet came from. */
+        private final String address;
+
+        /** BECN message. */
+        private final Becn becn;
+
+        /**
+         * Constructs a new {@code XPlaneBeaconEvent}.
+         * @param address address that the BECN came from
+         * @param becn BECN message
+         */
+        public XPlaneBeaconEvent(final String address, final Becn becn)
+        {
+            this.address = address;
+            this.becn = becn;
+        }
+
+        public String getAddress()
+        {
+            return address;
+        }
+
+        public Becn getBecn()
+        {
+            return becn;
+        }
     }
 }

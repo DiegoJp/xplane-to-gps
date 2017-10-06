@@ -24,11 +24,17 @@ public interface Preferences
     @KeyByString(KEY_XPLANEVERSION)
     String getXplaneVersion();
 
+    @KeyByString(KEY_XPLANEVERSION)
+    void setXplaneVersion(String version);
+
     @KeyByString(KEY_AUTOCONFIGURE)
     boolean isAutoconfigure();
 
     @KeyByString(KEY_BROADCASTSUBNET)
     boolean isBroadcastSubnet();
+
+    @KeyByString(KEY_BROADCASTSUBNET)
+    void setBroadcastSubnet(boolean broadcastSubnet);
 
     @KeyByString(KEY_SIMULATORADDRESS)
     @DefaultValue(R.string.localhost)

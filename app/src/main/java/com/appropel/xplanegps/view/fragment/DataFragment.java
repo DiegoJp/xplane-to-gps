@@ -16,8 +16,8 @@ import android.view.ViewTreeObserver;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.appropel.xplane.udp.UdpUtil;
 import com.appropel.xplanegps.R;
-import com.appropel.xplanegps.controller.UdpReceiverThread;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.util.IntentProvider;
@@ -90,10 +90,6 @@ public final class DataFragment extends Fragment
     @BindView(R.id.table_layout)
     View dataTable;
 
-    /** Reference to background thread which processes packets. */
-    @Inject
-    UdpReceiverThread udpReceiverThread;
-
     /** Intent provider. */
     @Inject
     IntentProvider intentProvider;
@@ -105,6 +101,10 @@ public final class DataFragment extends Fragment
     /** Event bus. */
     @Inject
     EventBus eventBus;
+
+    /** UDP utilities. */
+    @Inject
+    UdpUtil udpUtil;
 
     /** Used by ButterKnife. */
     private Unbinder unbinder;
@@ -165,7 +165,7 @@ public final class DataFragment extends Fragment
         super.onStart();
         requestPermissions();
         activeButton.setEnabled(SettingsUtil.isMockLocationEnabled(getActivity()));
-        activeButton.setChecked(udpReceiverThread.isRunning());
+        activeButton.setChecked(udpUtil.isReceiverRunning());
         eventBus.register(this);
     }
 

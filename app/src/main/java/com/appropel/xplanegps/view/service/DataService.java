@@ -12,13 +12,26 @@ import android.location.LocationProvider;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.appropel.xplane.udp.Data;
+import com.appropel.xplane.udp.PacketBase;
+import com.appropel.xplane.udp.PacketUtil;
+import com.appropel.xplane.udp.UdpCallbackReceiver;
+import com.appropel.xplane.udp.UdpUtil;
 import com.appropel.xplanegps.R;
-import com.appropel.xplanegps.controller.UdpReceiverThread;
+import com.appropel.xplanegps.common.util.LocationUtil;
+import com.appropel.xplanegps.common.util.XPlaneVersion;
+import com.appropel.xplanegps.common.util.XPlaneVersionUtil;
 import com.appropel.xplanegps.dagger.DaggerWrapper;
 import com.appropel.xplanegps.model.Preferences;
 import com.appropel.xplanegps.view.util.IntentProvider;
-import com.appropel.xplanegps.view.util.LocationUtilImpl;
 import com.appropel.xplanegps.view.util.SettingsUtil;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import javax.inject.Inject;
 
@@ -29,16 +42,13 @@ import de.greenrobot.event.EventBus;
  */
 public final class DataService extends Service
 {
+    /** Logger. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataService.class);
+
     /**
      * Notification identifier.
      */
     private static final int NOTIFICATION_ID = 1;
-
-    /**
-     * Reference to background thread which processes packets.
-     */
-    @Inject
-    UdpReceiverThread udpReceiverThread;
 
     /**
      * Intent provider.
@@ -53,6 +63,14 @@ public final class DataService extends Service
     /** Event bus. */
     @Inject
     EventBus eventBus;
+
+    /** UDP utilities. */
+    @Inject
+    UdpUtil udpUtil;
+
+    /** Location utility. */
+    @Inject
+    LocationUtil locationUtil;
 
     /**
      * Location manager.
@@ -76,7 +94,107 @@ public final class DataService extends Service
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId)
     {
-        new Thread(udpReceiverThread).start();
+        LOGGER.info("onStartCommand - starting receiver thread");
+
+        final UdpCallbackReceiver callbackReceiver = new UdpCallbackReceiver()
+        {
+            @Override
+            public int getPort()
+            {
+                // Determine receive port.
+                int port;
+                try
+                {
+                    port = Integer.valueOf(preferences.getReceivePort());
+                }
+                catch (NumberFormatException ex)
+                {
+                    port = UdpUtil.XPLANE_UDP_PORT;
+                }
+
+                return port;
+            }
+
+            @Override
+            public void initialize()
+            {
+                final XPlaneVersion xplaneVersion = XPlaneVersionUtil.getXPlaneVersion(preferences.getXplaneVersion());
+
+                // Send out datagrams to auto-configure X-Plane.
+                final String simulatorAddress = preferences.getSimulatorAddress();
+                if (preferences.isAutoconfigure())
+                {
+                    // Send out a DSEL to select the appropriate data indexes.
+                    PacketBase dsel = xplaneVersion.getDsel();
+                    if (preferences.isBroadcastSubnet())
+                    {
+                        udpUtil.sendDatagramToSubnet(PacketUtil.encode(dsel), UdpUtil.XPLANE_UDP_PORT);
+                    }
+                    else
+                    {
+                        udpUtil.sendDatagram(PacketUtil.encode(dsel), simulatorAddress, UdpUtil.XPLANE_UDP_PORT);
+                    }
+
+                    // Send out an ISET to point X-Plane to the proper data receiver.
+                    final InetAddress inetAddress = udpUtil.getSiteLocalAddress();
+                    if (inetAddress != null)
+                    {
+                        final PacketBase iset =
+                                xplaneVersion.getIset(inetAddress.getHostAddress(), String.valueOf(getPort()));
+                        if (preferences.isBroadcastSubnet())
+                        {
+                            udpUtil.sendDatagramToSubnet(PacketUtil.encode(iset), UdpUtil.XPLANE_UDP_PORT);
+                        }
+                        else
+                        {
+                            udpUtil.sendDatagram(PacketUtil.encode(iset), simulatorAddress, UdpUtil.XPLANE_UDP_PORT);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void handleRawPacket(final DatagramPacket packet)
+            {
+                // If forwarding is active, send the packet back out.
+                if (preferences.isUdpForward())
+                {
+                    final String forwardAddress = preferences.getForwardAddress();
+                    if (forwardAddress != null && forwardAddress.length() > 0)
+                    {
+                        try
+                        {
+                            final DatagramPacket outPacket = new DatagramPacket(
+                                    packet.getData(),
+                                    packet.getLength(),
+                                    InetAddress.getByName(forwardAddress),
+                                    UdpUtil.XPLANE_UDP_PORT
+                            );
+                            udpUtil.sendDatagram(
+                                    outPacket.getData(), preferences.getSimulatorAddress(), UdpUtil.XPLANE_UDP_PORT);
+                        }
+                        catch (final UnknownHostException ex)
+                        {
+                            // Ignore this.
+                        }
+                    }
+                }
+
+                // Decode the packet and look for DATA packets.
+                final PacketBase packetBase = PacketUtil.decode(packet.getData(), packet.getLength());
+                if (packetBase instanceof Data)
+                {
+                    locationUtil.broadcastLocation((Data) packetBase);
+                }
+            }
+
+            @Override
+            public void handlePacket(final PacketBase packet)
+            {
+                // Packets are handled in the raw above.
+            }
+        };
+        udpUtil.startReceiverThread(callbackReceiver);
 
         if (!eventBus.isRegistered(this))
         {
@@ -116,7 +234,7 @@ public final class DataService extends Service
     @Override
     public void onDestroy()
     {
-        udpReceiverThread.stop();
+        udpUtil.close();
         stopForeground(true);
 
         if (eventBus.isRegistered(this))

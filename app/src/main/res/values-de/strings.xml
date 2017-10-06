@@ -115,4 +115,8 @@
 
     <!-- Copilot X pitch -->
     <string name="copilot_x">Control X-Plane using voice commands with Copilot X! Click here to visit the Play Store.</string>
+
+    <!-- Beacon detected. -->
+    <string name="beacon">X-Plane v%1$s has been detected running on %2$s (%3$s). Do you want to receive data from this machine?</string>
+
 </resources>
