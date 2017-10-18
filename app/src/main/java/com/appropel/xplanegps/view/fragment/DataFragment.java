@@ -39,7 +39,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Activity which displays the data stream coming from X-Plane.
  */
-public final class DataFragment extends Fragment
+public final class DataFragment extends Fragment    // NOPMD
 {
     /** Key for shared pref. */
     public static final String PREF_VALUE = "data";
@@ -147,9 +147,11 @@ public final class DataFragment extends Fragment
 
         // Hide the banner ad if it would obscure the screen.
         ViewTreeObserver vto = bannerAd.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+        {
             @Override
-            public void onGlobalLayout() {
+            public void onGlobalLayout()
+            {
                 bannerAd.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 if (ViewUtil.intersects(bannerAd, onSwitch) || ViewUtil.intersects(bannerAd, dataTable))
                 {
@@ -201,6 +203,9 @@ public final class DataFragment extends Fragment
         super.onDestroyView();
     }
 
+    /**
+     * Requests the needed permissions in order to get Android to prompt the user.
+     */
     private void requestPermissions()
     {
         if (ContextCompat.checkSelfPermission(

@@ -1,7 +1,5 @@
 package com.appropel.xplanegps.common.util;
 
-import com.appropel.xplane.udp.Dsel;
-import com.appropel.xplane.udp.Iset;
 import com.appropel.xplane.udp.PacketBase;
 
 /**

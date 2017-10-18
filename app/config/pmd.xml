@@ -36,6 +36,7 @@ Severity: HARD
 
     <rule ref="rulesets/java/comments.xml">
         <exclude name="CommentRequired" />
+        <exclude name="CommentDefaultAccessModifier" />
     </rule>
     <rule ref="rulesets/java/comments.xml/CommentSize">
         <properties>

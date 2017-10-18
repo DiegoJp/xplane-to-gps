@@ -89,7 +89,10 @@ public final class SettingsFragment extends PreferenceFragment
         super.onStart();
         eventBus.register(this);
         socket = udpUtil.joinMulticastGroup(UdpUtil.XPLANE_BEACON_ADDRESS, UdpUtil.XPLANE_BEACON_PORT);
-        new Thread(new BeaconReceiver(socket, eventBus)).start();
+        if (socket != null)     // Might be null if an error occurred opening the socket.
+        {
+            new Thread(new BeaconReceiver(socket, eventBus)).start();
+        }
     }
 
     @Override
@@ -166,7 +169,7 @@ public final class SettingsFragment extends PreferenceFragment
     /**
      * Update displayed value of preferences.
      */
-    private void updatePreferenceSummary()
+    void updatePreferenceSummary()
     {
         xplaneVersion.setSummary(preferences.getXplaneVersion());
         broadcastSubnet.setEnabled(preferences.isAutoconfigure());
@@ -189,7 +192,7 @@ public final class SettingsFragment extends PreferenceFragment
             preferences.setSimulatorAddress(getString(R.string.localhost));
         }
         
-        final int port = Integer.valueOf(preferences.getReceivePort());
+        final int port = Integer.parseInt(preferences.getReceivePort());
         if (port < 1024)
         {
             showAlertDialog(getString(R.string.port_gt));
@@ -226,7 +229,10 @@ public final class SettingsFragment extends PreferenceFragment
         builder.show();
     }
 
-    private class BeaconReceiver implements Runnable
+    /**
+     * Runnable thread to receive X-Plane multicast beacon packets.
+     */
+    private static class BeaconReceiver implements Runnable
     {
         /** Buffer. */
         private final byte[] buffer = new byte[1024];
@@ -268,7 +274,7 @@ public final class SettingsFragment extends PreferenceFragment
     /**
      * Event broadcast when an X-Plane beacon message is received.
      */
-    private final class XPlaneBeaconEvent
+    private static final class XPlaneBeaconEvent
     {
         /** Internet address the packet came from. */
         private final String address;

@@ -44,7 +44,9 @@ public final class SettingsUtil
     {
         /**
          * Returns true if Mock Locations are enabled.
+         * @param context Android Context.
          * @return true if enabled.
+         * @throws Exception on error.
          */
         boolean isMockLocationEnabled(Context context) throws Exception;    // NOPMD
     }

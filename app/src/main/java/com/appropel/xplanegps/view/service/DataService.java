@@ -40,7 +40,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Data service.
  */
-public final class DataService extends Service
+public final class DataService extends Service  // NOPMD
 {
     /** Logger. */
     private static final Logger LOGGER = LoggerFactory.getLogger(DataService.class);
@@ -92,7 +92,7 @@ public final class DataService extends Service
     }
 
     @Override
-    public int onStartCommand(final Intent intent, final int flags, final int startId)
+    public int onStartCommand(final Intent intent, final int flags, final int startId)  // NOPMD
     {
         LOGGER.info("onStartCommand - starting receiver thread");
 
@@ -105,7 +105,7 @@ public final class DataService extends Service
                 int port;
                 try
                 {
-                    port = Integer.valueOf(preferences.getReceivePort());
+                    port = Integer.parseInt(preferences.getReceivePort());
                 }
                 catch (NumberFormatException ex)
                 {
@@ -173,7 +173,7 @@ public final class DataService extends Service
                             udpUtil.sendDatagram(
                                     outPacket.getData(), preferences.getSimulatorAddress(), UdpUtil.XPLANE_UDP_PORT);
                         }
-                        catch (final UnknownHostException ex)
+                        catch (final UnknownHostException ex)   // NOPMD: intentional.
                         {
                             // Ignore this.
                         }
@@ -246,7 +246,7 @@ public final class DataService extends Service
         {
             locationManager.removeTestProvider(LocationManager.GPS_PROVIDER);
         }
-        catch (Exception ex)
+        catch (Exception ex)    // NOPMD: intentional.
         {
             // Ignore this.
         }

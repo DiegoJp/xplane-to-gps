@@ -37,7 +37,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public final class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener
 {
     /** Logger. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainActivity.class);
+    static final Logger LOGGER = LoggerFactory.getLogger(MainActivity.class);
 
     /** Tab layout. */
     @BindView(R.id.tabLayout)

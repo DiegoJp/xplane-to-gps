@@ -46,6 +46,6 @@ public final class XPlaneVersionUtil
      */
     public static XPlaneVersion getXPlaneVersion(final String version)
     {
-        return getXPlaneVersion(Integer.valueOf(version));
+        return getXPlaneVersion(Integer.parseInt(version));
     }
 }
