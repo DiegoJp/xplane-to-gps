@@ -20,4 +20,10 @@ public interface XPlaneVersion
      * @return ISET packet.
      */
     PacketBase getIset(String host, String port);
+
+    /**
+     * Returns the dataref index that contains the heading value. This differs between X-Plane versions.
+     * @return dataref index.
+     */
+    int getHeadingIndex();
 }

@@ -20,4 +20,10 @@ public final class XPlane10 implements XPlaneVersion
     {
         return new Iset(64, host, port);
     }
+
+    @Override
+    public int getHeadingIndex()
+    {
+        return 17;
+    }
 }

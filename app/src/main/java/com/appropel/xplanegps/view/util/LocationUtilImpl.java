@@ -5,6 +5,8 @@ import android.location.LocationManager;
 
 import com.appropel.xplane.udp.Data;
 import com.appropel.xplanegps.common.util.LocationUtil;
+import com.appropel.xplanegps.common.util.XPlaneVersion;
+import com.appropel.xplanegps.common.util.XPlaneVersionUtil;
 import com.appropel.xplanegps.model.Preferences;
 
 import java.lang.reflect.Method;
@@ -45,6 +47,8 @@ public final class LocationUtilImpl implements LocationUtil
     @Override
     public void broadcastLocation(final Data data)
     {
+        final XPlaneVersion version = XPlaneVersionUtil.getXPlaneVersion(preferences.getXplaneVersion());
+
         // Transfer data values into a Location object.
         Location location = new Location(LocationManager.GPS_PROVIDER);
 
@@ -55,9 +59,12 @@ public final class LocationUtilImpl implements LocationUtil
                 case 3:     // speeds
                     location.setSpeed(chunk.getData()[3] * KNOTS_TO_M_S);
                     break;
-                case 17:    // pitch, roll, headings (X-Plane 10)
+                case 17:    // pitch, roll, headings (X-Plane 10, 11)
                 case 18:    // pitch, roll, headings (X-Plane 9)
-                    location.setBearing(chunk.getData()[2]);
+                    if (chunk.getIndex() == version.getHeadingIndex())
+                    {
+                        location.setBearing(chunk.getData()[2]);
+                    }
                     break;
                 case 20:    // lat, lon, altitude
                     location.setLatitude(chunk.getData()[0]);
