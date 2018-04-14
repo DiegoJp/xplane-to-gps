@@ -148,6 +148,7 @@ public final class SettingsFragment extends PreferenceFragment
                     public void onClick(final DialogInterface dialog, final int which)
                     {
                         preferences.setSimulatorAddress(event.getAddress());
+                        simulatorAddress.setText(event.getAddress());
                         preferences.setBroadcastSubnet(false);
                         preferences.setXplaneVersion(version);
                         updatePreferenceSummary();

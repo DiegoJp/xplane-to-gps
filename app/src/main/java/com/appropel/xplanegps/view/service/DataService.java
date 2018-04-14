@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 import javax.inject.Inject;
 
@@ -162,21 +163,8 @@ public final class DataService extends Service  // NOPMD
                     final String forwardAddress = preferences.getForwardAddress();
                     if (forwardAddress != null && forwardAddress.length() > 0)
                     {
-                        try
-                        {
-                            final DatagramPacket outPacket = new DatagramPacket(
-                                    packet.getData(),
-                                    packet.getLength(),
-                                    InetAddress.getByName(forwardAddress),
-                                    UdpUtil.XPLANE_UDP_PORT
-                            );
-                            udpUtil.sendDatagram(
-                                    outPacket.getData(), preferences.getSimulatorAddress(), UdpUtil.XPLANE_UDP_PORT);
-                        }
-                        catch (final UnknownHostException ex)   // NOPMD: intentional.
-                        {
-                            // Ignore this.
-                        }
+                        final byte[] forwardData = Arrays.copyOfRange(packet.getData(), 0, packet.getLength());
+                        udpUtil.sendDatagram(forwardData, forwardAddress, UdpUtil.XPLANE_UDP_PORT);
                     }
                 }
 
